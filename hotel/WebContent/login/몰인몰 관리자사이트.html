@@ -1,0 +1,1119 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0057)http://mimd.mallstore.co.kr/nmanager/goods/goods_list.asp -->
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>몰인몰 관리자사이트</title>
+	
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta http-equiv="Imagetoolbar" content="no">
+
+
+	<link rel="stylesheet" type="text/css" href="./몰인몰 관리자사이트_files/common.css">
+
+	<link rel="stylesheet" type="text/css" href="./몰인몰 관리자사이트_files/button.css">
+
+
+	<!-- solution default //-->
+	<script type="text/javascript" src="./몰인몰 관리자사이트_files/common.js.다운로드"></script>
+	<script type="text/javascript" src="./몰인몰 관리자사이트_files/embed.js.다운로드"></script>
+	<script type="text/javascript" src="./몰인몰 관리자사이트_files/misc.js.다운로드"></script>
+	<script type="text/javascript" src="./몰인몰 관리자사이트_files/Ajax.js.다운로드"></script>
+	<script type="text/javascript" src="./몰인몰 관리자사이트_files/JSON.js.다운로드"></script>
+	<script type="text/javascript" src="./몰인몰 관리자사이트_files/Rollover.js.다운로드"></script>
+	<!-- jquery //-->
+	<script type="text/javascript" src="./몰인몰 관리자사이트_files/jquery-1.10.2.min.js.다운로드"></script>
+	<script type="text/javascript" src="./몰인몰 관리자사이트_files/jquery-migrate-1.2.1.min.js.다운로드"></script>
+	<script type="text/javascript" src="./몰인몰 관리자사이트_files/jquery.browser.js.다운로드"></script>
+	<script type="text/javascript" src="./몰인몰 관리자사이트_files/jquery.adjustImage.js.다운로드"></script>
+	<script type="text/javascript" src="./몰인몰 관리자사이트_files/jquery.laybox.js.다운로드"></script>
+	<script type="text/javascript" src="./몰인몰 관리자사이트_files/ui.zipcode.daum.js.다운로드"></script>
+
+	<script type="text/javascript">
+	//<![CDATA[
+		var ADMIN_PATH = "/nmanager";
+		var GUEST_ID = "guest";
+		var CATEGORY_DEPTH = 3;
+	//]]>
+	</script>
+<script type="text/javascript" src="./몰인몰 관리자사이트_files/postcode.v2.js.다운로드"></script></head>
+
+<body style=""><iframe name="frmProc" src="./몰인몰 관리자사이트_files/dummy.html" width="0" height="0" style="display:none"></iframe>
+
+
+
+<script type="text/javascript">
+//<![CDATA[
+function createStartPage() {
+	if (confirm("HTML 변환을 하시겠습니까?")) {
+		location.href = "/nmanager/design/main_create.act.asp?redirect="+escape(document.URL);
+	}
+}
+//]]>
+</script>
+
+<div id="wrap">
+	<div id="header">
+
+		<!-- 데모판툴바-->
+		<iframe src="./몰인몰 관리자사이트_files/ToolbarMenu.html" marginwidth="0" marginheight="0" scrolling="no" height="38" frameborder="0" width="100%"></iframe>
+		<!--//데모판툴바 -->
+
+		<div id="admininfo">
+			<ul>
+				<li class="admin"><strong class="yellow">관리자님</strong> 안녕하세요.  /   today : 2017.12.15</li>
+				<li class="fr">
+					<span class="button black small"><button type="button" onclick="createStartPage()">HTML 변환하기</button></span>
+					
+					<span class="button black small"><a href="http://mimd.mallstore.co.kr/nmanager/main" target="_top">관리자메인</a></span>
+					<span class="button black small"><a href="http://mimd.mallstore.co.kr/" target="_blank">쇼핑몰메인</a></span>
+					<span class="button black small"><a href="http://mimd.mallstore.co.kr/nmanager/main/logout.asp" target="_top">로그아웃</a></span>
+				</li>
+			</ul>
+		</div>
+		<div id="menu">
+<ul>
+<li><a href="http://mimd.mallstore.co.kr/nmanager/setup" class="">환경설정</a></li>
+<li><a href="http://mimd.mallstore.co.kr/nmanager/design" class="">디자인관리</a></li>
+<li><a href="http://mimd.mallstore.co.kr/nmanager/goods" class="over">상품관리</a></li>
+<li><a href="http://mimd.mallstore.co.kr/nmanager/order" class="">주문/매출관리</a></li>
+<li><a href="http://mimd.mallstore.co.kr/nmanager/management" class="">운영관리</a></li>
+<li><a href="http://mimd.mallstore.co.kr/nmanager/member" class="">회원관리</a></li>
+<li><a href="http://mimd.mallstore.co.kr/nmanager/statistics" class="">통계/분석</a></li>
+<li><a href="http://mimd.mallstore.co.kr/nmanager/mim" class="">입점업체관리</a></li>
+<li><a href="http://mimd.mallstore.co.kr/nmanager/account" class="">정산관리</a></li>
+<li><a href="http://mimd.mallstore.co.kr/nmanager/mobile" class="">모바일관리</a></li>
+</ul>
+
+		</div>
+	</div>
+
+<div id="container">
+	<div id="aside">
+		<div class="tc"><span class="button black aside"><a href="http://mimd.mallstore.co.kr/" target="_blank">내 상점 바로가기</a></span></div>
+<h2>상품관리</h2>
+<dl>
+<dt>카테고리관리</dt>
+<dd>
+- <a href="http://mimd.mallstore.co.kr/nmanager/goods/category.asp">카테고리관리</a><br>
+</dd>
+<dt>상품관리</dt>
+<dd>
+- <a href="http://mimd.mallstore.co.kr/nmanager/goods/goods_reg.asp">상품등록</a><br>
+- <a href="http://mimd.mallstore.co.kr/nmanager/goods/goods_list.asp">상품목록</a><br>
+- <a href="http://mimd.mallstore.co.kr/nmanager/goods/goods_sort.asp">상품진열설정</a><br>
+- <a href="http://mimd.mallstore.co.kr/nmanager/goods/trash_list.asp">상품휴지통</a><br>
+- <a href="http://mimd.mallstore.co.kr/nmanager/goods/brand_list.asp">브랜드관리</a><br>
+- <a href="http://mimd.mallstore.co.kr/nmanager/goods/marketing.asp">상품연동관리</a><br>
+</dd>
+<dt>상품정보관리</dt>
+<dd>
+- <a href="http://mimd.mallstore.co.kr/nmanager/goods/excel_down.asp">상품정보다운로드</a><br>
+</dd>
+</dl>
+
+	</div>
+
+	<div id="contents">
+<h3>상품목록</h3><ul class="navi">
+<li class="home"><a href="http://mimd.mallstore.co.kr/nmanager/main" target="_top">홈</a></li>
+<li>상품관리</li>
+<li>상품관리</li>
+<li class="on">상품목록</li>
+</ul>
+<ul class="helpbox"><li>등록하신 상품들을 수정/관리 하실 수 있습니다.</li><li>[상품영역]을 클릭하시면 영역별로 상품들을 보실 수 있습니다.</li><li>서브메인 영역에 상품을 올릴시려면 상품관리에서 제일 마지막 카테고리분류(소분류)를 클릭하시면 됩니다.</li><li>[상품진열]버튼을 클릭하시면 상품을 숨길수 있으며 [진열안함]버튼을 클릭하시면 상품을 전시하실수 있습니다.</li><li>[상품영역]중 서브메인과 중간영역은 카테고리 지정시에만 가능합니다.</li></ul>
+
+<script type="text/javascript" src="./몰인몰 관리자사이트_files/SelectCategory.js.다운로드"></script>
+<script type="text/javascript" src="./몰인몰 관리자사이트_files/class.js.다운로드"></script>
+<script type="text/javascript" src="./몰인몰 관리자사이트_files/class.js(1).다운로드"></script>
+<script type="text/javascript">
+//<![CDATA[
+function validSearch(f) {
+	for (var i=1; i<=CATEGORY_DEPTH; i++) {
+		f['scate_'+i].disabled = true;
+	}
+
+	var saream = '';
+	$(f.caream).each(function() {
+		if ($(this).is(':checked')) {
+			saream += (saream?',':'')+this.value;
+		}
+		this.disabled = true;
+	});
+	f.saream.value = saream;
+
+	var sareas = '';
+	$(f.careas).each(function() {
+		if ($(this).is(':checked')) {
+			sareas += (sareas?',':'')+this.value;
+		}
+		this.disabled = true;
+	});
+	f.sareas.value = sareas;
+
+	if (!isDate(f.sdts.value)) f.sdts.value = "";
+	if (!isDate(f.sdte.value)) f.sdte.value = "";
+}
+//]]>
+</script>
+
+<!-- 검색 폼 : 시작 ###################################################################### -->
+<form name="sFrm" method="get" onsubmit="return validSearch(this)">
+<input type="hidden" name="saream" value="">
+<input type="hidden" name="sareas" value="">
+
+<input type="hidden" name="psort" value="sort_desc">
+<input type="hidden" name="psize" value="10">
+
+		<table cellspacing="0" cellpadding="0" border="0" width="100%" class="t_form">
+		<caption>상품 검색 폼</caption>
+		<colgroup><col width="130"><col width="*"></colgroup>
+		<tbody>
+		<tr>
+			<th>상품영역</th>
+			<td style="padding:0;">
+				<table cellspacing="0" cellpadding="0" border="0" width="100%" class="t_form" style="border:none 0">
+				<colgroup><col width="70"><col width="*"></colgroup>
+<tbody><tr>
+<th>메인</th>
+<td style="font-size:11px;">
+<ul class="arrange">
+<li class="mr10"><input type="checkbox" name="caream" value="30">md추천</li>
+<li class="mr10"><input type="checkbox" name="caream" value="32">best추천</li>
+</ul>
+</td>
+</tr>
+<tr>
+<th style="border:0 none;border-right:solid 1px #ddd">서브</th>
+<td style="font-size:11px;border:0 none;" '="">
+<ul class="arrange">
+<li class="mr10"><input type="checkbox" name="careas" value="CMA">대분류 Best Seller</li>
+<li class="mr10"><input type="checkbox" name="careas" value="CMB">대분류 New Item</li>
+<li class="mr10"><input type="checkbox" name="careas" value="CMC">대분류 MD Choice</li>
+<li class="mr10"><input type="checkbox" name="careas" value="CSA">중분류 Top Best</li>
+</ul>
+</td>
+</tr>
+
+				</tbody></table>
+			</td>
+		</tr>
+		
+		<tr>
+			<th>상품등록일</th>
+			<td>
+				<div>
+					<input type="text" id="sdts" name="sdts" value="" maxlength="10" class="text_input" style="width:70px">
+					<img src="./몰인몰 관리자사이트_files/btn_open.gif" onclick="calendar.open(event, &#39;sdts&#39;, &#39;YYYY-MM-DD&#39;)" style="vertical-align:middle">
+					~
+					<input type="text" id="sdte" name="sdte" value="" maxlength="10" class="text_input" style="width:70px">
+					<img src="./몰인몰 관리자사이트_files/btn_open.gif" onclick="calendar.open(event, &#39;sdte&#39;, &#39;YYYY-MM-DD&#39;)" style="vertical-align:middle">
+					<span class="blue">직접 입력시에는 “2007-01-01” 형식으로 입력해주세요.</span>
+				</div>
+				<div class="mgt5">
+					<span class="button small"><button type="button" onclick="inperiod.input(&#39;sdts&#39;, &#39;sdte&#39;)">전체</button></span>
+					<span class="button small"><button type="button" onclick="inperiod.input(&#39;sdts&#39;, &#39;sdte&#39;, &#39;t&#39;)">오늘</button></span>
+					<span class="button small"><button type="button" onclick="inperiod.input(&#39;sdts&#39;, &#39;sdte&#39;, &#39;t&#39;, -1)">어제</button></span>
+					<span class="button small"><button type="button" onclick="inperiod.input(&#39;sdts&#39;, &#39;sdte&#39;, &#39;d&#39;, -3)">3일간</button></span>
+					<span class="button small"><button type="button" onclick="inperiod.input(&#39;sdts&#39;, &#39;sdte&#39;, &#39;d&#39;, -7)">7일간</button></span>
+					<span class="button small"><button type="button" onclick="inperiod.input(&#39;sdts&#39;, &#39;sdte&#39;, &#39;d&#39;, -10)">10일간</button></span>
+					<span class="button small"><button type="button" onclick="inperiod.input(&#39;sdts&#39;, &#39;sdte&#39;, &#39;d&#39;, -20)">20일간</button></span>
+					<span class="button small"><button type="button" onclick="inperiod.input(&#39;sdts&#39;, &#39;sdte&#39;, &#39;d&#39;, -30)">30일간</button></span>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<th>상품판매자</th>
+			<td>
+<select id="sdealer" name="sdealer" onchange="change();"><option value="">선택하세요</option><option value="-1">몰인몰</option><option value="8">내친구몰 [dealers]</option></select>
+
+			</td>
+		</tr>
+		<tr>
+			<th>재고여부</th>
+			<td>
+				<input type="radio" name="sstock" value="0" checked="">전체상품
+				<input type="radio" name="sstock" value="1">재고 무제한
+				<input type="radio" name="sstock" value="2">재고있는 상품(무제한 제외)
+				<input type="radio" name="sstock" value="3">재고가 실제 0인 상품
+				<input type="radio" name="sstock" value="4">품절로 선택된 상품
+			</td>
+		</tr>
+		<tr>
+			<th>진열여부</th>
+			<td>
+				<input type="radio" name="sdisplay" value="0" checked="">전체상품
+				<input type="radio" name="sdisplay" value="1">진열되어 있는 상품
+				<input type="radio" name="sdisplay" value="2">진열 안되어있는 상품
+			</td>
+		</tr>
+		<tr>
+			<th>상품가격</th>
+			<td>
+				<input type="text" name="ssprice" value="" class="text_input" style="width:100px" onkeyup="toCurrency(this)" onblur="toCurrency(this)"> 원
+				~
+				<input type="text" name="seprice" value="" class="text_input" style="width:100px" onkeyup="toCurrency(this)" onblur="toCurrency(this)"> 원
+			</td>
+		</tr>
+		<tr>
+			<th>직접검색</th>
+			<td>
+<select id="skey" name="skey"><option value="name">상품명</option><option value="code">상품코드</option></select>
+
+				<input type="text" name="sword" value="" class="text_input" style="width:300px">
+				<span class="button small black"><button type="submit">검색</button></span>
+			</td>
+		</tr>
+		</tbody></table>
+
+</form>
+<!-- 검색 폼 : 끝 ###################################################################### -->
+
+<script type="text/javascript">
+//<![CDATA[
+function changeList() {
+	var f = document.Frm;
+	var sf = document.sFrm;
+
+	sf.psort.value = f.psort.options[f.psort.selectedIndex].value;
+	sf.psize.value = f.psize.options[f.psize.selectedIndex].value;
+
+	sf.target = "_self";
+	sf.submit();
+}
+
+function edit(gno) {
+	location.href = "goods_reg.asp?gno="+gno+"&params=scate=0^saream=^sareas=^sbrand=0^sdts=^sdte=^sdealer=0^sstock=0^sdisplay=0^ssprice=^seprice=^skey=^sword=^psort=sort_desc^psize=10^page=";
+}
+
+function copy(gno) {
+	location.href = "goods_reg.asp?mode=COPY&gno="+gno+"&params=scate=0^saream=^sareas=^sbrand=0^sdts=^sdte=^sdealer=0^sstock=0^sdisplay=0^ssprice=^seprice=^skey=^sword=^psort=sort_desc^psize=10^page=";
+}
+
+function delList() {
+	var f = document.Frm;
+	var items = "";
+
+	if (!f.cbList) return false;
+
+	if (typeof(f.cbList.length) == "undefined") {
+		if (f.cbList.checked) items = f.cbList.value;
+	}
+	else {
+		for (var i=0; i<f.cbList.length; i++) {
+			if (f.cbList[i].checked) {
+				items += (items ? ',' : '')+f.cbList[i].value;
+			}
+		}
+	}
+
+	if (items == "") {
+		alert("휴지통에 버리실 항목을 선택해 주세요.");
+		return false;
+	}
+
+	var msg = "선택하신 상품을 휴지통에 버리시겠습니까?\n\n"+
+		"고객이 주문한 물류일 경우 휴지통에 버리게 되면 오류가 발생하게 됩니다.\n"+
+		"자세하게 확인하신 후 휴지통에 버리시기 바랍니다.";
+
+	if (confirm(msg)) {
+		f.gno.value = items;
+		f.action = "goods_trash.act.asp";
+		f.submit();
+	}
+}
+
+function del(gno) {
+	var f = document.Frm;
+
+	if (confirm("선택하신 상품을 휴지통에 버리시겠습니까?")) {
+		f.gno.value = gno;
+		f.action = "goods_trash.act.asp";
+		f.submit();
+	}
+}
+
+function changeDisplay(gno) {
+	var f = document.Frm;
+	f.mode.value = "CHANGEDISPLAY";
+	f.gno.value = gno;
+	f.action = "goods_list.act.asp";
+	f.submit();
+}
+
+function changeSoldOut(gno) {
+	var f = document.Frm;
+	f.mode.value = "CHANGESOLDOUT";
+	f.gno.value = gno;
+	f.action = "goods_list.act.asp";
+	f.submit();
+}
+
+function openGoodsHistory(gno) {
+	$.laybox({
+		type: 'iframe',
+		source: 'goods_history_list.ifrm.asp?gno='+gno
+	});
+}
+
+function openDealerInfo(dealerNo) {
+	openPopup("/nmanager/mim/dealer_detail.pop.asp?no="+dealerNo, "DealerInfo", 800, 600, "scrollbars=yes");
+}
+
+function downExcel() {
+	frmProc.location.replace("goods_list.excel.asp?scate=0&saream=&sareas=&sbrand=0&sdts=&sdte=&sdealer=0&sstock=0&sdisplay=0&ssprice=&seprice=&skey=&sword=&psort=sort_desc&psize=10");
+}
+//]]>
+</script>
+
+<script type="text/javascript">
+//<![CDATA[
+// 가격 계산시 절사단위
+var priceRoundUnit =  '-1'.toNumeric();
+
+function checkPriceRound(item, gno, caller) {
+	var value = item.value.toNumeric();
+	if (value != setRound(value, priceRoundUnit)) {
+		item.value = formatComma(setRound(value, priceRoundUnit));
+		calcPrice(gno, caller);
+	}
+}
+
+// 가격입력 : 계산
+function calcPrice(gno, caller) {
+	var f = document.Frm;
+
+	if (typeof caller == "undefined") caller = '';
+
+	var objPriceSplit = f['priceSplit_'+gno];
+	var objCmsType = f['cmsType_'+gno];
+	var objMargin = f['margin_'+gno];
+	var objPrice = f['price_'+gno];
+	var objOriginalPrice = f['originalPrice_'+gno];
+
+	var price = objPrice.value.toNumeric();
+	var margin = objMargin.value.toNumeric();
+	var originalPrice = objOriginalPrice.value.toNumeric();
+
+	if (objPriceSplit.value == '100') { // 공급가 기준 경우
+		if (objCmsType.value != 'GOS') { // 카테고리 또는 입점업체 수수료 설정
+			// 판매가를 입력한 경우
+			if (caller == 'price') {
+				originalPrice = setRound(price - (price * margin / 100), priceRoundUnit);
+				objOriginalPrice.value = formatComma(originalPrice);
+			}
+			// 공급가를 적었다면
+			else if (margin == 100) {
+				objPrice.value = 0;
+				objOriginalPrice.value = 0;
+			}
+			else {
+				price = setRound(originalPrice / (100 - margin) * 100, priceRoundUnit);
+				objPrice.value = formatComma(price);
+			}
+		}
+		else { // 상품별 수수료 설정
+			margin = (price==0 ? 0 : 100 - (originalPrice / price * 100));
+			objMargin.value = setRound(margin, 2);
+		}
+	}
+	else { // 수수료 기준 경우
+		originalPrice = setRound(price * (100 - margin) / 100, priceRoundUnit);
+		objOriginalPrice.value = formatComma(originalPrice);
+	}
+}
+
+function validSave(gno) {
+	var f = document.Frm;
+	var price = f['price_'+gno].value;
+	var margin = f['margin_'+gno].value;
+	var originalPrice = f['originalPrice_'+gno].value;
+	var marketPrice = f['marketPrice_'+gno].value;
+	var quantity = (f['quantity_'+gno] ? f['quantity_'+gno].value : 0);
+
+	if (quantity >= '1000000'.toNumeric()) {
+		alert("재고 수량은 1,000,000 미만으로 설정이 가능합니다.");
+		f['quantity_'+gno].focus();
+		return false;
+	}
+
+	if (confirm("현재의 설정으로 저장하시겠습니까?")) {
+		f.mode.value = "LISTSAVE";
+		f.gno.value = gno;
+		f.price.value = price;
+		f.margin.value = margin;
+		f.originalPrice.value = originalPrice;
+		f.marketPrice.value = marketPrice;
+		f.quantity.value = quantity;
+		f.action = "goods_list.act.asp";
+		f.submit();
+	}
+}
+//]]>
+</script>
+
+<form name="Frm" method="post">
+<input type="hidden" name="mode">
+<input type="hidden" name="gno">
+<input type="hidden" name="cate" value="0">
+
+<input type="hidden" name="price">
+<input type="hidden" name="margin">
+<input type="hidden" name="originalPrice">
+<input type="hidden" name="marketPrice">
+<input type="hidden" name="quantity">
+
+<input type="hidden" name="params" value="scate=0^saream=^sareas=^sbrand=0^sdts=^sdte=^sdealer=0^sstock=0^sdisplay=0^ssprice=^seprice=^skey=^sword=^psort=sort_desc^psize=10^page=">
+
+		<div class="section_head">
+			<h4>
+총 <span style="color:#ff0000">62</span>개의 상품이 검색되었습니다.
+
+			</h4>
+			<div>
+<select id="psize" name="psize" onchange="changeList();"><option value="10" selected="">10줄씩보기</option><option value="20">20줄씩보기</option><option value="30">30줄씩보기</option><option value="50">50줄씩보기</option><option value="100">100줄씩보기</option></select>
+<select id="psort" name="psort" onchange="changeList();"><option value="sort_desc" selected="">기본정렬</option><option value="name_asc">상품명순</option><option value="no_desc">신상품순</option><option value="hits_desc">인기도순</option><option value="price_desc">고가격순</option><option value="price_asc">저가격순</option></select>
+
+			</div>
+		</div>
+
+		<table border="0" cellpadding="0" cellspacing="0" width="100%" class="t_list">
+		<caption>상품 리스트</caption>
+		<colgroup><col width="30"><col width="120"><col width="*"><col width="200"><col width="80"><col width="70"></colgroup>
+		<thead>
+		<tr>
+			<th><input type="checkbox" name="cbListAll" onclick="checkCbAll(this.form.cbList, this.checked)"></th>
+			<th>고유번호</th>
+			<th>
+				상품명<br>
+				카테고리<br>
+				공급업체<br>
+			</th>
+			<th>
+				판매가<br>
+				시중가<br>
+				공급가<br>
+			</th>
+			<th>
+				조회수<br>
+				판매수량<br>
+				재고<br>
+			</th>
+			<th>기능</th>
+		</tr>
+		</thead>
+		<tbody>
+
+		<tr bgcolor="#ffffff">
+			<td><input type="checkbox" name="cbList" value="243"></td>
+			<td>
+<div><strong>243</strong></div>
+<div class="mgt5"><span class="button small"><button type="button" onclick="changeDisplay(243)">상품진열 안하기</button></span>
+</div>
+<div class="mgt5"><span class="button small"><button type="button" onclick="changeSoldOut(243)">진열로 표시</button></span></div>
+
+			</td>
+			<td class="vt">
+				<div class="gbox tl">
+					<img src="./몰인몰 관리자사이트_files/201721660706400_1_1_1_1.jpg" class="photo">
+					<div><a href="http://mimd.mallstore.co.kr/goods/detail.asp?gno=243" target="_blank"><strong>SUN_추가상품_개별_선불12000원이상 무료</strong></a></div>
+					<div class="category">OUTER&gt;자켓&gt;테이러드자켓<br></div>
+				</div>
+
+			</td>
+			<td>
+<input type="hidden" name="priceSplit_243" value="100">
+<input type="hidden" name="cmsType_243" value="CTG">
+<input type="hidden" name="margin_243" value="0">
+
+				<div>
+					판매가
+					<input type="text" name="price_243" value="10,000" maxlength="10" class="text_input" style="width:50%" onkeyup="toCurrency(this); calcPrice(243, &#39;price&#39;);" onblur="checkPriceRound(this, 243, &#39;price&#39;)"> 원
+				</div>
+				<div class="mgt5">
+					시중가
+					<input type="text" name="marketPrice_243" value="0" maxlength="10" class="text_input" style="width:50%" onkeyup="toCurrency(this)"> 원
+				</div>
+				<div class="mgt5">
+					공급가
+					<input type="text" name="originalPrice_243" value="10,000" maxlength="10" class="text_input" style="width:50%" onkeyup="toCurrency(this); calcPrice(243, this);" onblur="checkPriceRound(this, 243)"> 원
+				</div>
+			</td>
+			<td>
+				<div>
+					49 회
+				</div>
+				<div class="mgt5">
+					0 개
+				</div>
+				<div class="mgt5">
+
+					무제한
+
+				</div>
+			</td>
+			<td align="center">
+				<div><span class="button small"><button type="button" onclick="openGoodsHistory(243)">이력</button></span></div>
+				<div class="mgt3"><span class="button small green"><button type="button" onclick="validSave(243)">저장</button></span></div>
+				<div class="mgt3"><span class="button small"><button type="button" onclick="copy(243)">복사</button></span></div>
+				<div class="mgt3"><span class="button small blue"><button type="button" onclick="edit(243)">수정</button></span></div>
+				<div class="mgt3"><span class="button small black"><button type="button" onclick="del(243)">삭제</button></span></div>
+			</td>
+		</tr>
+
+		<tr bgcolor="#ffffff">
+			<td><input type="checkbox" name="cbList" value="242"></td>
+			<td>
+<div><strong>242</strong></div>
+<div class="mgt5"><span class="button small"><button type="button" onclick="changeDisplay(242)">상품진열 안하기</button></span>
+</div>
+<div class="mgt5"><span class="button small"><button type="button" onclick="changeSoldOut(242)">진열로 표시</button></span></div>
+
+			</td>
+			<td class="vt">
+				<div class="gbox tl">
+					<img src="./몰인몰 관리자사이트_files/201721660706400_1_1_1.jpg" class="photo">
+					<div><a href="http://mimd.mallstore.co.kr/goods/detail.asp?gno=242" target="_blank"><strong>SUN_추가상품_개별_선불12000원이상 무료</strong></a></div>
+					<div class="category">OUTER&gt;자켓&gt;테이러드자켓<br></div>
+				</div>
+
+			</td>
+			<td>
+<input type="hidden" name="priceSplit_242" value="100">
+<input type="hidden" name="cmsType_242" value="CTG">
+<input type="hidden" name="margin_242" value="0">
+
+				<div>
+					판매가
+					<input type="text" name="price_242" value="10,000" maxlength="10" class="text_input" style="width:50%" onkeyup="toCurrency(this); calcPrice(242, &#39;price&#39;);" onblur="checkPriceRound(this, 242, &#39;price&#39;)"> 원
+				</div>
+				<div class="mgt5">
+					시중가
+					<input type="text" name="marketPrice_242" value="0" maxlength="10" class="text_input" style="width:50%" onkeyup="toCurrency(this)"> 원
+				</div>
+				<div class="mgt5">
+					공급가
+					<input type="text" name="originalPrice_242" value="10,000" maxlength="10" class="text_input" style="width:50%" onkeyup="toCurrency(this); calcPrice(242, this);" onblur="checkPriceRound(this, 242)"> 원
+				</div>
+			</td>
+			<td>
+				<div>
+					31 회
+				</div>
+				<div class="mgt5">
+					0 개
+				</div>
+				<div class="mgt5">
+
+					무제한
+
+				</div>
+			</td>
+			<td align="center">
+				<div><span class="button small"><button type="button" onclick="openGoodsHistory(242)">이력</button></span></div>
+				<div class="mgt3"><span class="button small green"><button type="button" onclick="validSave(242)">저장</button></span></div>
+				<div class="mgt3"><span class="button small"><button type="button" onclick="copy(242)">복사</button></span></div>
+				<div class="mgt3"><span class="button small blue"><button type="button" onclick="edit(242)">수정</button></span></div>
+				<div class="mgt3"><span class="button small black"><button type="button" onclick="del(242)">삭제</button></span></div>
+			</td>
+		</tr>
+
+		<tr bgcolor="#ffffff">
+			<td><input type="checkbox" name="cbList" value="241"></td>
+			<td>
+<div><strong>241</strong></div>
+<div class="mgt5"><span class="button small"><button type="button" onclick="changeDisplay(241)">상품진열 안하기</button></span>
+</div>
+<div class="mgt5"><span class="button small"><button type="button" onclick="changeSoldOut(241)">진열로 표시</button></span></div>
+
+			</td>
+			<td class="vt">
+				<div class="gbox tl">
+					<img src="./몰인몰 관리자사이트_files/201721660706400_1_1.jpg" class="photo">
+					<div><a href="http://mimd.mallstore.co.kr/goods/detail.asp?gno=241" target="_blank"><strong>SUN_추가상품_개별_선불12000원이상 무료</strong></a></div>
+					<div class="category">OUTER&gt;자켓&gt;테이러드자켓<br></div>
+				</div>
+
+			</td>
+			<td>
+<input type="hidden" name="priceSplit_241" value="100">
+<input type="hidden" name="cmsType_241" value="CTG">
+<input type="hidden" name="margin_241" value="0">
+
+				<div>
+					판매가
+					<input type="text" name="price_241" value="10,000" maxlength="10" class="text_input" style="width:50%" onkeyup="toCurrency(this); calcPrice(241, &#39;price&#39;);" onblur="checkPriceRound(this, 241, &#39;price&#39;)"> 원
+				</div>
+				<div class="mgt5">
+					시중가
+					<input type="text" name="marketPrice_241" value="0" maxlength="10" class="text_input" style="width:50%" onkeyup="toCurrency(this)"> 원
+				</div>
+				<div class="mgt5">
+					공급가
+					<input type="text" name="originalPrice_241" value="10,000" maxlength="10" class="text_input" style="width:50%" onkeyup="toCurrency(this); calcPrice(241, this);" onblur="checkPriceRound(this, 241)"> 원
+				</div>
+			</td>
+			<td>
+				<div>
+					43 회
+				</div>
+				<div class="mgt5">
+					0 개
+				</div>
+				<div class="mgt5">
+
+					무제한
+
+				</div>
+			</td>
+			<td align="center">
+				<div><span class="button small"><button type="button" onclick="openGoodsHistory(241)">이력</button></span></div>
+				<div class="mgt3"><span class="button small green"><button type="button" onclick="validSave(241)">저장</button></span></div>
+				<div class="mgt3"><span class="button small"><button type="button" onclick="copy(241)">복사</button></span></div>
+				<div class="mgt3"><span class="button small blue"><button type="button" onclick="edit(241)">수정</button></span></div>
+				<div class="mgt3"><span class="button small black"><button type="button" onclick="del(241)">삭제</button></span></div>
+			</td>
+		</tr>
+
+		<tr bgcolor="#ffffff">
+			<td><input type="checkbox" name="cbList" value="240"></td>
+			<td>
+<div><strong>240</strong></div>
+<div class="mgt5"><span class="button small"><button type="button" onclick="changeDisplay(240)">상품진열 안하기</button></span>
+</div>
+<div class="mgt5"><span class="button small"><button type="button" onclick="changeSoldOut(240)">진열로 표시</button></span></div>
+
+			</td>
+			<td class="vt">
+				<div class="gbox tl">
+					<img src="./몰인몰 관리자사이트_files/201721660706400_1.jpg" class="photo">
+					<div><a href="http://mimd.mallstore.co.kr/goods/detail.asp?gno=240" target="_blank"><strong>SUN_추가상품_개별_선불12000원이상 무료</strong></a></div>
+					<div class="category">OUTER&gt;자켓&gt;테이러드자켓<br></div>
+				</div>
+
+			</td>
+			<td>
+<input type="hidden" name="priceSplit_240" value="100">
+<input type="hidden" name="cmsType_240" value="CTG">
+<input type="hidden" name="margin_240" value="0">
+
+				<div>
+					판매가
+					<input type="text" name="price_240" value="10,000" maxlength="10" class="text_input" style="width:50%" onkeyup="toCurrency(this); calcPrice(240, &#39;price&#39;);" onblur="checkPriceRound(this, 240, &#39;price&#39;)"> 원
+				</div>
+				<div class="mgt5">
+					시중가
+					<input type="text" name="marketPrice_240" value="0" maxlength="10" class="text_input" style="width:50%" onkeyup="toCurrency(this)"> 원
+				</div>
+				<div class="mgt5">
+					공급가
+					<input type="text" name="originalPrice_240" value="10,000" maxlength="10" class="text_input" style="width:50%" onkeyup="toCurrency(this); calcPrice(240, this);" onblur="checkPriceRound(this, 240)"> 원
+				</div>
+			</td>
+			<td>
+				<div>
+					41 회
+				</div>
+				<div class="mgt5">
+					0 개
+				</div>
+				<div class="mgt5">
+
+					무제한
+
+				</div>
+			</td>
+			<td align="center">
+				<div><span class="button small"><button type="button" onclick="openGoodsHistory(240)">이력</button></span></div>
+				<div class="mgt3"><span class="button small green"><button type="button" onclick="validSave(240)">저장</button></span></div>
+				<div class="mgt3"><span class="button small"><button type="button" onclick="copy(240)">복사</button></span></div>
+				<div class="mgt3"><span class="button small blue"><button type="button" onclick="edit(240)">수정</button></span></div>
+				<div class="mgt3"><span class="button small black"><button type="button" onclick="del(240)">삭제</button></span></div>
+			</td>
+		</tr>
+
+		<tr bgcolor="#ffffff">
+			<td><input type="checkbox" name="cbList" value="239"></td>
+			<td>
+<div><strong>239</strong></div>
+<div class="mgt5"><span class="button small"><button type="button" onclick="changeDisplay(239)">상품진열 안하기</button></span>
+</div>
+<div class="mgt5"><span class="button small"><button type="button" onclick="changeSoldOut(239)">진열로 표시</button></span></div>
+
+			</td>
+			<td class="vt">
+				<div class="gbox tl">
+					<img src="./몰인몰 관리자사이트_files/201721660706400.jpg" class="photo">
+					<div><a href="http://mimd.mallstore.co.kr/goods/detail.asp?gno=239" target="_blank"><strong>SUN_추가상품_개별_선불12000원이상 무료</strong></a></div>
+					<div class="category">OUTER&gt;자켓&gt;테이러드자켓<br></div>
+				</div>
+
+			</td>
+			<td>
+<input type="hidden" name="priceSplit_239" value="100">
+<input type="hidden" name="cmsType_239" value="CTG">
+<input type="hidden" name="margin_239" value="0">
+
+				<div>
+					판매가
+					<input type="text" name="price_239" value="10,000" maxlength="10" class="text_input" style="width:50%" onkeyup="toCurrency(this); calcPrice(239, &#39;price&#39;);" onblur="checkPriceRound(this, 239, &#39;price&#39;)"> 원
+				</div>
+				<div class="mgt5">
+					시중가
+					<input type="text" name="marketPrice_239" value="0" maxlength="10" class="text_input" style="width:50%" onkeyup="toCurrency(this)"> 원
+				</div>
+				<div class="mgt5">
+					공급가
+					<input type="text" name="originalPrice_239" value="10,000" maxlength="10" class="text_input" style="width:50%" onkeyup="toCurrency(this); calcPrice(239, this);" onblur="checkPriceRound(this, 239)"> 원
+				</div>
+			</td>
+			<td>
+				<div>
+					75 회
+				</div>
+				<div class="mgt5">
+					0 개
+				</div>
+				<div class="mgt5">
+
+					무제한
+
+				</div>
+			</td>
+			<td align="center">
+				<div><span class="button small"><button type="button" onclick="openGoodsHistory(239)">이력</button></span></div>
+				<div class="mgt3"><span class="button small green"><button type="button" onclick="validSave(239)">저장</button></span></div>
+				<div class="mgt3"><span class="button small"><button type="button" onclick="copy(239)">복사</button></span></div>
+				<div class="mgt3"><span class="button small blue"><button type="button" onclick="edit(239)">수정</button></span></div>
+				<div class="mgt3"><span class="button small black"><button type="button" onclick="del(239)">삭제</button></span></div>
+			</td>
+		</tr>
+
+		<tr bgcolor="#ffffff">
+			<td><input type="checkbox" name="cbList" value="234"></td>
+			<td>
+<div><strong>234</strong></div>
+<div class="mgt5"><span class="button small"><button type="button" onclick="changeDisplay(234)">상품진열 안하기</button></span>
+</div>
+<div class="mgt5"><span class="button small"><button type="button" onclick="changeSoldOut(234)">진열로 표시</button></span></div>
+
+			</td>
+			<td class="vt">
+				<div class="gbox tl">
+					<img src="./몰인몰 관리자사이트_files/43.jpg" class="photo">
+					<div><a href="http://mimd.mallstore.co.kr/goods/detail.asp?gno=234" target="_blank"><strong>[NCGN] Sports Goggle</strong></a></div>
+					<div class="category">OUTER&gt;가디건&gt;라운드가디건<br>OUTER&gt;코트&gt;트렌치코트<br></div><div class="dealer"><a href="javascript:;" onclick="openDealerInfo(8); return false;"><strong>내친구몰</strong>(02-123-1234)</a></div>
+				</div>
+<dl class="recom">
+<dt>메인</dt>
+<dd>new상품, md추천</dd>
+</dl>
+<dl class="recom">
+<dt>서브</dt>
+<dd>대분류 MD Choice</dd>
+</dl>
+
+			</td>
+			<td>
+<input type="hidden" name="priceSplit_234" value="200">
+<input type="hidden" name="cmsType_234" value="GOS">
+<input type="hidden" name="margin_234" value="15">
+
+				<div>
+					판매가
+					<input type="text" name="price_234" value="50,000" maxlength="10" class="text_input" style="width:50%" onkeyup="toCurrency(this); calcPrice(234, &#39;price&#39;);" onblur="checkPriceRound(this, 234, &#39;price&#39;)"> 원
+				</div>
+				<div class="mgt5">
+					시중가
+					<input type="text" name="marketPrice_234" value="0" maxlength="10" class="text_input" style="width:50%" onkeyup="toCurrency(this)"> 원
+				</div>
+				<div class="mgt5">
+					공급가
+					<input type="text" name="originalPrice_234" value="42,500" maxlength="10" class="text_input" style="width:50%" onkeyup="toCurrency(this); calcPrice(234, this);" onblur="checkPriceRound(this, 234)" disabled=""> 원
+				</div>
+			</td>
+			<td>
+				<div>
+					132 회
+				</div>
+				<div class="mgt5">
+					1 개
+				</div>
+				<div class="mgt5">
+
+					<input type="text" name="quantity_234" value="49" maxlength="7" class="text_input" style="width:50%" onkeyup="toCurrency(this)"> 개
+
+				</div>
+			</td>
+			<td align="center">
+				<div><span class="button small"><button type="button" onclick="openGoodsHistory(234)">이력</button></span></div>
+				<div class="mgt3"><span class="button small green"><button type="button" onclick="validSave(234)">저장</button></span></div>
+				<div class="mgt3"><span class="button small"><button type="button" onclick="copy(234)">복사</button></span></div>
+				<div class="mgt3"><span class="button small blue"><button type="button" onclick="edit(234)">수정</button></span></div>
+				<div class="mgt3"><span class="button small black"><button type="button" onclick="del(234)">삭제</button></span></div>
+			</td>
+		</tr>
+
+		<tr bgcolor="#ffffff">
+			<td><input type="checkbox" name="cbList" value="231"></td>
+			<td>
+<div><strong>231</strong></div>
+<div class="mgt5"><span class="button small"><button type="button" onclick="changeDisplay(231)">상품진열 안하기</button></span>
+</div>
+<div class="mgt5"><span class="button small red"><button type="button" onclick="changeSoldOut(231)">품절로 표시</button></span></div>
+
+			</td>
+			<td class="vt">
+				<div class="gbox tl">
+					<img src="./몰인몰 관리자사이트_files/40.jpg" class="photo">
+					<div><a href="http://mimd.mallstore.co.kr/goods/detail.asp?gno=231" target="_blank"><strong>[NCGN] Ski goggle</strong></a></div>
+					<div class="category">OUTER&gt;가디건&gt;라운드가디건<br>OUTER&gt;코트&gt;트렌치코트<br></div><div class="dealer"><a href="javascript:;" onclick="openDealerInfo(8); return false;"><strong>내친구몰</strong>(02-123-1234)</a></div>
+				</div>
+<dl class="recom">
+<dt>메인</dt>
+<dd>md추천, best추천</dd>
+</dl>
+
+			</td>
+			<td>
+<input type="hidden" name="priceSplit_231" value="200">
+<input type="hidden" name="cmsType_231" value="GOS">
+<input type="hidden" name="margin_231" value="15">
+
+				<div>
+					판매가
+					<input type="text" name="price_231" value="50,000" maxlength="10" class="text_input" style="width:50%" onkeyup="toCurrency(this); calcPrice(231, &#39;price&#39;);" onblur="checkPriceRound(this, 231, &#39;price&#39;)"> 원
+				</div>
+				<div class="mgt5">
+					시중가
+					<input type="text" name="marketPrice_231" value="0" maxlength="10" class="text_input" style="width:50%" onkeyup="toCurrency(this)"> 원
+				</div>
+				<div class="mgt5">
+					공급가
+					<input type="text" name="originalPrice_231" value="42,500" maxlength="10" class="text_input" style="width:50%" onkeyup="toCurrency(this); calcPrice(231, this);" onblur="checkPriceRound(this, 231)" disabled=""> 원
+				</div>
+			</td>
+			<td>
+				<div>
+					47 회
+				</div>
+				<div class="mgt5">
+					0 개
+				</div>
+				<div class="mgt5">
+
+					<input type="text" name="quantity_231" value="47" maxlength="7" class="text_input" style="width:50%" onkeyup="toCurrency(this)"> 개
+
+				</div>
+			</td>
+			<td align="center">
+				<div><span class="button small"><button type="button" onclick="openGoodsHistory(231)">이력</button></span></div>
+				<div class="mgt3"><span class="button small green"><button type="button" onclick="validSave(231)">저장</button></span></div>
+				<div class="mgt3"><span class="button small"><button type="button" onclick="copy(231)">복사</button></span></div>
+				<div class="mgt3"><span class="button small blue"><button type="button" onclick="edit(231)">수정</button></span></div>
+				<div class="mgt3"><span class="button small black"><button type="button" onclick="del(231)">삭제</button></span></div>
+			</td>
+		</tr>
+
+		<tr bgcolor="#ffffff">
+			<td><input type="checkbox" name="cbList" value="229"></td>
+			<td>
+<div><strong>229</strong></div>
+<div class="mgt5"><span class="button small"><button type="button" onclick="changeDisplay(229)">상품진열 안하기</button></span>
+</div>
+<div class="mgt5"><span class="button small"><button type="button" onclick="changeSoldOut(229)">진열로 표시</button></span></div>
+
+			</td>
+			<td class="vt">
+				<div class="gbox tl">
+					<img src="./몰인몰 관리자사이트_files/38.jpg" class="photo">
+					<div><a href="http://mimd.mallstore.co.kr/goods/detail.asp?gno=229" target="_blank"><strong>[NCGN] Swimming goggle</strong></a></div>
+					<div class="category">OUTER&gt;가디건&gt;라운드가디건<br>OUTER&gt;코트&gt;트렌치코트<br></div><div class="dealer"><a href="javascript:;" onclick="openDealerInfo(8); return false;"><strong>내친구몰</strong>(02-123-1234)</a></div>
+				</div>
+
+			</td>
+			<td>
+<input type="hidden" name="priceSplit_229" value="200">
+<input type="hidden" name="cmsType_229" value="GOS">
+<input type="hidden" name="margin_229" value="15">
+
+				<div>
+					판매가
+					<input type="text" name="price_229" value="50,000" maxlength="10" class="text_input" style="width:50%" onkeyup="toCurrency(this); calcPrice(229, &#39;price&#39;);" onblur="checkPriceRound(this, 229, &#39;price&#39;)"> 원
+				</div>
+				<div class="mgt5">
+					시중가
+					<input type="text" name="marketPrice_229" value="0" maxlength="10" class="text_input" style="width:50%" onkeyup="toCurrency(this)"> 원
+				</div>
+				<div class="mgt5">
+					공급가
+					<input type="text" name="originalPrice_229" value="42,500" maxlength="10" class="text_input" style="width:50%" onkeyup="toCurrency(this); calcPrice(229, this);" onblur="checkPriceRound(this, 229)" disabled=""> 원
+				</div>
+			</td>
+			<td>
+				<div>
+					27 회
+				</div>
+				<div class="mgt5">
+					0 개
+				</div>
+				<div class="mgt5">
+
+					<input type="text" name="quantity_229" value="45" maxlength="7" class="text_input" style="width:50%" onkeyup="toCurrency(this)"> 개
+
+				</div>
+			</td>
+			<td align="center">
+				<div><span class="button small"><button type="button" onclick="openGoodsHistory(229)">이력</button></span></div>
+				<div class="mgt3"><span class="button small green"><button type="button" onclick="validSave(229)">저장</button></span></div>
+				<div class="mgt3"><span class="button small"><button type="button" onclick="copy(229)">복사</button></span></div>
+				<div class="mgt3"><span class="button small blue"><button type="button" onclick="edit(229)">수정</button></span></div>
+				<div class="mgt3"><span class="button small black"><button type="button" onclick="del(229)">삭제</button></span></div>
+			</td>
+		</tr>
+
+		<tr bgcolor="#ffffff">
+			<td><input type="checkbox" name="cbList" value="222"></td>
+			<td>
+<div><strong>222</strong></div>
+<div class="mgt5"><span class="button small"><button type="button" onclick="changeDisplay(222)">상품진열 안하기</button></span>
+</div>
+<div class="mgt5"><span class="button small"><button type="button" onclick="changeSoldOut(222)">진열로 표시</button></span></div>
+
+			</td>
+			<td class="vt">
+				<div class="gbox tl">
+					<img src="./몰인몰 관리자사이트_files/31.jpg" class="photo">
+					<div><a href="http://mimd.mallstore.co.kr/goods/detail.asp?gno=222" target="_blank"><strong>[NCGN] Mouse</strong></a></div>
+					<div class="category">OUTER&gt;가디건&gt;라운드가디건<br>OUTER&gt;코트&gt;트렌치코트<br></div><div class="dealer"><a href="javascript:;" onclick="openDealerInfo(8); return false;"><strong>내친구몰</strong>(02-123-1234)</a></div>
+				</div>
+<dl class="recom">
+<dt>서브</dt>
+<dd>대분류 MD Choice</dd>
+</dl>
+
+			</td>
+			<td>
+<input type="hidden" name="priceSplit_222" value="200">
+<input type="hidden" name="cmsType_222" value="GOS">
+<input type="hidden" name="margin_222" value="15">
+
+				<div>
+					판매가
+					<input type="text" name="price_222" value="50,000" maxlength="10" class="text_input" style="width:50%" onkeyup="toCurrency(this); calcPrice(222, &#39;price&#39;);" onblur="checkPriceRound(this, 222, &#39;price&#39;)"> 원
+				</div>
+				<div class="mgt5">
+					시중가
+					<input type="text" name="marketPrice_222" value="0" maxlength="10" class="text_input" style="width:50%" onkeyup="toCurrency(this)"> 원
+				</div>
+				<div class="mgt5">
+					공급가
+					<input type="text" name="originalPrice_222" value="42,500" maxlength="10" class="text_input" style="width:50%" onkeyup="toCurrency(this); calcPrice(222, this);" onblur="checkPriceRound(this, 222)" disabled=""> 원
+				</div>
+			</td>
+			<td>
+				<div>
+					86 회
+				</div>
+				<div class="mgt5">
+					0 개
+				</div>
+				<div class="mgt5">
+
+					<input type="text" name="quantity_222" value="38" maxlength="7" class="text_input" style="width:50%" onkeyup="toCurrency(this)"> 개
+
+				</div>
+			</td>
+			<td align="center">
+				<div><span class="button small"><button type="button" onclick="openGoodsHistory(222)">이력</button></span></div>
+				<div class="mgt3"><span class="button small green"><button type="button" onclick="validSave(222)">저장</button></span></div>
+				<div class="mgt3"><span class="button small"><button type="button" onclick="copy(222)">복사</button></span></div>
+				<div class="mgt3"><span class="button small blue"><button type="button" onclick="edit(222)">수정</button></span></div>
+				<div class="mgt3"><span class="button small black"><button type="button" onclick="del(222)">삭제</button></span></div>
+			</td>
+		</tr>
+
+		<tr bgcolor="#ffffff">
+			<td><input type="checkbox" name="cbList" value="221"></td>
+			<td>
+<div><strong>221</strong></div>
+<div class="mgt5"><span class="button small"><button type="button" onclick="changeDisplay(221)">상품진열 안하기</button></span>
+</div>
+<div class="mgt5"><span class="button small"><button type="button" onclick="changeSoldOut(221)">진열로 표시</button></span></div>
+
+			</td>
+			<td class="vt">
+				<div class="gbox tl">
+					<img src="./몰인몰 관리자사이트_files/30.jpg" class="photo">
+					<div><a href="http://mimd.mallstore.co.kr/goods/detail.asp?gno=221" target="_blank"><strong>[NCGN] Robot clothes</strong></a></div>
+					<div class="category">OUTER&gt;가디건&gt;라운드가디건<br>OUTER&gt;코트&gt;트렌치코트<br></div><div class="dealer"><a href="javascript:;" onclick="openDealerInfo(8); return false;"><strong>내친구몰</strong>(02-123-1234)</a></div>
+				</div>
+<dl class="recom">
+<dt>서브</dt>
+<dd>대분류 MD Choice</dd>
+</dl>
+
+			</td>
+			<td>
+<input type="hidden" name="priceSplit_221" value="200">
+<input type="hidden" name="cmsType_221" value="GOS">
+<input type="hidden" name="margin_221" value="15">
+
+				<div>
+					판매가
+					<input type="text" name="price_221" value="50,000" maxlength="10" class="text_input" style="width:50%" onkeyup="toCurrency(this); calcPrice(221, &#39;price&#39;);" onblur="checkPriceRound(this, 221, &#39;price&#39;)"> 원
+				</div>
+				<div class="mgt5">
+					시중가
+					<input type="text" name="marketPrice_221" value="0" maxlength="10" class="text_input" style="width:50%" onkeyup="toCurrency(this)"> 원
+				</div>
+				<div class="mgt5">
+					공급가
+					<input type="text" name="originalPrice_221" value="42,500" maxlength="10" class="text_input" style="width:50%" onkeyup="toCurrency(this); calcPrice(221, this);" onblur="checkPriceRound(this, 221)" disabled=""> 원
+				</div>
+			</td>
+			<td>
+				<div>
+					93 회
+				</div>
+				<div class="mgt5">
+					0 개
+				</div>
+				<div class="mgt5">
+
+					<input type="text" name="quantity_221" value="37" maxlength="7" class="text_input" style="width:50%" onkeyup="toCurrency(this)"> 개
+
+				</div>
+			</td>
+			<td align="center">
+				<div><span class="button small"><button type="button" onclick="openGoodsHistory(221)">이력</button></span></div>
+				<div class="mgt3"><span class="button small green"><button type="button" onclick="validSave(221)">저장</button></span></div>
+				<div class="mgt3"><span class="button small"><button type="button" onclick="copy(221)">복사</button></span></div>
+				<div class="mgt3"><span class="button small blue"><button type="button" onclick="edit(221)">수정</button></span></div>
+				<div class="mgt3"><span class="button small black"><button type="button" onclick="del(221)">삭제</button></span></div>
+			</td>
+		</tr>
+
+		</tbody>
+		</table>
+
+		<div class="paging" style="margin-top:20px">
+			<span><a href="http://mimd.mallstore.co.kr/nmanager/goods/goods_list.asp?page=1&amp;scate=0&amp;saream=&amp;sareas=&amp;sbrand=0&amp;sdts=&amp;sdte=&amp;sdealer=0&amp;sstock=0&amp;sdisplay=0&amp;ssprice=&amp;seprice=&amp;skey=&amp;sword=&amp;psort=sort_desc&amp;psize=10"><strong>1</strong></a><a href="http://mimd.mallstore.co.kr/nmanager/goods/goods_list.asp?page=2&amp;scate=0&amp;saream=&amp;sareas=&amp;sbrand=0&amp;sdts=&amp;sdte=&amp;sdealer=0&amp;sstock=0&amp;sdisplay=0&amp;ssprice=&amp;seprice=&amp;skey=&amp;sword=&amp;psort=sort_desc&amp;psize=10">2</a><a href="http://mimd.mallstore.co.kr/nmanager/goods/goods_list.asp?page=3&amp;scate=0&amp;saream=&amp;sareas=&amp;sbrand=0&amp;sdts=&amp;sdte=&amp;sdealer=0&amp;sstock=0&amp;sdisplay=0&amp;ssprice=&amp;seprice=&amp;skey=&amp;sword=&amp;psort=sort_desc&amp;psize=10">3</a><a href="http://mimd.mallstore.co.kr/nmanager/goods/goods_list.asp?page=4&amp;scate=0&amp;saream=&amp;sareas=&amp;sbrand=0&amp;sdts=&amp;sdte=&amp;sdealer=0&amp;sstock=0&amp;sdisplay=0&amp;ssprice=&amp;seprice=&amp;skey=&amp;sword=&amp;psort=sort_desc&amp;psize=10">4</a><a href="http://mimd.mallstore.co.kr/nmanager/goods/goods_list.asp?page=5&amp;scate=0&amp;saream=&amp;sareas=&amp;sbrand=0&amp;sdts=&amp;sdte=&amp;sdealer=0&amp;sstock=0&amp;sdisplay=0&amp;ssprice=&amp;seprice=&amp;skey=&amp;sword=&amp;psort=sort_desc&amp;psize=10">5</a><a href="http://mimd.mallstore.co.kr/nmanager/goods/goods_list.asp?page=6&amp;scate=0&amp;saream=&amp;sareas=&amp;sbrand=0&amp;sdts=&amp;sdte=&amp;sdealer=0&amp;sstock=0&amp;sdisplay=0&amp;ssprice=&amp;seprice=&amp;skey=&amp;sword=&amp;psort=sort_desc&amp;psize=10">6</a><a href="http://mimd.mallstore.co.kr/nmanager/goods/goods_list.asp?page=7&amp;scate=0&amp;saream=&amp;sareas=&amp;sbrand=0&amp;sdts=&amp;sdte=&amp;sdealer=0&amp;sstock=0&amp;sdisplay=0&amp;ssprice=&amp;seprice=&amp;skey=&amp;sword=&amp;psort=sort_desc&amp;psize=10">7</a></span>
+		</div>
+
+		<div class="btn_right">
+			<span class="button large black"><button type="button" onclick="delList()">일괄삭제</button></span>
+			<span class="button large black"><button type="button" onclick="downExcel()">엑셀로받기</button></span>
+		</div>
+
+</form>
+
+
+		<div id="footer">
+			<p>Copyright ⓒ <strong>2017&nbsp;몰인몰</strong> All rights reserved.</p>
+		</div>
+	</div>
+	</div>
+</div>
+
+
+
+</body></html>
