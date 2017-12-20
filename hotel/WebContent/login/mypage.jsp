@@ -525,14 +525,5 @@ h1 a {
 
 	var accordion = new Accordion($('#accordion'), false);
 });
-
-
-
-
-
-
 	</script>
-	
-	
-
 </body></html>

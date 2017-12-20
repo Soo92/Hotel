@@ -5,6 +5,7 @@ public class MemberBean {
 	private String id;
 	private String pass;
 	private String email;
+	private String cart;
 	
 	public String getId() {
 		return id;
@@ -24,5 +25,10 @@ public class MemberBean {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
+	public String getCart() {
+		return cart;
+	}
+	public void setCart(String cart) {
+		this.cart = cart;
+	}
 }

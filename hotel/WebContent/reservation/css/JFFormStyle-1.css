@@ -1,7 +1,7 @@
-﻿    /* custom select */
+    /* custom select */
         .row {
-		float: right;
-		width: 20%;
+		float: left;
+		width: 15%;
 	}
         form.style-1 .custom-select{ display: none; } /* prevent to display original selects */
         

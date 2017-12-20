@@ -180,6 +180,7 @@ body {
 	position: relative;
 	margin-top: -75px;
 	z-index: 999;
+	border: 5px dashed rgba(94, 106, 80, 0.92);
 }
 .b_room{
 	margin: 2% 2%;

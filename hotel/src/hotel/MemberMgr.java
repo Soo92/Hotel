@@ -60,8 +60,6 @@ public class MemberMgr {
 		return flag;
 	}
 	
-	
-	
 	//회원가입
 	public boolean insertMember(MemberBean bean) {
 		Connection con = null;
@@ -124,6 +122,104 @@ public class MemberMgr {
 			pstmt.setString(1, bean.getId());
 			pstmt.setString(2, bean.getPass());
 			pstmt.setString(3, bean.getEmail());
+			if(pstmt.executeUpdate()==1)
+				flag = true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			pool.freeConnection(con, pstmt);
+		}
+		return flag;
+	}
+
+	public boolean insertCart(CartBean bean) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		boolean flag = false;
+		try {
+			con = pool.getConnection();
+			sql = "insert cart(roomname,checkin,checkout,people,pay)"
+					+ "values(?,?,?,?,?)";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, bean.getRoomname());
+			pstmt.setString(2, bean.getCheckin());
+			pstmt.setString(3, bean.getCheckout());
+			pstmt.setString(4, bean.getPeople());
+			pstmt.setInt(5, bean.getPay());
+			if(pstmt.executeUpdate()==1)
+				flag = true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			pool.freeConnection(con, pstmt);
+		}
+		return flag;
+	}
+	
+	public CartBean getCart(int num) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		CartBean regBean = new CartBean();
+		try {
+			con = pool.getConnection();
+			sql = "select * from cart where num=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				regBean.setRoomname(rs.getString("roomname"));
+				regBean.setCheckin(rs.getString("checkin"));
+				regBean.setCheckout(rs.getString("checkout"));
+				regBean.setPeople(rs.getString("people"));
+				regBean.setPay(rs.getInt("pay"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			pool.freeConnection(con);
+		}
+		return regBean;
+	}
+	
+	public boolean updateCart(CartBean bean){
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		boolean flag = false;
+		try {
+			con = pool.getConnection();
+			sql = "update tblGuestBook set id=?,"
+					+"pass=? where email=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, bean.getRoomname());
+			pstmt.setString(2, bean.getCheckin());
+			pstmt.setString(3, bean.getCheckout());
+			pstmt.setString(4, bean.getPeople());
+			pstmt.setInt(5, bean.getPay());
+			if(pstmt.executeUpdate()==1)
+				flag = true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			pool.freeConnection(con, pstmt);
+		}
+		return flag;
+	}
+	
+	public boolean updateMemberCart(String email,int cart){
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		boolean flag = false;
+		try {
+			con = pool.getConnection();
+			sql = "update tblhotel set cart=? where email=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, getMember(email).getCart()+","+cart);
+			pstmt.setString(2, email);
 			if(pstmt.executeUpdate()==1)
 				flag = true;
 		} catch (Exception e) {

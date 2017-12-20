@@ -31,6 +31,7 @@ img{max-width:100%;}
 body {
 	font-family: 'Open Sans', sans-serif;
 	font-size: 100%;
+	background-color: rgba(239, 245, 233, 0.57);
 }
 .wrap{
 	margin:0 auto;
@@ -534,10 +535,7 @@ p.para{
 	margin-bottom: 15px;
 }
 .span_of_2{
-	padding: 4% 0;
-	margin: 6% 0;
-	border-bottom: 2px dashed rgb(109, 109, 109);
-	border-top: 2px dashed rgb(109, 109, 109);
+	padding: 2% 0;
 }
 .span2_of_1{
 	float:left;
@@ -568,7 +566,7 @@ p.para{
 	text-align: center;
 	display: block;
 }
-.res_btn form input[type="submit"] {
+.res_btn form input[type="button"] {
 	display: inline-block;
 	text-transform: capitalize;
 	width: 25% !important;
@@ -586,7 +584,7 @@ p.para{
 	cursor: pointer;
 	-webkit-appearance: none;
 }
-.res_btn form input[type="submit"]:hover{
+.res_btn form input[type="button"]:hover{
 	background: #228AC6;
 }
 
@@ -1000,7 +998,7 @@ span.next:hover {
 	.reservation ul li.span1_of_2 {
 		width: 48.33333%;
 	}
-	.res_btn form input[type="submit"] {
+	.res_btn form input[type="button"] {
 		width: 50% !important;
 		padding: 10px;
 	}
@@ -1086,7 +1084,7 @@ span.next:hover {
 		width: 100%;
 		margin-left: 0%;
 	}
-	.res_btn form input[type="submit"] {
+	.res_btn form input[type="button"] {
 		width: 60% !important;
 		padding: 10px;
 	}

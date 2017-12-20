@@ -204,7 +204,7 @@
 							onblur="emailCheck(this.form.email.value)" /> <input type="test"
 							placeholder="User" name="id" onblur="idCheck(this.form.id.value)" />
 						<input type="password" placeholder="Password" name="pass"
-							onblur="passCheck(this.form.pass.value)" /> <input
+							onblur="passCheck(this.form.pass.value)" /><input
 							type="password" placeholder="Confirm Password" name="repass"
 							onblur="repassCheck(this.form.repass.value)" />
 						<button type="button" class="btn_sign_up" onclick="inputCheck()">회원가입확인</button>

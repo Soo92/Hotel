@@ -64,15 +64,12 @@
 		<script type="text/javascript">
 		$(document).ready(function() {
 			var loginBox = $('#login-box');
-			$('.login-window').click(function() {
-				// Getting the variable's value from a link 
-				//Fade in the Popup and add close button
+			$('.login-window').click(function () {
 				$(loginBox).fadeIn(300,function(){
 					$(loginBox).css("display", "block"); 
 				});
 				return false;
 			});
-			// When clicking on the button close or the mask layer the popup closed
 			$(loginBox).click(function() { 
 				if(!$(this).is('.signin'))
 				 $(loginBox).fadeOut(300 , function() {
@@ -81,11 +78,6 @@
 			return false;
 			});
 		});
-		</script>
-	    <script>
-			  $(function() {
-			    $( "#datepicker,#datepicker1" ).datepicker();
-			  });
 		</script>
 		<script>
 			$(function() {
@@ -104,6 +96,14 @@
 	        		}
 	    		});
 			});
+		</script>
+		<script>
+		function a() {
+			var loginBox = $('#login-box');
+			$(loginBox).fadeIn(300,function(){
+				$(loginBox).css("display", "block"); 
+			});
+		}
 		</script>
     </head>
 
@@ -320,67 +320,7 @@
 							<div class="main_bg">
 							<div class="wrap">
 								<div class="online_reservation">
-								<div class="b_room">
-									<div class="booking_room">
-										<h4>book a room online</h4>
-										<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry</p>
-									</div>
-									<div class="reservation" style="width:100%">
-										<ul>
-											<li class="span1_of_1">
-												<h5>type of room:</h5>
-												<!----------start section_room----------->
-												<div class="section_room">
-													<select id="country" onchange="change_country(this.value)" class="frm-field required">
-														<option value="null">Select a type of room</option>
-											            <option value="null">Suite room</option>         
-											            <option value="AX">Single room</option>
-														<option value="AX">Double room</option>
-									        		</select>
-												</div>	
-											</li>
-											<li  class="span1_of_1 left">
-												<h5>check-in-date:</h5>
-												<div class="book_date">
-													<form>
-														<input class="date" id="datepicker" type="text" value="DD/MM/YY" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'DD/MM/YY';}" >
-													</form>
-							
-												</div>					
-											</li>
-											<li  class="span1_of_1 left">
-												<h5>check-out-date:</h5>
-												<div class="book_date">
-													<form>
-														<input class="date" id="datepicker1" type="text" value="DD/MM/YY" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'DD/MM/YY';}">
-													</form>
-												</div>		
-											</li>
-											<li class="span1_of_2 left">
-												<h5>Adults:</h5>
-												<!----------start section_room----------->
-												<div class="section_room">
-													<select id="country" onchange="change_country(this.value)" class="frm-field required">
-														<option value="null">1</option>
-											            <option value="null">2</option>         
-											            <option value="AX">3</option>
-														<option value="AX">4</option>
-									        		</select>
-												</div>					
-											</li>
-											<li class="span1_of_3">
-												<div class="date_btn">
-													<form>
-														<input type="submit" value="CART" />
-													</form>
-												</div>
-											</li>
-											<div class="clear"></div>
-										</ul>
-									</div>
-									<div class="clear"></div>
-									</div>
-								</div>
+									<iframe src="./reservation/reservation.jsp" width="100%" height="250" scrolling="no"></iframe>
 							</div>		
                         </div>
                     </div><!--End off row-->
