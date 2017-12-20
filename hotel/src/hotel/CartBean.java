@@ -6,7 +6,7 @@ public class CartBean {
 	String checkin;
 	String checkout;
 	String people;
-	int pay;
+	String pay;
 	public int getNum() {
 		return num;
 	}
@@ -37,10 +37,10 @@ public class CartBean {
 	public void setPeople(String people) {
 		this.people = people;
 	}
-	public int getPay() {
+	public String getPay() {
 		return pay;
 	}
-	public void setPay(int pay) {
+	public void setPay(String pay) {
 		this.pay = pay;
 	}
 }

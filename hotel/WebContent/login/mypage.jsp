@@ -10,7 +10,7 @@
 		bean = mgr.getMember(email);
 		String id = (String)bean.getId();
 		String pw = (String)bean.getPass();
-	
+		String a[] = mgr.getMember(email).getCart().split(",");	
 %>
 <!DOCTYPE html>
 <!-- saved from url=(0064)file:///C:/Users/it/git/Hotel/hotel/WebContent/login/mypage.html -->
@@ -231,7 +231,6 @@ h1 a {
  .accordion {
  	width: 100%;
  	max-width: 360px;
- 	margin: 30px auto 20px;
  	background: #FFF;
  	-webkit-border-radius: 4px;
  	-moz-border-radius: 4px;
@@ -421,82 +420,36 @@ h1 a {
 	<link rel="stylesheet" href="./mypage_files/font-awesome.min.css">
 <div class="container">
 	<div class="row">
-	
-       
-    
 	<!-- Contenedor -->
 	<ul id="accordion" class="accordion">
-    <li>
-<div class="col col_4 iamgurdeep-pic">
-<img class="img-responsive iamgurdeeposahan" alt="iamgurdeeposahan" src="./mypage_files/123.png">
-
-<div class="username">
-    <h2>My Account  <small><i class="fa fa-map-marker"></i></small></h2>
-    
-<ul class="nav navbar-nav">
-    <li class="dropdown">
-      <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="fa fa-ellipsis-v pull-right"></span></a>
-      <ul class="dropdown-menu pull-right">
-        <li><a href="#">Video Call <i class="fa fa-video-camera"></i></a></li>
-        <li><a href="#">Poke <i class="fa fa-hand-o-right"></i></a></li>
-        <li><a href="#">Report <i class="fa fa-bug"></i></a></li>
-        <li><a href="#">Block <i class="fa fa-lock"></i></a></li>
-      </ul>
-    </li>
- </ul>    
-</div>
-    
-</div>
-        
-    </li>
-    
-   
-    
-    
-    
 		<li class="open">
 			<div class="link"><i class="fa fa-globe"></i>My Profile<i class="fa fa-chevron-down"></i></div>
-			
 			<ul  class="submenu" style="display: block;">
 				<li ><a id="li1">Email :<%=bean.getEmail()%></a> </li>
 				<li><a  id="li2">ID :<%=bean.getId()%> </a></li>
 				<li><a  id="li3">Password :<%=bean.getPass()%></a></li>
 				<li><a id="li4" onclick="modify()">Modify Your Profile</a></li>
-				
 			</ul>
 		</li>
 		
 		<li class="">
-			<div class="link"><i class="fa fa-picture-o"></i>My Reservation <small>1,120</small><i class="fa fa-chevron-down"></i></div>
+			<div class="link"><i class="fa fa-picture-o"></i>My Reservation <small><%=a.length-1 %></small><i class="fa fa-chevron-down"></i></div>
 			<ul class="submenu" style="display: none;">
-				<li class="photosgurdeep"><a href="https://s.bootsnipp.com/iframe/z4P39#"><img class="img-responsive iamgurdeeposahan" alt="iamgurdeeposahan" src="./mypage_files/gurdeeposahan.jpg">                 
-				</a>
-                <a href="https://s.bootsnipp.com/iframe/z4P39#"><img class="img-responsive iamgurdeeposahan" alt="iamgurdeeposahan" src="./mypage_files/gurdeeposahan.jpg">                 
+				<li class="photosgurdeep">
+<%for(int i=1;i<a.length;i++) {%>
+                <a href="https://s.bootsnipp.com/iframe/z4P39#"><img class="img-responsive iamgurdeeposahan" alt="<%=mgr.getCart(Integer.parseInt(a[i])).getPay()%>" src="./mypage_files/gurdeeposahan.jpg">    
     			</a>
-                <a href="https://s.bootsnipp.com/iframe/z4P39#"><img class="img-responsive iamgurdeeposahan" alt="iamgurdeeposahan" src="./mypage_files/gurdeeposahan.jpg">                 
-    			</a>
-                <a href="https://s.bootsnipp.com/iframe/z4P39#"><img class="img-responsive iamgurdeeposahan" alt="iamgurdeeposahan" src="./mypage_files/gurdeeposahan.jpg">                 
-    			</a>
-               
+<%}if(a.length>4){%>               
                 <a class="view-all" href="https://web.facebook.com/iamgurdeeposahan" target="_blank">15+
         		</a>
-    			    
+<%} %>    			    
 				</li>
 			</ul>
 		</li>
 		
 	</ul>
 	</div>
-    
-    
-    
- 
-    
 </div>
-
-
-
-
 	<script type="text/javascript">
 	$(function() {
     var Accordion = function(el, multiple) {

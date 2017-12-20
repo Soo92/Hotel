@@ -19,19 +19,13 @@
 		String pw = (String)bean.getPass();
 %>
 <!DOCTYPE HTML>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
-    
-    <!--Designerd by: http://bootstrapthemes.co-->
     <head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>2Team Hotel Page</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="icon" type="image/png" href="favicon.ico">
-        
+        <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
 
         <!--Google Font link-->
         <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
@@ -48,6 +42,8 @@
         <link rel="stylesheet" href="assets/css/bootstrap.css">
         <link rel="stylesheet" href="assets/css/magnific-popup.css">
         <link rel="stylesheet" href="assets/css/bootsnav.css">
+        
+        
 
         <!--For Plugins external css-->
         <!--<link rel="stylesheet" href="assets/css/plugins.css" />-->
@@ -73,12 +69,15 @@
 		<script type="text/javascript">
 		$(document).ready(function() {
 			var loginBox = $('#login-box');
-			$('.login-window').click(function () {
+			$('.login-window').click(function() {
+				// Getting the variable's value from a link 
+				//Fade in the Popup and add close button
 				$(loginBox).fadeIn(300,function(){
 					$(loginBox).css("display", "block"); 
 				});
 				return false;
 			});
+			// When clicking on the button close or the mask layer the popup closed
 			$(loginBox).click(function() { 
 				if(!$(this).is('.signin'))
 				 $(loginBox).fadeOut(300 , function() {
@@ -87,6 +86,11 @@
 			return false;
 			});
 		});
+		</script>
+	    <script>
+			  $(function() {
+			    $( "#datepicker,#datepicker1" ).datepicker();
+			  });
 		</script>
 		<script>
 			$(function() {
@@ -105,14 +109,6 @@
 	        		}
 	    		});
 			});
-		</script>
-		<script>
-		function a() {
-			var loginBox = $('#login-box');
-			$(loginBox).fadeIn(300,function(){
-				$(loginBox).css("display", "block"); 
-			});
-		}
 		</script>
     </head>
 
@@ -158,21 +154,25 @@
                                 <ul class="dropdown-menu cart-list">
                                 <%if(off){%>
                                     <li>
-                                        <i class="fa fa-snowflake-o" aria-hidden="true"></i>
+                                      
                                         <h6><a href="#" class="login-window">LOG IN & SIGN UP </a></h6>
                                         <!--  <p class="m-top-10">2x - <span class="price">$19.00</span></p>-->
                                     </li>
+                                <%}else{%>
                                     <li>
+                                        <h6><a href="#">MY PAGE</a></h6>
+                                    </li>
+                                <%}%>
+                                    <li>
+                                        
                                         <h6><a href="#">MY CART</a></h6>
+                                        
                                     </li>
                                     <!---- More List ---->
                                     <li class="total">
                                         <span class="pull-right"><strong>Total</strong>: $0.00</span>
                                         <a href="#" class="btn btn-cart">Cart</a>
                                     </li>
-                                <%}else{%>
-									<iframe src="./login/mypage.jsp" height="280px" width="100%" scrolling="no"></iframe>
-                                <%}%>
                                 </ul>
                             </li>
 						<%if(!off) {%>
@@ -207,7 +207,7 @@
                             <li><a href="#portfolio">ROOMS&SUITES</a></li>                    
                             <li><a href="#pricing">PACKAGES</a></li>                    
                             <li><a href="#blog">#INSTAGRAM</a></li>                    
-                            <li><a href="#contact">CONTACT</a></li>  
+                            <li><a href="#contact">CONTACT US</a></li>  
                         </ul>
                     </div><!-- /.navbar-collapse -->
                 </div>  
@@ -260,7 +260,10 @@
 							                <div class="slide_content">
 							                    <div class="slide_content_wrap">
 							                        <!-- Text title -->
-							                        <h4 class="title">THE MOST LUXURIOUS HOTEL<span class="hide">dummy text</span></h4>
+							                        
+	
+
+							                        
 							                        
 							                        <!-- /Text title -->
 							                    </div>
@@ -270,7 +273,7 @@
 							            <!-- /Duplicate to create more slides -->
 							            <div class="slide">
 							                <!-- <iframe width="1920" height="1080" src="https://www.youtube.com/embed/eaSdTJAYl6s?rel=0&amp;controls=0&amp;showinfo=0&autoplay=1" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>-->
-							                <img src=".\images/hotel\vhotel2.jpg">
+							                <img src=".\images/hotel\vhotel4.jpg">
 							                <div class="slide_content">
 							                     <div class="slide_content_wrap">
 							                        <!-- Text title -->
@@ -295,7 +298,7 @@
 							            <!--/slide -->
 							            <div class="slide">
 							                <!-- <iframe width="1920" height="1080" src="https://www.youtube.com/embed/eaSdTJAYl6s?rel=0&amp;controls=0&amp;showinfo=0&autoplay=1" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>-->
-							                <img src=".\images/hotel\vhotel4.jpg">
+							                <img src=".\images/hotel\vhotel2.jpg">
 							                <div class="slide_content">
 							                     <div class="slide_content_wrap">
 							                        <!-- Text title -->
@@ -329,7 +332,67 @@
 							<div class="main_bg">
 							<div class="wrap">
 								<div class="online_reservation">
-									<iframe src="./reservation/reservation.jsp" width="100%" height="250" scrolling="no"></iframe>
+								<div class="b_room">
+									<div class="booking_room">
+										<h4>book a room online</h4>
+										<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry</p>
+									</div>
+									<div class="reservation" style="width:100%">
+										<ul>
+											<li class="span1_of_1">
+												<h5>type of room:</h5>
+												<!----------start section_room----------->
+												<div class="section_room">
+													<select id="country" onchange="change_country(this.value)" class="frm-field required">
+														<option value="null">Select a type of room</option>
+											            <option value="null">Suite room</option>         
+											            <option value="AX">Single room</option>
+														<option value="AX">Double room</option>
+									        		</select>
+												</div>	
+											</li>
+											<li  class="span1_of_1 left">
+												<h5>check-in-date:</h5>
+												<div class="book_date">
+													<form>
+														<input class="date" id="datepicker" type="text" value="DD/MM/YY" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'DD/MM/YY';}" >
+													</form>
+							
+												</div>					
+											</li>
+											<li  class="span1_of_1 left">
+												<h5>check-out-date:</h5>
+												<div class="book_date">
+													<form>
+														<input class="date" id="datepicker1" type="text" value="DD/MM/YY" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'DD/MM/YY';}">
+													</form>
+												</div>		
+											</li>
+											<li class="span1_of_2 left">
+												<h5>Adults:</h5>
+												<!----------start section_room----------->
+												<div class="section_room">
+													<select id="country" onchange="change_country(this.value)" class="frm-field required">
+														<option value="null">1</option>
+											            <option value="null">2</option>         
+											            <option value="AX">3</option>
+														<option value="AX">4</option>
+									        		</select>
+												</div>					
+											</li>
+											<li class="span1_of_3">
+												<div class="date_btn">
+													<form>
+														<input type="submit" value="CART" />
+													</form>
+												</div>
+											</li>
+											<div class="clear"></div>
+										</ul>
+									</div>
+									<div class="clear"></div>
+									</div>
+								</div>
 							</div>		
                         </div>
                     </div><!--End off row-->
@@ -345,7 +408,7 @@
                         <div class="main_about">
                             <div class="col-md-6">
                                 <div class="about_content">
-                                    <h2>EXPERIENCE OUR HOTEL</h2>
+                                    <h2><i class="fa fa-check" aria-hidden="true"></i>&nbsp;EXPERIENCE OUR HOTEL</h2>
                                     <div class="separator_left"></div>
                                     
                                   <section id="portfolio" class="portfolio lightbg">   
@@ -365,15 +428,10 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                         	   </div>
                              </div>
-                                
-                                    
-                                    
-                                    <div class="about_btns m-top-40">
-                                        <a href="" class="btn btn-primary">MORE INFO</a>
-                                    </div>
-                                </div>
+        
+                             </div>
                             </div>
                             
                             
@@ -386,21 +444,17 @@
                             <div class="col-md-6">
                                 <div class="about_accordion wow fadeIn">
                                     <div id="faq_main_content" class="faq_main_content">
-                                        <h6 ><i class="fa fa-angle-right"></i> SPEND THE HOLIDAYS WITH US </h6>
+                                        <h6 ><i class="fa fa-angle-right"></i> 포시즌과 함께 휴가를 보내세요. </h6>
                                         <div >
                                             <div class="content">
-                                                <p>Throughout the year, friends and family are what keep us going; 
-                                                the holidays are the perfect time to spoil them. 
-                                                Whether you choose to gift a beautifully wrapped package, 
-                                                treat your family to a lavish suite experience or indulge in seasonally inspired cocktails in the Club Lounge, 
-                                                The Ritz-Carlton can help you treat those who make every day worth celebrating.</p>
+                                                <p>두근 두근 설레는 어느날 당신에게 꿈같은 하루를 선물하세요. 당신의 휴일을 만들기 위해 포시즌은 손님을 기다립니다</p>
 
                                                  <div class="col-md-20 m-top-30">
                                     <div class="portfolio_item portfolio_item2">
                                         <img src=".\images/hotel\ex2.jpg" alt="" />
                                         <div class="portfolio_hover text-center">
-                                            <h6 class="text-uppercase text-white">Title</h6>
-                                            <p class=" text-white">Lorem ipsum dolor sit amet</p>
+                                            
+                                            <p class=" text-white">방해받지 않는 공간</p>
                                             <div class="portfolio_hover_icon">
                                                 <a href="assets/images/Portfolio/6.jpg" class="popup-img"><i class="fa fa-expand"></i></a>
                                                 <a href=""><i class="fa fa-search"></i></a>
@@ -502,7 +556,7 @@
                                 <div class="about_bottom_item m-top-20">
                                     <div class="ab_head">
                                         <div class="ab_head_icon">
-                                            <i class="icofont icofont-fire-burn"></i>
+                                            <i class="icofont icofont-speech-comments"></i>
                                         </div>
                                         <h6 class="m-top-20"> WE’RE CREATIVE</h6>
                                     </div>
@@ -560,11 +614,11 @@
                     <div class="main_featured m-top-100">
                         <div class="col-sm-12">
                             <div class="head_title text-center">
-                                <h2>EXCEPTIONAL VIEWS</h2>
+                                <h2><i class="fa fa-check" aria-hidden="true"></i> &nbsp;EXCEPTIONAL VIEWS</h2>
                                 <div class="separator_auto"></div>
-                                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, 
-                                    sed diam nonummy nibh euismod nostrud exerci tation ullamcorper 
-                                    suscipit lobortis nisl ut aliquip ex ea commodo consequat. </p>
+                                <p>Choose from one of 67 stylish guest rooms featuring stunning Pacific Ocean or garden courtyard views, 
+                                all within walking distance of the world-famous Santa Monica Pier 
+                                and Third Street Promenade shopping and dining district. </p>
                             </div>
                         </div>
                     </div>
@@ -613,42 +667,46 @@
                         <div class="main_service roomy-100">
                             <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
                                 <div class="head_title text-center">
-                                    <h2>FACILITIES</h2>
+                               
+                                    <h2><i class="fa fa-check" aria-hidden="true"></i> &nbsp;FACILITIES</h2>
                                     <div class="separator_auto"></div>
-                                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, 
-                                        sed diam nonummy nibh euismod nostrud exerci tation ullamcorper 
-                                        suscipit lobortis nisl ut aliquip ex ea commodo consequat. </p>
+                                    <p>Enjoy Our Best Facilities </p>
                                 </div>
                             </div>
 
                             <div class="col-md-4">
                                 <div class="service_item">
-                                    <i class="icofont icofont-light-bulb"></i>
+                                   <i class="fa fa-cutlery" aria-hidden="true"></i>
                                     <h6 class="m-top-30">RESTAURANTS</h6>
                                     <div class="separator_small"></div>
-                                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, 
-                                        sed diam nonummy nibh euismod tincidunt ut laoreet dolore 
-                                        magna aliquam erat volutpat. </p>
+                                    <p>Intimate and inviting, Le Restaurant is one of the most romantic and seductive restaurants in Paris. 
+                                    Decorated with plush upholstered seating, green marblesque pillars and silk fabric draping the walls, 
+                                    the interiors are as captivating as the outdoors - a small cobbled terrace with a beautiful fountain and verdant living wall.
+                                    Head Chef Julien Montbabut’s menus are equally as distinctive, deploying classic techniques to create food that is progressively modern, light and fresh.</p>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="service_item">
-                                    <i class="icofont icofont-imac"></i>
+                                    <i class="fa fa-glass" aria-hidden="true"></i>
                                     <h6 class="m-top-30">BAR</h6>
                                     <div class="separator_small"></div>
-                                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, 
-                                        sed diam nonummy nibh euismod tincidunt ut laoreet dolore 
-                                        magna aliquam erat volutpat. </p>
+                                    <p>With the glamorous mood, you can make your day the best you've never had before.
+                                    You'll find this quirky little bar at the equally quirky Hotel Not Hotel in Amsterdam West.
+                                     The perfect place to get footloose and fancy free in honour of a Hollywood great, 
+                                     Kevin Bacon serves up good cocktails and Thai food. 
+                                     The sunny terrace does the rest; overall, the Kevin Bacon crew keep it fresh and not too serious for both enjoying daytime drinks 
+                                     and staying far into the night.</p>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="service_item">
-                                    <i class="icofont icofont-video"></i>
+                                    <i class="fa fa-bath" aria-hidden="true"></i>
                                     <h6 class="m-top-30">SPA</h6>
                                     <div class="separator_small"></div>
-                                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, 
-                                        sed diam nonummy nibh euismod tincidunt ut laoreet dolore 
-                                        magna aliquam erat volutpat. </p>
+                                    <p>Indulge in the next evolution of the Spa experience at The Ritz-Carlton. 
+                                    Every one of our spas around the globe combine world-class expertise with local flavors to deliver a bespoke experience that is undeniably unique for every guest. 
+                                    Our highly trained spa technicians listen to your specific requests and concerns to provide a level of personalized service that is unmatched. 
+                                    From the moment you make your appointment, each step of your time with us will be tailored to you. </p>
                                 </div>
                             </div>
                         </div>
@@ -696,7 +754,7 @@
                         <div class="main_portfolio roomy-100">
                             <div class="col-md-8 col-md-offset-2">
                                 <div class="head_title text-center">
-                                    <h2>ROOMS&SUITES</h2>
+                                    <h2><i class="fa fa-check" aria-hidden="true"></i> &nbsp;ROOMS&SUITES</h2>
                                     <div class="separator_auto"></div>
                                     <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, 
                                         sed diam nonummy nibh euismod nostrud exerci tation ullamcorper 
@@ -705,8 +763,34 @@
                             </div>
 
                             <div class="portfolio_content">
+                                <div class="col-md-8">
                                     <div class="row">
-                            ddd
+                                        <div class="col-md-12">
+                                            <div class="portfolio_item">
+                                                <img src="<%=vlist.get(0).getMainpic() %>" alt="" />
+                                                <div class="portfolio_hover text-center">
+                                                    <h6 class="text-uppercase text-white"><%=vlist.get(0).getRoomname() %></h6>
+                                                    <p class=" text-white"><%=vlist.get(0).getSubname() %></p>
+                                                    <div class="portfolio_hover_icon">
+                                                        <a href="assets/images/Portfolio/2.jpg" class="popup-img"><i class="fa fa-expand"></i></a>
+                                                        <a href="../roomdetail/room.jsp?index=1"><i class="fa fa-search"></i></a>
+                                                    </div>
+                                                </div>
+                                            </div>  
+                                        </div>
+                                        <div class="col-md-6 m-top-30">
+                                            <div class="portfolio_item portfolio_item2">
+                                                <img src="<%=vlist.get(1).getMainpic() %>" alt="" />
+                                                <div class="portfolio_hover text-center">
+                                                    <h6 class="text-uppercase text-white"><%=vlist.get(1).getRoomname() %></h6>
+                                                    <p class=" text-white"><%=vlist.get(1).getSubname() %></p>
+                                                    <div class="portfolio_hover_icon">
+                                                        <a href="assets/images/Portfolio/3.jpg" class="popup-img"><i class="fa fa-expand"></i></a>
+                                                        <a href="../roomdetail/room.jsp?index=2"><i class="fa fa-search"></i></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                         <div class="col-md-6 m-top-30">
                                             <div class="portfolio_item portfolio_item2">
                                                 <img src="<%=vlist.get(2).getMainpic() %>" alt="" />
@@ -714,14 +798,42 @@
                                                     <h6 class="text-uppercase text-white"><%=vlist.get(2).getRoomname() %></h6>
                                                     <p class=" text-white"><%=vlist.get(2).getSubname() %></p>
                                                     <div class="portfolio_hover_icon">
-                                                        <a href="assets/images/Portfolio/3.jpg" class="popup-img"><i class="fa fa-expand"></i></a>
-                                                        <a href=""><i class="fa fa-search"></i></a>
+                                                        <a href="assets/images/Portfolio/5.jpg" class="popup-img"><i class="fa fa-expand"></i></a>
+                                                        <a href="../roomdetail/room.jsp?index=3"><i class="fa fa-search"></i></a>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+
+                                <div class="col-md-4">
+                                    <div class="portfolio_item portfolio_item3 sm-m-top-30">
+                                        <img src="<%=vlist.get(3).getMainpic() %>" alt="" />
+                                        <div class="portfolio_hover text-center">
+                                            <h6 class="text-uppercase text-white"><%=vlist.get(3).getRoomname() %></h6>
+                                            <p class=" text-white"><%=vlist.get(3).getSubname() %></p>
+                                            <div class="portfolio_hover_icon">
+                                                <a href="assets/images/Portfolio/1.jpg" class="popup-img"><i class="fa fa-expand"></i></a>
+                                                <a href="../roomdetail/room.jsp?index=4"><i class="fa fa-search"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 m-top-30">
+                                    <div class="portfolio_item portfolio_item2">
+                                        <img src="https://www.slsbeverlyhillshotel.com/wp-content/uploads/sites/2/2017/01/Luxury-Hotel-Room-SLS-Beverly-Hills-Presidential-Suite-Living-Area.jpg" alt="" />
+                                        <div class="portfolio_hover text-center">
+                                            <h6 class="text-uppercase text-white">Title</h6>
+                                            <p class=" text-white">Lorem ipsum dolor sit amet</p>
+                                            <div class="portfolio_hover_icon">
+                                                <a href="assets/images/Portfolio/6.jpg" class="popup-img"><i class="fa fa-expand"></i></a>
+                                                <a href=""><i class="fa fa-search"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
                         </div>
                     </div><!--End off row -->
@@ -903,146 +1015,6 @@
             </section> <!--End off Testimonial section -->
 
 
-            <!--Pricing Section-->
-            <section id="pricing" class="pricing lightbg">
-                <div class="container">
-                    <div class="row">
-                        <div class="main_pricing roomy-100">
-                            <div class="col-md-8 col-md-offset-2 col-sm-12">
-                                <div class="head_title text-center">
-                                    <h2>PACKAGES</h2>
-                                    <div class="separator_auto"></div>
-                                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
-                                        sed diam nonummy nibh euismod tincidunt tation ullamcorper 
-                                        suscipit lobortis nisl ut aliquip ex ea commodo consequat. </p>
-                                </div>
-                            </div>
-
-                            <div class="col-md-4 col-sm-12">
-                                <div class="pricing_item">
-                                    <div class="pricing_head p-top-30 p-bottom-100 text-center">
-                                        <h3 class="text-uppercase">BASIC</h3>
-                                    </div>
-                                    <div class="pricing_price_border text-center">
-                                        <div class="pricing_price">
-                                            <h3 class="text-white">$19</h3>
-                                            <p class="text-white">per month</p>
-                                        </div>
-                                    </div>
-
-                                    <div class="pricing_body bg-white p-top-110 p-bottom-60">
-                                        <ul>
-                                            <li><i class="fa fa-check-circle text-primary"></i> <span>10</span> user</li>
-                                            <li class="disabled"><i class="fa fa-times-circle"></i> Unlimited Bandwidth</li>
-                                            <li class="disabled"><i class="fa fa-times-circle"></i> Full Statistics</li>
-
-                                        </ul>
-                                        <div class="pricing_btn text-center m-top-40">
-                                            <a href="" class="btn btn-primary">CART</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div><!-- End off col-md-4 -->
-
-                            <div class="col-md-4 col-sm-12">
-                                <div class="pricing_item sm-m-top-30">
-                                    <div class="pricing_top_border"></div>
-                                    <div class="pricing_head p-top-30 p-bottom-100 text-center">
-                                        <h3 class="text-uppercase">STANDARD</h3>
-                                    </div>
-                                    <div class="pricing_price_border text-center">
-                                        <div class="pricing_price">
-                                            <h3 class="text-white">$39</h3>
-                                            <p class="text-white">per month</p>
-                                        </div>
-                                    </div>
-
-                                    <div class="pricing_body bg-white p-top-110 p-bottom-60">
-                                        <ul>
-                                            <li><i class="fa fa-check-circle text-primary"></i> <span>50</span> user</li>
-                                            <li><i class="fa fa-check-circle text-primary"></i> Unlimited Bandwidth</li>
-                                            <li class="disabled"><i class="fa fa-times-circle"></i> Full Statistics</li>
-                                        </ul>
-                                        <div class="pricing_btn text-center m-top-40">
-                                            <a href="" class="btn btn-primary">CART</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div><!-- End off col-md-4 -->
-
-                            <div class="col-md-4 col-sm-12">
-                                <div class="pricing_item sm-m-top-30">
-                                    <div class="pricing_head p-top-30 p-bottom-100 text-center">
-                                        <h3 class="text-uppercase">PREMIUM</h3>
-                                    </div>
-                                    <div class="pricing_price_border text-center">
-                                        <div class="pricing_price">
-                                            <h3 class="text-white">$99</h3>
-                                            <p class="text-white">per month</p>
-                                        </div>
-                                    </div>
-
-                                    <div class="pricing_body bg-white p-top-110 p-bottom-60">
-                                        <ul>
-                                            <li><i class="fa fa-check-circle text-primary"></i> Unlimited Users</li>
-                                            <li><i class="fa fa-check-circle text-primary"></i> Unlimited Bandwidth</li>
-                                            <li><i class="fa fa-check-circle text-primary"></i> Full Statistics</li>
-                                        </ul>
-                                        <div class="pricing_btn text-center m-top-40">
-                                            <a href="" class="btn btn-primary">CART</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div><!-- End off col-md-4 -->
-
-                        </div>
-                    </div><!--End off row-->
-                </div><!--End off container -->
-            </section> <!--End off Pricing section -->
-
-
-
-            <!--client brand section-->
-            <section id="cbrand" class="cbrand">
-                <div class="container">
-                    <div class="row">
-                        <div class="main_cbrand text-center roomy-100">
-                            <div class="col-md-2 col-sm-4 col-xs-6">
-                                <div class="cbrand_item m-bottom-10">
-                                    <a href=""><img src="assets/images/clients/1.jpg" alt="" /></a>
-                                </div>
-                            </div>
-                            <div class="col-md-2 col-sm-4 col-xs-6">
-                                <div class="cbrand_item m-bottom-10">
-                                    <a href=""><img src="assets/images/clients/2.jpg" alt="" /></a>
-                                </div>
-                            </div>
-                            <div class="col-md-2 col-sm-4 col-xs-6">
-                                <div class="cbrand_item m-bottom-10">
-                                    <a href=""><img class="" src="assets/images/clients/5.jpg" alt="" /></a>
-                                </div>
-                            </div>
-                            <div class="col-md-2 col-sm-4 col-xs-6">
-                                <div class="cbrand_item m-bottom-10">
-                                    <a href=""><img src="assets/images/clients/4.jpg" alt="" /></a>
-                                </div>
-                            </div>
-                            <div class="col-md-2 col-sm-4 col-xs-6">
-                                <div class="cbrand_item m-bottom-10">
-                                    <a href=""><img src="assets/images/clients/3.jpg" alt="" /></a>
-                                </div>
-                            </div>
-                            <div class="col-md-2 col-sm-4 col-xs-6">
-                                <div class="cbrand_item m-bottom-10">
-                                    <a href=""><img src="assets/images/clients/1.jpg" alt="" /></a> 
-                                </div>
-                            </div>
-                        </div>
-                    </div><!-- End off row -->
-                </div><!-- End off container -->
-            </section><!-- End off Cbrand section -->
-
-
             <!--Subscribe section-->
             <section id="subscribe" class="subscribe roomy-100 fix">
                 <div class="overlay"><img src=".\images/hotel\vhotel9.jpg"></div>
@@ -1080,26 +1052,53 @@
                         <div class="main_blog text-center roomy-100">
                             <div class="col-sm-8 col-sm-offset-2">
                                 <div class="head_title text-center">
-                                    <h2>YOUR #INSTAGRAM</h2>
+                                    <h2><i class="fa fa-instagram" aria-hidden="true"></i>&nbsp;YOUR #INSTAGRAM</h2>
                                     <div class="separator_auto"></div>
                                     <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
                                         sed diam nonummy nibh euismod tincidunt tation ullamcorper 
                                         suscipit lobortis nisl ut aliquip ex ea commodo consequat. </p>
                                 </div>
                             </div>
-<%for(int i=0;i<prolist.size();i++) {%>
                             <div class="col-md-4">
                                 <div class="blog_item m-top-20">
                                     <div class="blog_item_img">
-                                        <img src="<%=prolist.get(i).getImage()%>" alt="" />
+                                        <img src=".\images/hotel\insta1.png" alt="" />
                                     </div>
                                     <div class="blog_text roomy-40">
-                                        <h6><%=prolist.get(i).getDetail()%></h6>
-                                        <p><em><a href=""><%=prolist.get(i).getPrice()%></a> /<a href=""><%=prolist.get(0).getName()%></a></em></p>
+                                        <h6>PLEASUARE WITHOUT CONSCIENCE</h6>
+                                        <p><em><a href="">May 15, 2016</a> /<a href="">admin</a>/<a href=""> Co-working</a></em></p>
                                     </div>
                                 </div>
                             </div>
-<%} %>                            
+                            <div class="col-md-4">
+                                <div class="blog_item m-top-20">
+                                    <div class="blog_item_img">
+                                        <img src=".\images/hotel\insta2.jpg" alt="" />
+                                    </div>
+                                    <div class="blog_text roomy-40">
+                                        <h6>PLEASUARE WITHOUT CONSCIENCE</h6>
+                                        <p><em><a href="">May 15, 2016</a> /<a href="">admin</a></em></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="blog_item m-top-20">
+                                    <div class="blog_item_img">
+                                        <img src="<%=prolist.get(0).getImage()%>" alt="" />
+                                    </div>
+                                    <div class="blog_text roomy-40">
+                                        <h6><%=prolist.get(0).getDetail()%></h6>
+                                        <p><em><a href=""><%=prolist.get(0).getPrice()%></a> /<a href=""><%=prolist.get(0).getName()%></a></em></p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="upinsta">
+                        	    <form action="Productlnsert.jsp" name="upinsta-1" method="post" enctype="multipart/fromdata">
+                        	    	<a href="./updata/ProductInsert.jsp">업로드</a>
+                        	    </form>
+                            </div>
+                        
                         </div>
                     </div><!--End off row -->
                 </div><!--End off container -->
@@ -1126,7 +1125,7 @@
                             <div class="col-md-4">
                                 <div class="rage_widget">
                                     <div class="widget_head">
-                                        <h3 class="text-white">CONTACT US</h3>
+                                        <h3 class="text-white"><i class="fa fa-phone-square" aria-hidden="true"></i>&nbsp;CONTACT US</h3>
                                         <div class="separator_small"></div>
                                     </div>
                                     <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, 

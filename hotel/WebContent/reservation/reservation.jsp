@@ -34,7 +34,7 @@
 		document.getElementById("ch05").textContent=document.getElementById("country2").value;
 		document.getElementById("ch12").textContent=document.getElementById("country3").value;
 		document.getElementById("people").value=document.getElementById("country1").value+"/"+document.getElementById("country2").value+"/"+document.getElementById("country3").value;
-		document.getElementById("pay").value=document.getElementById("daytotal").value;
+		document.getElementById("pay").value=document.getElementById("daytotal").textContent;
    }
   function send() {
 	if(<%=off%>){
@@ -87,9 +87,7 @@
 				<div class="span2_of_1">
 					<h4>check-in:</h4>
 					<div class="book_date btm">
-						<form>
 							<input name="checkin" class="date" id="datepicker" type="text" value="DD/MM/YY" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'DD/MM/YY';}">
-						</form>
 					</div>	
 					<div class="sel_room" >
 						<h4>number of rooms</h4>
@@ -113,9 +111,7 @@
 				<div class="span2_of_1"s>
 					<h4>check-out:</h4>
 					<div class="book_date btm">
-						<form>
 							<input name="checkout" class="date" id="datepicker1" type="text" value="DD/MM/YY" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'DD/MM/YY';}">
-						</form>
 					</div>	
 					<div class="sel_room">
 						<h4>childern 0-5:</h4>
@@ -138,6 +134,7 @@
 		        		</select>
 					</div>	
 				</div>
+				<div class="row" style="width:100%">
 				<div class="row">
 				    <ul class="costs">
 						<li><span>Day </span><span id="day">0</span>일</li>
@@ -151,12 +148,13 @@
 						<li><span>Child </span><span id="ch05">0</span>/<span id="ch12">0</span>명</li>
 					</ul>
 				</div>
-  				<div class="res_btn">
+						<input name="people" type="hidden" id="people" value="0/0/0">
+						<input name="pay" type="hidden" id="pay" value="0">
+  				<div class="row" style="float:right">
 					<form>
-						<input name="people" type="hidden" id="people" value="nonepeople">
-						<input name="pay" type="hidden" id="pay"  value="nonepay">
 						<input type="button" onclick="send()" value="book now" style="width: 100%;">
 					</form>
+				</div>
 				</div>
 				<div class="clear"></div>
 			</div>

@@ -7,12 +7,9 @@
 		request.setCharacterEncoding("utf-8");
 		String email = (String)session.getAttribute("emailKey");
 		boolean result = mgr.insertCart(caBean);
+		if(result) mgr.updateMemberCart(email, mgr.getCartNum(caBean));
 %>
 <script>
-	if(<%=result%>==true) parent.document.location.reload();
+	if(<%=result%>) parent.document.location.reload();
 	else history.back();
-	alert(<%=caBean.getNum()%>);
-	alert(<%=caBean.getRoomname()%>);
-	alert(<%=caBean.getCheckin()%>);
-	alert(<%=caBean.getCheckout()%>);
 </script>

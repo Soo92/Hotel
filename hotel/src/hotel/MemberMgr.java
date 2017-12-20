@@ -100,6 +100,7 @@ public class MemberMgr {
 				regBean.setId(rs.getString("id"));
 				regBean.setPass(rs.getString("pass"));
 				regBean.setEmail(rs.getString("email"));
+				regBean.setCart(rs.getString("cart"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -146,9 +147,10 @@ public class MemberMgr {
 			pstmt.setString(2, bean.getCheckin());
 			pstmt.setString(3, bean.getCheckout());
 			pstmt.setString(4, bean.getPeople());
-			pstmt.setInt(5, bean.getPay());
-			if(pstmt.executeUpdate()==1)
+			pstmt.setString(5, bean.getPay());
+			if(pstmt.executeUpdate()==1) {
 				flag = true;
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -174,7 +176,7 @@ public class MemberMgr {
 				regBean.setCheckin(rs.getString("checkin"));
 				regBean.setCheckout(rs.getString("checkout"));
 				regBean.setPeople(rs.getString("people"));
-				regBean.setPay(rs.getInt("pay"));
+				regBean.setPay(rs.getString("pay"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -184,32 +186,29 @@ public class MemberMgr {
 		return regBean;
 	}
 	
-	public boolean updateCart(CartBean bean){
+	public int getCartNum(CartBean bean) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
+		ResultSet rs = null;
 		String sql = null;
-		boolean flag = false;
 		try {
 			con = pool.getConnection();
-			sql = "update tblGuestBook set id=?,"
-					+"pass=? where email=?";
+			sql = "select num from cart where roomname=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, bean.getRoomname());
-			pstmt.setString(2, bean.getCheckin());
-			pstmt.setString(3, bean.getCheckout());
-			pstmt.setString(4, bean.getPeople());
-			pstmt.setInt(5, bean.getPay());
-			if(pstmt.executeUpdate()==1)
-				flag = true;
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				bean.setNum(rs.getInt("num"));
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			pool.freeConnection(con, pstmt);
+			pool.freeConnection(con);
 		}
-		return flag;
+		return bean.getNum();		
 	}
-	
-	public boolean updateMemberCart(String email,int cart){
+		
+	public boolean updateMemberCart(String email,int cartnum){
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		String sql = null;
@@ -218,7 +217,7 @@ public class MemberMgr {
 			con = pool.getConnection();
 			sql = "update tblhotel set cart=? where email=?";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, getMember(email).getCart()+","+cart);
+			pstmt.setString(1, getMember(email).getCart()+","+cartnum);
 			pstmt.setString(2, email);
 			if(pstmt.executeUpdate()==1)
 				flag = true;

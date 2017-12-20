@@ -566,7 +566,7 @@ p.para{
 	text-align: center;
 	display: block;
 }
-.res_btn form input[type="button"] {
+.row form input[type="button"] {
 	display: inline-block;
 	text-transform: capitalize;
 	width: 25% !important;
@@ -584,7 +584,7 @@ p.para{
 	cursor: pointer;
 	-webkit-appearance: none;
 }
-.res_btn form input[type="button"]:hover{
+.row form input[type="button"]:hover{
 	background: #228AC6;
 }
 

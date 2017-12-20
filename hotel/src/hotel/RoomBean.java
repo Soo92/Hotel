@@ -3,11 +3,13 @@ package hotel;
 public class RoomBean {
 
 	private int idx;
-	private String roomname; //ë©”ì¸ ?‚¬ì§?
-	private String mainpic;	  //ë£? ?´ë¦?
-	private String subpic;	  //ë£? ?‚´?š©
-	private int price;	  //ê°?ê²? ?˜ˆ?•½ë²„íŠ¼
-	
+	private String roomname; 			//ë£¸ ì‚¬ì´ì¦ˆ
+	private String mainpic;	  			//ë©”ì¸ì‚¬ì§„
+	private String subpic1;	  			//ì‘ì€ ì‚¬ì§„
+	private String subpic2;	  			//ì‘ì€ ì‚¬ì§„
+	private String subpic3;	  			//ì‘ì€ ì‚¬ì§„
+	private String subname;	  			//ì‘ì€ ì‚¬ì§„
+	private String subcontent;	  			//ì‘ì€ ì‚¬ì§„
 	public int getIdx() {
 		return idx;
 	}
@@ -23,21 +25,40 @@ public class RoomBean {
 	public String getMainpic() {
 		return mainpic;
 	}
-	public void setMainpic(String maincp) {
-		this.mainpic = maincp;
+	public void setMainpic(String mainpic) {
+		this.mainpic = mainpic;
 	}
-	public String getSubpic() {
-		return subpic;
+	public String getSubpic1() {
+		return subpic1;
 	}
-	public void setSubpic(String subpic) {
-		this.subpic = subpic;
+	public void setSubpic1(String subpic1) {
+		this.subpic1 = subpic1;
 	}
-	public int getPrice() {
-		return price;
+	public String getSubpic2() {
+		return subpic2;
 	}
-	public void setPrice(int price) {
-		this.price = price;
+	public void setSubpic2(String subpic2) {
+		this.subpic2 = subpic2;
 	}
+	public String getSubpic3() {
+		return subpic3;
+	}
+	public void setSubpic3(String subpic3) {
+		this.subpic3 = subpic3;
+	}
+	public String getSubname() {
+		return subname;
+	}
+	public void setSubname(String subname) {
+		this.subname = subname;
+	}
+	public String getSubcontent() {
+		return subcontent;
+	}
+	public void setSubcontent(String subcontent) {
+		this.subcontent = subcontent;
+	}
+	
 	
 	
 
