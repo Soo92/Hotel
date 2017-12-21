@@ -228,4 +228,30 @@ public class MemberMgr {
 		}
 		return flag;
 	}
+	public boolean updateProfile(MemberBean bean) {
+		System.out.print("aaa");
+		System.out.print(bean.getEmail());
+		System.out.print(bean.getId());
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		String sql = null; 
+		boolean flag = false;
+		try {
+			con = pool.getConnection();
+			sql = "update tblHotel set id=?,pass=? where email=?" ;
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, bean.getId());
+			pstmt.setString(2, bean.getPass());
+			pstmt.setString(3, bean.getEmail());
+			
+			int count = pstmt.executeUpdate();
+			if (count > 0)
+				flag = true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			pool.freeConnection(con, pstmt);
+		}
+		return flag;
+	}
 }

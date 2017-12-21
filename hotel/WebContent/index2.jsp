@@ -18,7 +18,6 @@
 		String id = (String)bean.getId();
 		String pw = (String)bean.getPass();
 %>
-
 <!DOCTYPE HTML>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
@@ -32,13 +31,15 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="icon" type="image/png" href="favicon.ico">
-        <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+        
+
         <!--Google Font link-->
         <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Raleway:400,600,700" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
 		<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
 		<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+
         <link rel="stylesheet" href="assets/css/slick.css">
         <link rel="stylesheet" href="assets/css/slick-theme.css">
         <link rel="stylesheet" href="assets/css/animate.css">
@@ -47,10 +48,7 @@
         <link rel="stylesheet" href="assets/css/bootstrap.css">
         <link rel="stylesheet" href="assets/css/magnific-popup.css">
         <link rel="stylesheet" href="assets/css/bootsnav.css">
-         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
-         <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
-         <link href="css/text.css" rel="stylesheet" type="text/css">
-        
+
         <!--For Plugins external css-->
         <!--<link rel="stylesheet" href="assets/css/plugins.css" />-->
 
@@ -68,8 +66,6 @@
 		<script src="js/jquery-ui.min.js"></script>
 		<script src="js/css3-mediaqueries.js"></script>
 		<script src="js/fwslider.js"></script>
-		
-		
 		<!--end slider -->
 		<!---start-date-piker---->
 		<link rel="stylesheet" href="css/jquery-ui.css" />
@@ -77,15 +73,12 @@
 		<script type="text/javascript">
 		$(document).ready(function() {
 			var loginBox = $('#login-box');
-			$('.login-window').click(function() {
-				// Getting the variable's value from a link 
-				//Fade in the Popup and add close button
+			$('.login-window').click(function () {
 				$(loginBox).fadeIn(300,function(){
 					$(loginBox).css("display", "block"); 
 				});
 				return false;
 			});
-			// When clicking on the button close or the mask layer the popup closed
 			$(loginBox).click(function() { 
 				if(!$(this).is('.signin'))
 				 $(loginBox).fadeOut(300 , function() {
@@ -94,11 +87,6 @@
 			return false;
 			});
 		});
-		</script>
-	    <script>
-			  $(function() {
-			    $( "#datepicker,#datepicker1" ).datepicker();
-			  });
 		</script>
 		<script>
 			$(function() {
@@ -187,7 +175,6 @@
                                 <%}%>
                                 </ul>
                             </li>
-
 						<%if(!off) {%>
 							<li class="my-page"><a href="#"><%=id%> 님<button onclick="location.href='./login/logout.jsp'">x</button></a></li>
 						<%} %>
@@ -220,7 +207,7 @@
                             <li><a href="#portfolio">ROOMS&SUITES</a></li>                    
                             <li><a href="#pricing">PACKAGES</a></li>                    
                             <li><a href="#blog">#INSTAGRAM</a></li>                    
-                            <li><a href="#contact">CONTACT US</a></li>  
+                            <li><a href="#contact">CONTACT</a></li>  
                         </ul>
                     </div><!-- /.navbar-collapse -->
                 </div>  
@@ -273,14 +260,7 @@
 							                <div class="slide_content">
 							                    <div class="slide_content_wrap">
 							                        <!-- Text title -->
-							                        
-	                                                <div class="containerd">
-                                                        <h1 class="heading" data-target-resolver></h1>
-                                                             </div>
-  
-                                                            <script src="js/text.js" ></script>
-
-							                        
+							                        <h4 class="title">THE MOST LUXURIOUS HOTEL<span class="hide">dummy text</span></h4>
 							                        
 							                        <!-- /Text title -->
 							                    </div>
@@ -290,12 +270,10 @@
 							            <!-- /Duplicate to create more slides -->
 							            <div class="slide">
 							                <!-- <iframe width="1920" height="1080" src="https://www.youtube.com/embed/eaSdTJAYl6s?rel=0&amp;controls=0&amp;showinfo=0&autoplay=1" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>-->
-							                <img src=".\images/hotel\vhotel4.jpg">
+							                <img src=".\images/hotel\vhotel2.jpg">
 							                <div class="slide_content">
 							                     <div class="slide_content_wrap">
 							                        <!-- Text title -->
-							                        
-							                    
 							                        <h4 class="title">EXTRAORDINARY EXPERIENCES<span class="hide"> condimentum </span></h4>
 							                        
 							                        <!-- /Text title -->
@@ -317,7 +295,7 @@
 							            <!--/slide -->
 							            <div class="slide">
 							                <!-- <iframe width="1920" height="1080" src="https://www.youtube.com/embed/eaSdTJAYl6s?rel=0&amp;controls=0&amp;showinfo=0&autoplay=1" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>-->
-							                <img src=".\images/hotel\vhotel2.jpg">
+							                <img src=".\images/hotel\vhotel4.jpg">
 							                <div class="slide_content">
 							                     <div class="slide_content_wrap">
 							                        <!-- Text title -->
@@ -350,9 +328,8 @@
 							</div>                            
 							<div class="main_bg">
 							<div class="wrap">
-								<div class="online_reservation">										
-								<iframe src="./reservation/reservation.jsp" width="100%" height="250" scrolling="no"></iframe>
-								</div>
+								<div class="online_reservation">
+									<iframe src="./reservation/reservation.jsp" width="100%" height="250" scrolling="no"></iframe>
 							</div>		
                         </div>
                     </div><!--End off row-->
@@ -368,7 +345,7 @@
                         <div class="main_about">
                             <div class="col-md-6">
                                 <div class="about_content">
-                                    <h2><i class="fa fa-check" aria-hidden="true"></i>&nbsp;EXPERIENCE OUR HOTEL</h2>
+                                    <h2>EXPERIENCE OUR HOTEL</h2>
                                     <div class="separator_left"></div>
                                     
                                   <section id="portfolio" class="portfolio lightbg">   
@@ -518,7 +495,6 @@
                 <hr />
                 <br />
                 <br />
-              
                 <div class="container">
                     <div class="row">
                         <div class="about_bottom_content">
@@ -526,7 +502,7 @@
                                 <div class="about_bottom_item m-top-20">
                                     <div class="ab_head">
                                         <div class="ab_head_icon">
-                                            <i class="icofont icofont-speech-comments"></i>
+                                            <i class="icofont icofont-fire-burn"></i>
                                         </div>
                                         <h6 class="m-top-20"> WE’RE CREATIVE</h6>
                                     </div>
@@ -565,7 +541,6 @@
                     </div><!--End off row-->
                 </div><!--End off container -->
             </section> <!--End off About section -->
-              
 
 
             <!--Video section-->
@@ -585,11 +560,11 @@
                     <div class="main_featured m-top-100">
                         <div class="col-sm-12">
                             <div class="head_title text-center">
-                                <h2><i class="fa fa-check" aria-hidden="true"></i> &nbsp;EXCEPTIONAL VIEWS</h2>
+                                <h2>EXCEPTIONAL VIEWS</h2>
                                 <div class="separator_auto"></div>
-                                <p>Choose from one of 67 stylish guest rooms featuring stunning Pacific Ocean or garden courtyard views, 
-                                all within walking distance of the world-famous Santa Monica Pier 
-                                and Third Street Promenade shopping and dining district. </p>
+                                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, 
+                                    sed diam nonummy nibh euismod nostrud exerci tation ullamcorper 
+                                    suscipit lobortis nisl ut aliquip ex ea commodo consequat. </p>
                             </div>
                         </div>
                     </div>
@@ -638,46 +613,42 @@
                         <div class="main_service roomy-100">
                             <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
                                 <div class="head_title text-center">
-                               
-                                    <h2><i class="fa fa-check" aria-hidden="true"></i> &nbsp;FACILITIES</h2>
+                                    <h2>FACILITIES</h2>
                                     <div class="separator_auto"></div>
-                                    <p>Enjoy Our Best Facilities </p>
+                                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, 
+                                        sed diam nonummy nibh euismod nostrud exerci tation ullamcorper 
+                                        suscipit lobortis nisl ut aliquip ex ea commodo consequat. </p>
                                 </div>
                             </div>
 
                             <div class="col-md-4">
                                 <div class="service_item">
-                                   <i class="fa fa-cutlery" aria-hidden="true"></i>
+                                    <i class="icofont icofont-light-bulb"></i>
                                     <h6 class="m-top-30">RESTAURANTS</h6>
                                     <div class="separator_small"></div>
-                                    <p>Intimate and inviting, Le Restaurant is one of the most romantic and seductive restaurants in Paris. 
-                                    Decorated with plush upholstered seating, green marblesque pillars and silk fabric draping the walls, 
-                                    the interiors are as captivating as the outdoors - a small cobbled terrace with a beautiful fountain and verdant living wall.
-                                    Head Chef Julien Montbabut’s menus are equally as distinctive, deploying classic techniques to create food that is progressively modern, light and fresh.</p>
+                                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, 
+                                        sed diam nonummy nibh euismod tincidunt ut laoreet dolore 
+                                        magna aliquam erat volutpat. </p>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="service_item">
-                                    <i class="fa fa-glass" aria-hidden="true"></i>
+                                    <i class="icofont icofont-imac"></i>
                                     <h6 class="m-top-30">BAR</h6>
                                     <div class="separator_small"></div>
-                                    <p>With the glamorous mood, you can make your day the best you've never had before.
-                                    You'll find this quirky little bar at the equally quirky Hotel Not Hotel in Amsterdam West.
-                                     The perfect place to get footloose and fancy free in honour of a Hollywood great, 
-                                     Kevin Bacon serves up good cocktails and Thai food. 
-                                     The sunny terrace does the rest; overall, the Kevin Bacon crew keep it fresh and not too serious for both enjoying daytime drinks 
-                                     and staying far into the night.</p>
+                                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, 
+                                        sed diam nonummy nibh euismod tincidunt ut laoreet dolore 
+                                        magna aliquam erat volutpat. </p>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="service_item">
-                                    <i class="fa fa-bath" aria-hidden="true"></i>
+                                    <i class="icofont icofont-video"></i>
                                     <h6 class="m-top-30">SPA</h6>
                                     <div class="separator_small"></div>
-                                    <p>Indulge in the next evolution of the Spa experience at The Ritz-Carlton. 
-                                    Every one of our spas around the globe combine world-class expertise with local flavors to deliver a bespoke experience that is undeniably unique for every guest. 
-                                    Our highly trained spa technicians listen to your specific requests and concerns to provide a level of personalized service that is unmatched. 
-                                    From the moment you make your appointment, each step of your time with us will be tailored to you. </p>
+                                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, 
+                                        sed diam nonummy nibh euismod tincidunt ut laoreet dolore 
+                                        magna aliquam erat volutpat. </p>
                                 </div>
                             </div>
                         </div>
@@ -725,7 +696,7 @@
                         <div class="main_portfolio roomy-100">
                             <div class="col-md-8 col-md-offset-2">
                                 <div class="head_title text-center">
-                                    <h2><i class="fa fa-check" aria-hidden="true"></i> &nbsp;ROOMS&SUITES</h2>
+                                    <h2>ROOMS&SUITES</h2>
                                     <div class="separator_auto"></div>
                                     <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, 
                                         sed diam nonummy nibh euismod nostrud exerci tation ullamcorper 
@@ -734,27 +705,13 @@
                             </div>
 
                             <div class="portfolio_content">
-                                <div class="col-md-8">
                                     <div class="row">
-                                        <div class="col-md-9">
-                                            <div class="portfolio_item">
-                                                <img src="http://d1rmlgt5xabss1.cloudfront.net/s3fs-public/hotel-bedroom.jpg" alt="" />
-                                                <div class="portfolio_hover text-center">
-                                                    <h6 class="text-uppercase text-white">Title</h6>
-                                                    <p class=" text-white">Lorem ipsum dolor sit amet</p>
-                                                    <div class="portfolio_hover_icon">
-                                                        <a href="assets/images/Portfolio/2.jpg" class="popup-img"><i class="fa fa-expand"></i></a>
-                                                        <a href=""><i class="fa fa-search"></i></a>
-                                                    </div>
-                                                </div>
-                                            </div>  
-                                        </div>
-                                        <div class="col-md-9 m-top-10">
+                                        <div class="col-md-6 m-top-30">
                                             <div class="portfolio_item portfolio_item2">
-                                                <img src="https://ritzcarlton-h.assetsadobe.com/is/image/content/dam/the-ritz-carlton/hotels/usa-and-canada/ontario/toronto/guest-rooms/duplicates/RCTORON_00094_conversion.png?$XlargeViewport100pct$" alt="" />
+                                                <img src="<%=vlist.get(2).getMainpic() %>" alt="" />
                                                 <div class="portfolio_hover text-center">
-                                                    <h6 class="text-uppercase text-white">Title</h6>
-                                                    <p class=" text-white">Lorem ipsum dolor sit amet</p>
+                                                    <h6 class="text-uppercase text-white"><%=vlist.get(2).getRoomname() %></h6>
+                                                    <p class=" text-white"><%=vlist.get(2).getSubname() %></p>
                                                     <div class="portfolio_hover_icon">
                                                         <a href="assets/images/Portfolio/3.jpg" class="popup-img"><i class="fa fa-expand"></i></a>
                                                         <a href=""><i class="fa fa-search"></i></a>
@@ -762,62 +719,8 @@
                                                 </div>
                                             </div>
                                         </div>
-                                       <div class="col-md-9 m-top-30" style="float: right;">
-                                            <div class="portfolio_item portfolio_item2">
-                                                <img src="https://www.omnihotels.com/-/media/images/hotels/ftwdtn/reservationrooms/additionalphotos/ftwdtn-omni-fort-worth-hotel-hospitality-suite.jpg?h=660&la=en&w=1170" alt="" />
-                                                <div class="portfolio_hover text-center" >
-                                                    <h6 class="text-uppercase text-white">Title</h6>
-                                                    <p class=" text-white">Lorem ipsum dolor sit amet</p>
-                                                    <div class="portfolio_hover_icon">
-                                                        <a href="assets/images/Portfolio/5.jpg" class="popup-img"><i class="fa fa-expand"></i></a>
-                                                        <a href=""><i class="fa fa-search"></i></a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
                                     </div>
                                 </div>
-
-                                <div class="col-md-6">
-                                    <div class="portfolio_item portfolio_item3 sm-m-top-30">
-                                        <img src="https://www.fourseasons.com/content/dam/fourseasons/images/web/MAR/MAR_301_aspect16x9.jpg/jcr:content/renditions/cq5dam.web.720.405.jpeg" alt="" />
-                                        <div class="portfolio_hover text-center">
-                                            <h6 class="text-uppercase text-white">Title</h6>
-                                            <p class=" text-white">Lorem ipsum dolor sit amet</p>
-                                            <div class="portfolio_hover_icon">
-                                                <a href="assets/images/Portfolio/1.jpg" class="popup-img"><i class="fa fa-expand"></i></a>
-                                                <a href=""><i class="fa fa-search"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                             <!--    <div class="col-md-3 m-top-30">
-                                    <div class="portfolio_item portfolio_item2">
-                                        <img src="https://www.slsbeverlyhillshotel.com/wp-content/uploads/sites/2/2017/01/Luxury-Hotel-Room-SLS-Beverly-Hills-Presidential-Suite-Living-Area.jpg" alt="" />
-                                        <div class="portfolio_hover text-center">
-                                            <h6 class="text-uppercase text-white">Title</h6>
-                                            <p class=" text-white">Lorem ipsum dolor sit amet</p>
-                                            <div class="portfolio_hover_icon">
-                                                <a href="assets/images/Portfolio/6.jpg" class="popup-img"><i class="fa fa-expand"></i></a>
-                                                <a href=""><i class="fa fa-search"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-8 m-top-30">
-                                    <div class="portfolio_item">
-                                        <img src="https://sep.yimg.com/ay/yhst-20155708284154/luxury-hotel-guest-rooms-649.gif" alt="" />
-                                        <div class="portfolio_hover text-center">
-                                            <h6 class="text-uppercase text-white">Title</h6>
-                                            <p class=" text-white">Lorem ipsum dolor sit amet</p>
-                                            <div class="portfolio_hover_icon">
-                                                <a href="assets/images/Portfolio/4.jpg" class="popup-img"><i class="fa fa-expand"></i></a>
-                                                <a href=""><i class="fa fa-search"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>-->  
 
                         </div>
                     </div><!--End off row -->
@@ -1006,7 +909,7 @@
                         <div class="main_pricing roomy-100">
                             <div class="col-md-8 col-md-offset-2 col-sm-12">
                                 <div class="head_title text-center">
-                                    <h2><i class="fa fa-th-large" aria-hidden="true"></i>&nbsp;PACKAGES</h2>
+                                    <h2>PACKAGES</h2>
                                     <div class="separator_auto"></div>
                                     <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
                                         sed diam nonummy nibh euismod tincidunt tation ullamcorper 
@@ -1098,7 +1001,45 @@
 
 
 
-            
+            <!--client brand section-->
+            <section id="cbrand" class="cbrand">
+                <div class="container">
+                    <div class="row">
+                        <div class="main_cbrand text-center roomy-100">
+                            <div class="col-md-2 col-sm-4 col-xs-6">
+                                <div class="cbrand_item m-bottom-10">
+                                    <a href=""><img src="assets/images/clients/1.jpg" alt="" /></a>
+                                </div>
+                            </div>
+                            <div class="col-md-2 col-sm-4 col-xs-6">
+                                <div class="cbrand_item m-bottom-10">
+                                    <a href=""><img src="assets/images/clients/2.jpg" alt="" /></a>
+                                </div>
+                            </div>
+                            <div class="col-md-2 col-sm-4 col-xs-6">
+                                <div class="cbrand_item m-bottom-10">
+                                    <a href=""><img class="" src="assets/images/clients/5.jpg" alt="" /></a>
+                                </div>
+                            </div>
+                            <div class="col-md-2 col-sm-4 col-xs-6">
+                                <div class="cbrand_item m-bottom-10">
+                                    <a href=""><img src="assets/images/clients/4.jpg" alt="" /></a>
+                                </div>
+                            </div>
+                            <div class="col-md-2 col-sm-4 col-xs-6">
+                                <div class="cbrand_item m-bottom-10">
+                                    <a href=""><img src="assets/images/clients/3.jpg" alt="" /></a>
+                                </div>
+                            </div>
+                            <div class="col-md-2 col-sm-4 col-xs-6">
+                                <div class="cbrand_item m-bottom-10">
+                                    <a href=""><img src="assets/images/clients/1.jpg" alt="" /></a> 
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- End off row -->
+                </div><!-- End off container -->
+            </section><!-- End off Cbrand section -->
 
 
             <!--Subscribe section-->
@@ -1138,46 +1079,26 @@
                         <div class="main_blog text-center roomy-100">
                             <div class="col-sm-8 col-sm-offset-2">
                                 <div class="head_title text-center">
-                                    <h2><i class="fa fa-instagram" aria-hidden="true"></i>&nbsp;YOUR #INSTAGRAM</h2>
+                                    <h2>YOUR #INSTAGRAM</h2>
                                     <div class="separator_auto"></div>
                                     <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
                                         sed diam nonummy nibh euismod tincidunt tation ullamcorper 
                                         suscipit lobortis nisl ut aliquip ex ea commodo consequat. </p>
                                 </div>
                             </div>
+<%for(int i=0;i<prolist.size();i++) {%>
                             <div class="col-md-4">
                                 <div class="blog_item m-top-20">
                                     <div class="blog_item_img">
-                                        <img src=".\images/hotel\insta1.png" alt="" />
+                                        <img src="<%=prolist.get(i).getImage()%>" alt="" />
                                     </div>
                                     <div class="blog_text roomy-40">
-                                        <h6>PLEASUARE WITHOUT CONSCIENCE</h6>
-                                        <p><em><a href="">May 15, 2016</a> /<a href="">admin</a>/<a href=""> Co-working</a></em></p>
+                                        <h6><%=prolist.get(i).getDetail()%></h6>
+                                        <p><em><a href=""><%=prolist.get(i).getPrice()%></a> /<a href=""><%=prolist.get(0).getName()%></a></em></p>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-4">
-                                <div class="blog_item m-top-20">
-                                    <div class="blog_item_img">
-                                        <img src=".\images/hotel\insta2.jpg" alt="" />
-                                    </div>
-                                    <div class="blog_text roomy-40">
-                                        <h6>PLEASUARE WITHOUT CONSCIENCE</h6>
-                                        <p><em><a href="">May 15, 2016</a> /<a href="">admin</a>/<a href=""> Co-working</a></em></p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="blog_item m-top-20">
-                                    <div class="blog_item_img">
-                                        <img src=".\images/hotel\insta3.jpg" alt="" />
-                                    </div>
-                                    <div class="blog_text roomy-40">
-                                        <h6>PLEASUARE WITHOUT CONSCIENCE</h6>
-                                        <p><em><a href="">May 15, 2016</a> /<a href="">admin</a>/<a href=""> Co-working</a></em></p>
-                                    </div>
-                                </div>
-                            </div>
+<%} %>                            
                         </div>
                     </div><!--End off row -->
                 </div><!--End off container -->
@@ -1204,7 +1125,7 @@
                             <div class="col-md-4">
                                 <div class="rage_widget">
                                     <div class="widget_head">
-                                        <h3 class="text-white"><i class="fa fa-phone-square" aria-hidden="true"></i>&nbsp;CONTACT US</h3>
+                                        <h3 class="text-white">CONTACT US</h3>
                                         <div class="separator_small"></div>
                                     </div>
                                     <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, 
@@ -1213,7 +1134,15 @@
                                         quis nostrud exerci tation ullamcorper suscipit lobortis nisl
                                         ut aliquip ex ea commodo consequat. </p>
 
-                                    
+                                    <div class="widget_socail m-top-30">
+                                        <ul class="list-inline">
+                                            <li><a href=""><i class="fa fa-facebook"></i></a></li>
+                                            <li><a href=""><i class="fa fa-twitter"></i></a></li>
+                                            <li><a href=""><i class="fa fa-linkedin"></i></a></li>
+                                            <li><a href=""><i class="fa fa-vimeo"></i></a></li>
+                                            <li><a href=""><i class="fa fa-instagram"></i></a></li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-md-8 sm-m-top-30">
@@ -1221,23 +1150,22 @@
                                     <div class="row">
                                         <div class="col-sm-6">
                                             <div class="form-group"> 
-                                                <input id="first_name" name="first_name" type="text" placeholder="EMAIL" class="form-control" required="">
+                                                <input id="first_name" name="first_name" type="text" placeholder="Name" class="form-control" required="">
                                             </div>
                                         </div>
 
                                         <div class="col-sm-6">
                                             <div class="form-group">  
-                                                <input id="phone" name="phone" type="text" placeholder="NAME" class="form-control">
+                                                <input id="phone" name="phone" type="text" placeholder="Phone" class="form-control">
                                             </div>
                                         </div>
 
                                         <div class="col-sm-12">
                                             <div class="form-group">  
-                                                <textarea class="form-control" rows="6" placeholder="MESSAGE"></textarea>
+                                                <textarea class="form-control" rows="6" placeholder="Message"></textarea>
                                             </div>
                                             <div class="form-group text-center">
-                                              
-                                                <a href="SendAccount.jsp?id=<%=bean.getId()%>" class="btn btn-primary" >SEND MAIL</a>
+                                                <a href="" class="btn btn-primary">SEND MESSAGE</a>
                                             </div>
                                         </div>
 
@@ -1249,47 +1177,6 @@
                     </div><!--End off row -->
                 </div><!--End off container -->
             </section><!--End off Contact Section-->
-            
-            
-             <!--client brand section-->
-            <section id="cbrand" class="cbrand">
-                <div class="container">
-                    <div class="row">
-                        <div class="main_cbrand text-center roomy-100">
-                            <div class="col-md-2 col-sm-4 col-xs-6">
-                                <div class="cbrand_item m-bottom-10">
-                                    <a href=""><img src="assets/images/clients/1.jpg" alt="" /></a>
-                                </div>
-                            </div>
-                            <div class="col-md-2 col-sm-4 col-xs-6">
-                                <div class="cbrand_item m-bottom-10">
-                                    <a href=""><img src="assets/images/clients/2.jpg" alt="" /></a>
-                                </div>
-                            </div>
-                            <div class="col-md-2 col-sm-4 col-xs-6">
-                                <div class="cbrand_item m-bottom-10">
-                                    <a href=""><img class="" src="assets/images/clients/5.jpg" alt="" /></a>
-                                </div>
-                            </div>
-                            <div class="col-md-2 col-sm-4 col-xs-6">
-                                <div class="cbrand_item m-bottom-10">
-                                    <a href=""><img src="assets/images/clients/4.jpg" alt="" /></a>
-                                </div>
-                            </div>
-                            <div class="col-md-2 col-sm-4 col-xs-6">
-                                <div class="cbrand_item m-bottom-10">
-                                    <a href=""><img src="assets/images/clients/3.jpg" alt="" /></a>
-                                </div>
-                            </div>
-                            <div class="col-md-2 col-sm-4 col-xs-6">
-                                <div class="cbrand_item m-bottom-10">
-                                    <a href=""><img src="assets/images/clients/1.jpg" alt="" /></a> 
-                                </div>
-                            </div>
-                        </div>
-                    </div><!-- End off row -->
-                </div><!-- End off container -->
-            </section><!-- End off Cbrand section --> 
 
 
             <!-- scroll up-->
@@ -1302,11 +1189,12 @@
                 <div class="container">
                     <div class="row">
                         <div class="main_footer text-center p-top-40 p-bottom-30">
-                            <p class="wow fadeInRight" data-wow-duration="1s" style="color:white";>
-                                
-                                
-                               ©Pacific Cove Hotels Limited 1997-2017. All Rights Reserved.
-
+                            <p class="wow fadeInRight" data-wow-duration="1s">
+                                Made with 
+                                <i class="fa fa-heart"></i>
+                                by 
+                                <a target="_blank" href="https://bootstrapthemes.co">Bootstrap Themes</a> 
+                                2016. All Rights Reserved
                             </p>
                         </div>
                     </div>
@@ -1326,41 +1214,15 @@
             <script src="assets/js/gmaps.min.js"></script>
             <script>
                 function showmap() {
-                	 
                     var mapOptions = {
-                        zoom: 13,
+                        zoom: 8,
                         scrollwheel: false,
-                        center : new google.maps.LatLng(35.152713, 129.111524),
+                        center: new google.maps.LatLng(35.1526,129.1115),
                         mapTypeId: google.maps.MapTypeId.ROADMAP
                     };
                     var map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
                     $('.mapheight').css('height', '350');
                     $('.maps_text h3').hide();
-                    
-                    
-                    var mapCanvas = document.getElementById("map");
-                    var myCenter = new google.maps.LatLng(35.152713, 129.111524); 
-                    
-                    
-                    
-                    var marker = new google.maps.Marker({
-                        position: myCenter,
-                        animation: google.maps.Animation.BOUNCE
-                      });
-                      marker.setMap(map);
-                      
-                      google.maps.event.addListener(marker,'click',function() {
-                    	    map.setZoom(19);
-                    	    map.setCenter(marker.getPosition());
-                    	   
-                    	    var infowindow = new google.maps.InfoWindow({
-                    	        content:"Pacific Cove Hotel Busan "
-                    	      });
-                    	    infowindow.open(map,marker);
-                    	    
-                    	  });
-                    
-                   
                 }
             </script>
             <script src="assets/js/plugins.js"></script>

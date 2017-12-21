@@ -180,19 +180,3 @@ public class ProductMgr {
 	}
 	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

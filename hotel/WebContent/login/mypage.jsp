@@ -1,5 +1,3 @@
-<%@page import="javax.swing.text.html.HTML"%>
-<%@page import="com.sun.xml.internal.txw2.Document"%>
 <jsp:useBean id="mgr" class="hotel.MemberMgr"/>
 <jsp:useBean id="bean" class="hotel.MemberBean"/>
 <%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
@@ -405,7 +403,7 @@ h1 a {
     <script src="./mypage_files/bootstrap.min.js.다운로드"></script>
     <script>
     function update(){
-    	alert("a");	
+		document.frm.submit();
     }
 	
 	function modify(){
@@ -425,10 +423,12 @@ h1 a {
 		<li class="open">
 			<div class="link"><i class="fa fa-globe"></i>My Profile<i class="fa fa-chevron-down"></i></div>
 			<ul  class="submenu" style="display: block;">
-				<li ><a id="li1">Email :<%=bean.getEmail()%></a> </li>
-				<li><a  id="li2">ID :<%=bean.getId()%> </a></li>
-				<li><a  id="li3">Password :<%=bean.getPass()%></a></li>
-				<li><a id="li4" onclick="modify()">Modify Your Profile</a></li>
+				<form name="frm" action="mypage2.jsp" method="post">
+					<li ><a id="li1">Email :<%=bean.getEmail()%></a> </li>
+					<li><a  id="li2">ID :<%=bean.getId()%> </a></li>
+					<li><a  id="li3">Password :<%=bean.getPass()%></a></li>
+					<li><a id="li4" onclick="modify()">Modify Your Profile</a></li>
+				</form>
 			</ul>
 		</li>
 		
@@ -440,7 +440,7 @@ h1 a {
                 <a href="https://s.bootsnipp.com/iframe/z4P39#"><img class="img-responsive iamgurdeeposahan" alt="<%=mgr.getCart(Integer.parseInt(a[i])).getPay()%>" src="./mypage_files/gurdeeposahan.jpg">    
     			</a>
 <%}if(a.length>4){%>               
-                <a class="view-all" href="https://web.facebook.com/iamgurdeeposahan" target="_blank">15+
+                <a class="view-all" href="https://web.facebook.com/iamgurdeeposahan" target="_blank">3+
         		</a>
 <%} %>    			    
 				</li>
