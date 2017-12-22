@@ -205,14 +205,6 @@
                                         <h6><a href="#" class="login-window">LOG IN & SIGN UP </a></h6>
                                         <!--  <p class="m-top-10">2x - <span class="price">$19.00</span></p>-->
                                     </li>
-                                    <li>
-                                        <h6><a href="#">MY CART</a></h6>
-                                    </li>
-                                    <!---- More List ---->
-                                    <li class="total">
-                                        <span class="pull-right"><strong>Total</strong>: $0.00</span>
-                                        <a href="#" class="btn btn-cart">Cart</a>
-                                    </li>
                                 <%}else{%>
 									<iframe src="./login/mypage.jsp" height="280px" width="100%" scrolling="no"></iframe>
                                 <%}%>
@@ -246,11 +238,9 @@
                     <div class="collapse navbar-collapse" id="navbar-menu">
                         <ul class="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
                             <li><a href="#hello">WELCOME</a></li>                    
-                            <li><a href="#about">HOTEL INFO</a></li>                    
-                            <li><a href="#service">FACILITIES</a></li>                    
                             <li><a href="#portfolio">ROOMS&SUITES</a></li>                    
-                            <li><a href="#pricing">PACKAGES</a></li>                    
-                            <li><a href="#blog">#INSTAGRAM</a></li>                    
+                            <li><a href="#testimonial">REVIEW</a></li>                    
+                            <li><a href="#blog">#PICTURE</a></li>                    
                             <li><a href="#contact">CONTACT US</a></li>  
                         </ul>
                     </div><!-- /.navbar-collapse -->
@@ -389,216 +379,7 @@
                     </div><!--End off row-->
                 </div><!--End off container -->
             </section> <!--End off Home Sections-->
-            
             <hr>
-            
-            <!--About Sections-->
-            <section id="about" class="about roomy-100">
-                <div class="container">
-                    <div class="row">
-                        <div class="main_about">
-                            <div class="col-md-6">
-                                <div class="about_content">
-                                    <h2><i class="fa fa-check" aria-hidden="true"></i>&nbsp;EXPERIENCE OUR HOTEL</h2>
-                                    <div class="separator_left"></div>
-                                    
-                                  <section id="portfolio" class="portfolio lightbg">   
-                <div class="container">
-                    <div class="row">
-                        
-                                          <div class="col-md-6 m-top-30">
-                                    <div class="portfolio_item">
-                                        <img src=".\images/hotel\ex1.gif" alt="" />
-                                        <div class="portfolio_hover text-center">
-                                            <h6 class="text-uppercase text-white">Title</h6>
-                                            <p class=" text-white">Lorem ipsum dolor sit amet</p>
-                                            <div class="portfolio_hover_icon">
-                                                <a href="assets/images/Portfolio/4.jpg" class="popup-img"><i class="fa fa-expand"></i></a>
-                                                <a href=""><i class="fa fa-search"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                             </div>
-                                
-                                    
-                                    
-                                    <div class="about_btns m-top-40">
-                                        <a href="" class="btn btn-primary">MORE INFO</a>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            
-                            <br>
-                            <br>
-                            <br>
-                            <br>
-                            <br>
-                            <br>
-                            <div class="col-md-6">
-                                <div class="about_accordion wow fadeIn">
-                                    <div id="faq_main_content" class="faq_main_content">
-                                        <h6 ><i class="fa fa-angle-right"></i> SPEND THE HOLIDAYS WITH US </h6>
-                                        <div >
-                                            <div class="content">
-                                                <p>Throughout the year, friends and family are what keep us going; 
-                                                the holidays are the perfect time to spoil them. 
-                                                Whether you choose to gift a beautifully wrapped package, 
-                                                treat your family to a lavish suite experience or indulge in seasonally inspired cocktails in the Club Lounge, 
-                                                The Ritz-Carlton can help you treat those who make every day worth celebrating.</p>
-
-                                                 <div class="col-md-20 m-top-30">
-                                    <div class="portfolio_item portfolio_item2">
-                                        <img src=".\images/hotel\ex2.jpg" alt="" />
-                                        <div class="portfolio_hover text-center">
-                                            <h6 class="text-uppercase text-white">Title</h6>
-                                            <p class=" text-white">Lorem ipsum dolor sit amet</p>
-                                            <div class="portfolio_hover_icon">
-                                                <a href="assets/images/Portfolio/6.jpg" class="popup-img"><i class="fa fa-expand"></i></a>
-                                                <a href=""><i class="fa fa-search"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                            </div>
-                                        </div> <!-- End off accordion item-1 -->
-
-                                        <h6 ><i class="fa fa-angle-right"></i> PLAN YOUR WINTER ESCAPE</h6>
-                                        <div >
-                                            <div class="content">
-                                              
-                                              <p> From snowmobiling to après-ski, enjoy the luxury of a ski-in/ski-out resort with a host of winter experiences and activities for the entire family. </p>
-                                               <div class="col-md-20 m-top-30">
-                                    <div class="portfolio_item portfolio_item2">
-                                        <img src=".\images/hotel\ex2.jpg" alt="" />
-                                        <div class="portfolio_hover text-center">
-                                            <h6 class="text-uppercase text-white">Title</h6>
-                                            <p class=" text-white">Lorem ipsum dolor sit amet</p>
-                                            <div class="portfolio_hover_icon">
-                                                <a href="assets/images/Portfolio/6.jpg" class="popup-img"><i class="fa fa-expand"></i></a>
-                                                <a href=""><i class="fa fa-search"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                              
-                                            </div>
-                                        </div> <!-- End off accordion item-2 -->
-
-                                        <h6> <i class="fa fa-angle-right"></i>ENJOY BEST SERVICE </h6>
-                                        <div>
-                                            <div class="content">
-                                               
-                                               <p> Soar by helicopter above towering waterfalls and the Haleakala volcano to Hana Ranch, 
-                                                a working cattle ranch on Maui’s eastern coast, 
-                                                where your personal chefs will prepare the ultimate gourmet feast.</p>
-                                                          <div class="col-md-20 m-top-30">
-                                    <div class="portfolio_item portfolio_item2">
-                                        <img src=".\images/hotel\ex2.jpg" alt="" />
-                                        <div class="portfolio_hover text-center">
-                                            <h6 class="text-uppercase text-white">Title</h6>
-                                            <p class=" text-white">Lorem ipsum dolor sit amet</p>
-                                            <div class="portfolio_hover_icon">
-                                                <a href="assets/images/Portfolio/6.jpg" class="popup-img"><i class="fa fa-expand"></i></a>
-                                                <a href=""><i class="fa fa-search"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                                
-                                                
-                                            </div>
-                                        </div> <!-- End off accordion item-3 -->
-
-                                        <h6><i class="fa fa-angle-right"></i> EXPLORE OUR HOTEL</h6>
-                                        <div>
-                                            <div class="content">
-                                             
-                                             <p>During a wildlife expedition through Serengeti National Park, 
-                                              explore the landscape alongside a resident naturalist and help set up cameras that capture images of the area’s most majestic 
-                                              – and elusive – residents.</p>
-                                                                <div class="col-md-20 m-top-30">
-                                    <div class="portfolio_item portfolio_item2">
-                                        <img src=".\images/hotel\ex2.jpg" alt="" />
-                                        <div class="portfolio_hover text-center">
-                                            <h6 class="text-uppercase text-white">Title</h6>
-                                            <p class=" text-white">Lorem ipsum dolor sit amet</p>
-                                            <div class="portfolio_hover_icon">
-                                                <a href="assets/images/Portfolio/6.jpg" class="popup-img"><i class="fa fa-expand"></i></a>
-                                                <a href=""><i class="fa fa-search"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                              
-                                            </div>
-                                        </div> <!-- End off accordion item-4 -->
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div><!--End off row-->
-                </div><!--End off container -->
-                <br />
-                <br />
-                <br />
-                <br />
-                <hr />
-                <br />
-                <br />
-              
-                <div class="container">
-                    <div class="row">
-                        <div class="about_bottom_content">
-                            <div class="col-md-4">
-                                <div class="about_bottom_item m-top-20">
-                                    <div class="ab_head">
-                                        <div class="ab_head_icon">
-                                            <i class="icofont icofont-speech-comments"></i>
-                                        </div>
-                                        <h6 class="m-top-20"> WE’RE CREATIVE</h6>
-                                    </div>
-                                    <p class="m-top-20">Lorem ipsum dolor sit amet, consectetuer adipiscing ealit, 
-                                        sed diaim nonummy nibsih euismod tincidiunt laorieet doloire
-                                        magna diam aliquafm erat voluitpati. </p>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="about_bottom_item m-top-20">
-                                    <div class="ab_head">
-                                        <div class="ab_head_icon">
-                                            <i class="icofont icofont-speech-comments"></i>
-                                        </div>
-                                        <h6 class="m-top-20">WE'RE FRIENDLY</h6>
-                                    </div>
-                                    <p class="m-top-20">Lorem ipsum dolor sit amet, consectetuer adipiscing ealit, 
-                                        sed diaim nonummy nibsih euismod tincidiunt laorieet doloire
-                                        magna diam aliquafm erat voluitpati. </p>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="about_bottom_item m-top-20">
-                                    <div class="ab_head">
-                                        <div class="ab_head_icon">
-                                            <i class="icofont icofont-heart"></i>
-                                        </div>
-                                        <h6 class="m-top-20">WE LOVE MINIMALISM</h6>
-                                    </div>
-                                    <p class="m-top-20">Lorem ipsum dolor sit amet, consectetuer adipiscing ealit, 
-                                        sed diaim nonummy nibsih euismod tincidiunt laorieet doloire
-                                        magna diam aliquafm erat voluitpati. </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div><!--End off row-->
-                </div><!--End off container -->
-            </section> <!--End off About section -->
-              
-
-
             <!--Video section-->
             <section id="video" class="video">
                 <div class="overlay"><img src=".\images/hotel\vhotel6.jpg"></div>
@@ -609,8 +390,6 @@
                     </div>
                 </div>
             </section><!--End off video section -->
-
-
             <div class="container">
                 <div class="row">
                     <div class="main_featured m-top-100">
@@ -659,92 +438,6 @@
                     </div>
                 </div>
             </div><!-- End off featured slider -->
-
-
-
-            <!--Service Section-->
-            <section id="service" class="service">
-                <div class="container">
-                    <div class="row">
-                        <div class="main_service roomy-100">
-                            <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
-                                <div class="head_title text-center">
-                               
-                                    <h2><i class="fa fa-check" aria-hidden="true"></i> &nbsp;FACILITIES</h2>
-                                    <div class="separator_auto"></div>
-                                    <p>Enjoy Our Best Facilities </p>
-                                </div>
-                            </div>
-
-                            <div class="col-md-4">
-                                <div class="service_item">
-                                   <i class="fa fa-cutlery" aria-hidden="true"></i>
-                                    <h6 class="m-top-30">RESTAURANTS</h6>
-                                    <div class="separator_small"></div>
-                                    <p>Intimate and inviting, Le Restaurant is one of the most romantic and seductive restaurants in Paris. 
-                                    Decorated with plush upholstered seating, green marblesque pillars and silk fabric draping the walls, 
-                                    the interiors are as captivating as the outdoors - a small cobbled terrace with a beautiful fountain and verdant living wall.
-                                    Head Chef Julien Montbabut’s menus are equally as distinctive, deploying classic techniques to create food that is progressively modern, light and fresh.</p>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="service_item">
-                                    <i class="fa fa-glass" aria-hidden="true"></i>
-                                    <h6 class="m-top-30">BAR</h6>
-                                    <div class="separator_small"></div>
-                                    <p>With the glamorous mood, you can make your day the best you've never had before.
-                                    You'll find this quirky little bar at the equally quirky Hotel Not Hotel in Amsterdam West.
-                                     The perfect place to get footloose and fancy free in honour of a Hollywood great, 
-                                     Kevin Bacon serves up good cocktails and Thai food. 
-                                     The sunny terrace does the rest; overall, the Kevin Bacon crew keep it fresh and not too serious for both enjoying daytime drinks 
-                                     and staying far into the night.</p>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="service_item">
-                                    <i class="fa fa-bath" aria-hidden="true"></i>
-                                    <h6 class="m-top-30">SPA</h6>
-                                    <div class="separator_small"></div>
-                                    <p>Indulge in the next evolution of the Spa experience at The Ritz-Carlton. 
-                                    Every one of our spas around the globe combine world-class expertise with local flavors to deliver a bespoke experience that is undeniably unique for every guest. 
-                                    Our highly trained spa technicians listen to your specific requests and concerns to provide a level of personalized service that is unmatched. 
-                                    From the moment you make your appointment, each step of your time with us will be tailored to you. </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div><!--End off row -->
-                </div><!--End off container -->
-            </section> <!--End off Featured section-->
-
-
-            <!--Impress section-->
-            <section id="impress" class="impress roomy-100">
-            
-                <div class="overlay"><img src=".\images/hotel\vhotel7.jpg"></div>
-                
-                <div class="container">
-               
-                    <div class="row">
-                    
-                        <div class="main_impress text-center">
-                        
-                            <div class="col-sm-8 col-sm-offset-2">
-                            
-                                <h2 class="text-white text-uppercase">Impressed?  Let’s work together</h2>
-                                
-                                <p class="m-top-40 text-white">At vero eos et accusamus et iusto odio dignissimos ducimus qui ditqs praesentium 
-                                    voluptatum deleniti atque corrupti quos dolores et quas molestias</p>
-                               
-                                <div class="impress_btns m-top-30">
-                               
-                                    <a href="" class="btn btn-primary m-top-20">HIRE US</a>
-                                    <a href="" class="btn btn-default m-top-20">HIRE US</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div><!--End off row -->
-                </div><!--End off container -->
-            </section><!-- End off Impress section-->
 
             <!--Portfolio Section-->
             <section id="portfolio" class="portfolio lightbg">
@@ -916,124 +609,10 @@
 									<button onclick="c()">review</button>
                                 </div>
                             </div>
-
-                            <div class="col-md-4 col-sm-12">
-                                <div class="pricing_item">
-                                    <div class="pricing_head p-top-30 p-bottom-100 text-center">
-                                        <h3 class="text-uppercase">BASIC</h3>
-                                    </div>
-                                    <div class="pricing_price_border text-center">
-                                        <div class="pricing_price">
-                                            <h3 class="text-white">$19</h3>
-                                            <p class="text-white">per month</p>
-                                        </div>
-                                    </div>
-
-                                    <div class="pricing_body bg-white p-top-110 p-bottom-60">
-                                        <ul>
-                                            <li><i class="fa fa-check-circle text-primary"></i> <span>10</span> user</li>
-                                            <li class="disabled"><i class="fa fa-times-circle"></i> Unlimited Bandwidth</li>
-                                            <li class="disabled"><i class="fa fa-times-circle"></i> Full Statistics</li>
-
-                                        </ul>
-                                        <div class="pricing_btn text-center m-top-40">
-                                            <a href="" class="btn btn-primary">CART</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div><!-- End off col-md-4 -->
-
-                            <div class="col-md-4 col-sm-12">
-                                <div class="pricing_item sm-m-top-30">
-                                    <div class="pricing_top_border"></div>
-                                    <div class="pricing_head p-top-30 p-bottom-100 text-center">
-                                        <h3 class="text-uppercase">STANDARD</h3>
-                                    </div>
-                                    <div class="pricing_price_border text-center">
-                                        <div class="pricing_price">
-                                            <h3 class="text-white">$39</h3>
-                                            <p class="text-white">per month</p>
-                                        </div>
-                                    </div>
-
-                                    <div class="pricing_body bg-white p-top-110 p-bottom-60">
-                                        <ul>
-                                            <li><i class="fa fa-check-circle text-primary"></i> <span>50</span> user</li>
-                                            <li><i class="fa fa-check-circle text-primary"></i> Unlimited Bandwidth</li>
-                                            <li class="disabled"><i class="fa fa-times-circle"></i> Full Statistics</li>
-                                        </ul>
-                                        <div class="pricing_btn text-center m-top-40">
-                                            <a href="" class="btn btn-primary">CART</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div><!-- End off col-md-4 -->
-
-                            <div class="col-md-4 col-sm-12">
-                                <div class="pricing_item sm-m-top-30">
-                                    <div class="pricing_head p-top-30 p-bottom-100 text-center">
-                                        <h3 class="text-uppercase">PREMIUM</h3>
-                                    </div>
-                                    <div class="pricing_price_border text-center">
-                                        <div class="pricing_price">
-                                            <h3 class="text-white">$99</h3>
-                                            <p class="text-white">per month</p>
-                                        </div>
-                                    </div>
-
-                                    <div class="pricing_body bg-white p-top-110 p-bottom-60">
-                                        <ul>
-                                            <li><i class="fa fa-check-circle text-primary"></i> Unlimited Users</li>
-                                            <li><i class="fa fa-check-circle text-primary"></i> Unlimited Bandwidth</li>
-                                            <li><i class="fa fa-check-circle text-primary"></i> Full Statistics</li>
-                                        </ul>
-                                        <div class="pricing_btn text-center m-top-40">
-                                            <a href="" class="btn btn-primary">CART</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div><!-- End off col-md-4 -->
-
                         </div>
                     </div><!--End off row-->
                 </div><!--End off container -->
             </section> <!--End off Pricing section -->
-
-
-
-            
-
-
-            <!--Subscribe section-->
-            <section id="subscribe" class="subscribe roomy-100 fix">
-                <div class="overlay"><img src=".\images/hotel\vhotel9.jpg"></div>
-                <div class="container">
-                    <div class="row">
-                        <div class="main_subscribe text-center">
-                            <div class="col-sm-8 col-sm-offset-2">
-                                <h2 class="text-white">SUBSCRIBE US</h2>
-                                <p class="m-top-30 text-white">At vero eos et accusamus et iusto odio dignissimos 
-                                    ducimus qui blanditiis praesentium</p>
-                            </div>
-                            <div class="col-sm-10 col-sm-offset-1">
-                                <div class="subscribe_btns m-top-40">
-
-                                    <form class="form-inline">
-                                        <div class="form-group">
-                                            <input type="email" class="form-control" id="inputEmail2" placeholder="Email Address">
-                                        </div>
-                                        <button type="submit" class="btn btn-primary">SUBSCRIBE</button>
-                                    </form>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div><!--End off row -->
-                </div><!--End off container -->
-            </section><!-- End off Impress section-->
-
-
-
             <!--Blog Section-->
             <section id="blog" class="blog">
                 <div class="container">
@@ -1041,7 +620,7 @@
                         <div class="main_blog text-center roomy-100">
                             <div class="col-sm-8 col-sm-offset-2">
                                 <div class="head_title text-center">
-                                    <h2><i class="fa fa-instagram" aria-hidden="true"></i>&nbsp;YOUR #INSTAGRAM</h2>
+                                    <h2><i class="fa fa-instagram" aria-hidden="true"></i>&nbsp;YOUR #PICTURE</h2>
                                     <div class="separator_auto"></div>
                                 </div>
                             </div>
@@ -1128,49 +707,6 @@
                     </div><!--End off row -->
                 </div><!--End off container -->
             </section><!--End off Contact Section-->
-            
-            
-             <!--client brand section-->
-            <section id="cbrand" class="cbrand">
-                <div class="container">
-                    <div class="row">
-                        <div class="main_cbrand text-center roomy-100">
-                            <div class="col-md-2 col-sm-4 col-xs-6">
-                                <div class="cbrand_item m-bottom-10">
-                                    <a href=""><img src="assets/images/clients/1.jpg" alt="" /></a>
-                                </div>
-                            </div>
-                            <div class="col-md-2 col-sm-4 col-xs-6">
-                                <div class="cbrand_item m-bottom-10">
-                                    <a href=""><img src="assets/images/clients/2.jpg" alt="" /></a>
-                                </div>
-                            </div>
-                            <div class="col-md-2 col-sm-4 col-xs-6">
-                                <div class="cbrand_item m-bottom-10">
-                                    <a href=""><img class="" src="assets/images/clients/5.jpg" alt="" /></a>
-                                </div>
-                            </div>
-                            <div class="col-md-2 col-sm-4 col-xs-6">
-                                <div class="cbrand_item m-bottom-10">
-                                    <a href=""><img src="assets/images/clients/4.jpg" alt="" /></a>
-                                </div>
-                            </div>
-                            <div class="col-md-2 col-sm-4 col-xs-6">
-                                <div class="cbrand_item m-bottom-10">
-                                    <a href=""><img src="assets/images/clients/3.jpg" alt="" /></a>
-                                </div>
-                            </div>
-                            <div class="col-md-2 col-sm-4 col-xs-6">
-                                <div class="cbrand_item m-bottom-10">
-                                    <a href=""><img src="assets/images/clients/1.jpg" alt="" /></a> 
-                                </div>
-                            </div>
-                        </div>
-                    </div><!-- End off row -->
-                </div><!-- End off container -->
-            </section><!-- End off Cbrand section --> 
-
-
             <!-- scroll up-->
             <div class="scrollup">
                 <a href="#"><i class="fa fa-chevron-up"></i></a>
@@ -1182,10 +718,7 @@
                     <div class="row">
                         <div class="main_footer text-center p-top-40 p-bottom-30">
                             <p class="wow fadeInRight" data-wow-duration="1s" style="color:white";>
-                                
-                                
-                               ©Pacific Cove Hotels Limited 1997-2017. All Rights Reserved.
-
+                               ©2 TEAM Hotels Limited 2017-. All Rights Reserved.
                             </p>
                         </div>
                     </div>
