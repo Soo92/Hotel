@@ -13,10 +13,10 @@ import javax.mail.internet.MimeMessage;
 
 public class Gmail_Mail {
 	
-	public static void send(String title, String content, String toEmail) {
+	public static void send(String title, String content, String Email/*°ü¸®ÀÚ*/) {
 		
 		Properties p = new Properties();
-		p.put("mail.smtp.user", "bigdata8686@gmail.com"); 
+		p.put("mail.smtp.user", Email); 
 		p.put("mail.smtp.host", "smtp.gmail.com");
 		p.put("mail.smtp.port", "465");
 		p.put("mail.smtp.starttls.enable", "true");
@@ -36,10 +36,10 @@ public class Gmail_Mail {
 			String message = content;
 			msg.setSubject(title);
 			
-			Address fromAddr = new InternetAddress("bigdata8686@gmail.com"); 
+			Address fromAddr = new InternetAddress(Email); 
 			msg.setFrom(fromAddr);
 			
-			Address toAddr = new InternetAddress(toEmail); 
+			Address toAddr = new InternetAddress(Email); 
 			msg.addRecipient(Message.RecipientType.TO, toAddr);
 			msg.setContent(message, "text/plain;charset=KSC5601");
 			

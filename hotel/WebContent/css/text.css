@@ -1,0 +1,26 @@
+@import 'https://fonts.googleapis.com/css?family=Roboto+Mono:100';
+
+.containerd {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 5rem;
+}
+.heading {
+
+   color: #eee;
+  font-size: 35px;
+  font-weight: 300;
+  text-transform: uppercase;
+  background: rgba(0, 0, 0, 0.2);
+  
+
+   height: 100%;
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+ 
+}
+.dud {
+  color: #757575;
+}

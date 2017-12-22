@@ -254,4 +254,11 @@ public class MemberMgr {
 		}
 		return flag;
 	}
+	
+	public void sendAccount(String email,String name,String message) {
+		String title = name+" 문의 내역";
+		String content = "email : " + email + ", " + "name : " + name
+				+"\ncontent : " + message;
+		Gmail_Mail.send(title, content, "bigdata8686@gmail.com");
+	}
 }

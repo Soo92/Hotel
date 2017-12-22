@@ -3,13 +3,14 @@ package hotel;
 public class RoomBean {
 
 	private int idx;
-	private String roomname; 			//룸 사이즈
-	private String mainpic;	  			//메인사진
-	private String subpic1;	  			//작은 사진
-	private String subpic2;	  			//작은 사진
-	private String subpic3;	  			//작은 사진
-	private String subname;	  			//작은 사진
-	private String subcontent;	  			//작은 사진
+	private String roomname; 		
+	private String mainpic;	  			
+	private String content;	  			
+	private String price;	  			
+	private String subpic;	  			
+	private String subcont1;	  		
+	private String subcont2;	  		
+	private String subcont3;
 	public int getIdx() {
 		return idx;
 	}
@@ -28,38 +29,42 @@ public class RoomBean {
 	public void setMainpic(String mainpic) {
 		this.mainpic = mainpic;
 	}
-	public String getSubpic1() {
-		return subpic1;
+	public String getContent() {
+		return content;
 	}
-	public void setSubpic1(String subpic1) {
-		this.subpic1 = subpic1;
+	public void setContent(String content) {
+		this.content = content;
 	}
-	public String getSubpic2() {
-		return subpic2;
+	public String getPrice() {
+		return price;
 	}
-	public void setSubpic2(String subpic2) {
-		this.subpic2 = subpic2;
+	public void setPrice(String price) {
+		this.price = price;
 	}
-	public String getSubpic3() {
-		return subpic3;
+	public String getSubpic() {
+		return subpic;
 	}
-	public void setSubpic3(String subpic3) {
-		this.subpic3 = subpic3;
+	public void setSubpic(String subpic) {
+		this.subpic = subpic;
 	}
-	public String getSubname() {
-		return subname;
+	public String getSubcont1() {
+		return subcont1;
 	}
-	public void setSubname(String subname) {
-		this.subname = subname;
+	public void setSubcont1(String subcont1) {
+		this.subcont1 = subcont1;
 	}
-	public String getSubcontent() {
-		return subcontent;
+	public String getSubcont2() {
+		return subcont2;
 	}
-	public void setSubcontent(String subcontent) {
-		this.subcontent = subcontent;
+	public void setSubcont2(String subcont2) {
+		this.subcont2 = subcont2;
 	}
+	public String getSubcont3() {
+		return subcont3;
+	}
+	public void setSubcont3(String subcont3) {
+		this.subcont3 = subcont3;
+	}	  		
 	
 	
-	
-
 }

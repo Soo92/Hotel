@@ -1635,7 +1635,7 @@ Contact Section style
 .main_contact{
     overflow: hidden;
 }
-.main_contact a.btn{
+.main_contact button.btn{
     width:100%;
 }
 

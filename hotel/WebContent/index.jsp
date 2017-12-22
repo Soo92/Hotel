@@ -1,12 +1,12 @@
 <%@page import="hotel.RoomBean"%>
 <%@page import="java.util.Vector"%>
 <%@ page import="java.util.*,hotel.*"%>
-<jsp:useBean id="proMgr" class="hotel.ProductMgr" />
-<jsp:useBean id="proBean" class="hotel.ProductBean" />
 <jsp:useBean id="mgr" class="hotel.MemberMgr"/>
 <jsp:useBean id="bean" class="hotel.MemberBean"/>
 <jsp:useBean id="rmgr" class="hotel.RoomMgr"/>
 <jsp:useBean id="rbean" class="hotel.RoomBean"/>
+<jsp:useBean id="remgr" class="hotel.ReviewMgr"/>
+<jsp:useBean id="rebean" class="hotel.ReviewBean"/>
 <%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%
 		request.setCharacterEncoding("utf-8");
@@ -14,7 +14,7 @@
 		boolean off = email == null || email.equals("");
 		bean = mgr.getMember(email);
 		Vector<RoomBean> vlist = rmgr.getMemberList();
-		Vector<ProductBean> prolist = proMgr.getProductList();
+		Vector<ReviewBean> relist = remgr.getReviewList();
 		String id = (String)bean.getId();
 		String pw = (String)bean.getPass();
 %>
@@ -77,6 +77,7 @@
 		<script type="text/javascript">
 		$(document).ready(function() {
 			var loginBox = $('#login-box');
+			var roomBox = $('#room-box');
 			$('.login-window').click(function() {
 				// Getting the variable's value from a link 
 				//Fade in the Popup and add close button
@@ -93,12 +94,14 @@
 				}); 
 			return false;
 			});
+			$(roomBox).click(function() { 
+				if(!$(this).is('.roomdetail'))
+				 $(loginBox).fadeOut(300 , function() {
+					 $('.room-popup').css("display", "none"); 
+				}); 
+			return false;
+			});
 		});
-		</script>
-	    <script>
-			  $(function() {
-			    $( "#datepicker,#datepicker1" ).datepicker();
-			  });
 		</script>
 		<script>
 			$(function() {
@@ -125,12 +128,23 @@
 				$(loginBox).css("display", "block"); 
 			});
 		}
+		function b(d){
+			var roomBox = $('#room-box');
+			$('.roomdet').attr("src","./roomdetail/roomdetail.jsp?index="+d);
+			$(roomBox).fadeIn(300,function(){
+				$(roomBox).css("display", "block"); 
+			});
+			return false;
+		}
 		</script>
     </head>
 
     <body data-spy="scroll" data-target=".navbar-collapse">
         <div id="login-box" class="login-popup">
 		<iframe class=signin src="./login/login.jsp"></iframe>
+		</div>
+        <div id="room-box" class="room-popup">
+		<iframe class=roomdet src="./roomdetail/roomdetail.jsp?index=1" height="100%" width="100%" style="border: 5px dashed rgba(94, 106, 80, 0.92)"></iframe>
 		</div>
         <!-- Preloader -->
         <div id="loading">
@@ -715,9 +729,6 @@
                 </div><!--End off container -->
             </section><!-- End off Impress section-->
 
-
-
-
             <!--Portfolio Section-->
             <section id="portfolio" class="portfolio lightbg">
                 <div class="container">
@@ -736,89 +747,23 @@
                             <div class="portfolio_content">
                                 <div class="col-md-8">
                                     <div class="row">
+<%for(int i=0;i<vlist.size();i++) {%>
                                         <div class="col-md-9">
                                             <div class="portfolio_item">
-                                                <img src="http://d1rmlgt5xabss1.cloudfront.net/s3fs-public/hotel-bedroom.jpg" alt="" />
+		                                        <img src="<%=vlist.get(i).getMainpic()%>" alt="<%=vlist.get(i).getMainpic()%>" />
                                                 <div class="portfolio_hover text-center">
-                                                    <h6 class="text-uppercase text-white">Title</h6>
-                                                    <p class=" text-white">Lorem ipsum dolor sit amet</p>
+                                                    <h6 class="text-uppercase text-white"><%=vlist.get(i).getRoomname()%></h6>
+                                                    <p class=" text-white"><%=vlist.get(i).getContent()%></p>
                                                     <div class="portfolio_hover_icon">
-                                                        <a href="assets/images/Portfolio/2.jpg" class="popup-img"><i class="fa fa-expand"></i></a>
-                                                        <a href=""><i class="fa fa-search"></i></a>
+                                                        <a href="<%=vlist.get(i).getMainpic()%>" class="popup-img"><i class="fa fa-expand"></i></a>
+                                                        <a onclick="b(<%=vlist.get(i).getIdx()%>)"><i class="fa fa-search"></i></a>
                                                     </div>
                                                 </div>
                                             </div>  
                                         </div>
-                                        <div class="col-md-9 m-top-10">
-                                            <div class="portfolio_item portfolio_item2">
-                                                <img src="https://ritzcarlton-h.assetsadobe.com/is/image/content/dam/the-ritz-carlton/hotels/usa-and-canada/ontario/toronto/guest-rooms/duplicates/RCTORON_00094_conversion.png?$XlargeViewport100pct$" alt="" />
-                                                <div class="portfolio_hover text-center">
-                                                    <h6 class="text-uppercase text-white">Title</h6>
-                                                    <p class=" text-white">Lorem ipsum dolor sit amet</p>
-                                                    <div class="portfolio_hover_icon">
-                                                        <a href="assets/images/Portfolio/3.jpg" class="popup-img"><i class="fa fa-expand"></i></a>
-                                                        <a href=""><i class="fa fa-search"></i></a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                       <div class="col-md-9 m-top-30" style="float: right;">
-                                            <div class="portfolio_item portfolio_item2">
-                                                <img src="https://www.omnihotels.com/-/media/images/hotels/ftwdtn/reservationrooms/additionalphotos/ftwdtn-omni-fort-worth-hotel-hospitality-suite.jpg?h=660&la=en&w=1170" alt="" />
-                                                <div class="portfolio_hover text-center" >
-                                                    <h6 class="text-uppercase text-white">Title</h6>
-                                                    <p class=" text-white">Lorem ipsum dolor sit amet</p>
-                                                    <div class="portfolio_hover_icon">
-                                                        <a href="assets/images/Portfolio/5.jpg" class="popup-img"><i class="fa fa-expand"></i></a>
-                                                        <a href=""><i class="fa fa-search"></i></a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+<%} %>                            
                                     </div>
                                 </div>
-
-                                <div class="col-md-6">
-                                    <div class="portfolio_item portfolio_item3 sm-m-top-30">
-                                        <img src="https://www.fourseasons.com/content/dam/fourseasons/images/web/MAR/MAR_301_aspect16x9.jpg/jcr:content/renditions/cq5dam.web.720.405.jpeg" alt="" />
-                                        <div class="portfolio_hover text-center">
-                                            <h6 class="text-uppercase text-white">Title</h6>
-                                            <p class=" text-white">Lorem ipsum dolor sit amet</p>
-                                            <div class="portfolio_hover_icon">
-                                                <a href="assets/images/Portfolio/1.jpg" class="popup-img"><i class="fa fa-expand"></i></a>
-                                                <a href=""><i class="fa fa-search"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                             <!--    <div class="col-md-3 m-top-30">
-                                    <div class="portfolio_item portfolio_item2">
-                                        <img src="https://www.slsbeverlyhillshotel.com/wp-content/uploads/sites/2/2017/01/Luxury-Hotel-Room-SLS-Beverly-Hills-Presidential-Suite-Living-Area.jpg" alt="" />
-                                        <div class="portfolio_hover text-center">
-                                            <h6 class="text-uppercase text-white">Title</h6>
-                                            <p class=" text-white">Lorem ipsum dolor sit amet</p>
-                                            <div class="portfolio_hover_icon">
-                                                <a href="assets/images/Portfolio/6.jpg" class="popup-img"><i class="fa fa-expand"></i></a>
-                                                <a href=""><i class="fa fa-search"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-8 m-top-30">
-                                    <div class="portfolio_item">
-                                        <img src="https://sep.yimg.com/ay/yhst-20155708284154/luxury-hotel-guest-rooms-649.gif" alt="" />
-                                        <div class="portfolio_hover text-center">
-                                            <h6 class="text-uppercase text-white">Title</h6>
-                                            <p class=" text-white">Lorem ipsum dolor sit amet</p>
-                                            <div class="portfolio_hover_icon">
-                                                <a href="assets/images/Portfolio/4.jpg" class="popup-img"><i class="fa fa-expand"></i></a>
-                                                <a href=""><i class="fa fa-search"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>-->  
-
                         </div>
                     </div><!--End off row -->
                 </div><!--End off container -->
@@ -921,84 +866,27 @@
                     <div class="row">
                         <div class="main_testimonial roomy-100">
                             <div class="head_title text-center">
-                                <h2 class="text-white">OUR TESTIMONIALS</h2>
+                                <h2 class="text-white">REVIEW</h2>
                             </div>
                             <div class="testimonial_slid text-center">
+<%for(int i=0;i<relist.size();i++){ %>
                                 <div class="testimonial_item">
                                     <div class="col-sm-10 col-sm-offset-1">
-                                        <p class="text-white">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy 
-                                            nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. 
-                                            Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper 
-                                            suscipit lobortis nisl ut aliquip ex ea commodo consequat. </p>
-
+                                        <p class="text-white"><%=relist.get(i).getContent()%></p>
                                         <div class="test_authour m-top-30">
-                                            <h6 class="text-white m-bottom-20">JOHN DOE - THEMEFOREST USER</h6>
+                                            <h6 class="text-white m-bottom-20"><%=relist.get(i).getWriter()%></h6>
+	<%for(int j=0;j<Integer.parseInt(relist.get(i).getStar());j++){ %>
                                             <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
+	<%} %>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="testimonial_item">
-                                    <div class="col-sm-10 col-sm-offset-1">
-                                        <p class="text-white">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy 
-                                            nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. 
-                                            Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper 
-                                            suscipit lobortis nisl ut aliquip ex ea commodo consequat. </p>
-
-                                        <div class="test_authour m-top-30">
-                                            <h6 class="text-white m-bottom-20">JOHN DOE - THEMEFOREST USER</h6>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="testimonial_item">
-                                    <div class="col-sm-10 col-sm-offset-1">
-                                        <p class="text-white">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy 
-                                            nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. 
-                                            Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper 
-                                            suscipit lobortis nisl ut aliquip ex ea commodo consequat. </p>
-
-                                        <div class="test_authour m-top-30">
-                                            <h6 class="text-white m-bottom-20">JOHN DOE - THEMEFOREST USER</h6>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="testimonial_item">
-                                    <div class="col-sm-10 col-sm-offset-1">
-                                        <p class="text-white">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy 
-                                            nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. 
-                                            Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper 
-                                            suscipit lobortis nisl ut aliquip ex ea commodo consequat. </p>
-
-                                        <div class="test_authour m-top-30">
-                                            <h6 class="text-white m-bottom-20">JOHN DOE - THEMEFOREST USER</h6>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                    </div>
-                                </div>
+<%} %>
                             </div>
                         </div>
                     </div><!--End off row-->
                 </div><!--End off container -->
             </section> <!--End off Testimonial section -->
-
-
             <!--Pricing Section-->
             <section id="pricing" class="pricing lightbg">
                 <div class="container">
@@ -1140,44 +1028,22 @@
                                 <div class="head_title text-center">
                                     <h2><i class="fa fa-instagram" aria-hidden="true"></i>&nbsp;YOUR #INSTAGRAM</h2>
                                     <div class="separator_auto"></div>
-                                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
-                                        sed diam nonummy nibh euismod tincidunt tation ullamcorper 
-                                        suscipit lobortis nisl ut aliquip ex ea commodo consequat. </p>
+                                    <p>UPLOAD</p>
                                 </div>
                             </div>
+<%for(int i=0;i<relist.size();i++){if(!relist.get(i).getPic().equals("none")){ %>
                             <div class="col-md-4">
                                 <div class="blog_item m-top-20">
                                     <div class="blog_item_img">
-                                        <img src=".\images/hotel\insta1.png" alt="" />
+                                        <img src="<%=relist.get(i).getPic()%>" alt="<%=relist.get(i).getPic()%>" />
                                     </div>
                                     <div class="blog_text roomy-40">
-                                        <h6>PLEASUARE WITHOUT CONSCIENCE</h6>
-                                        <p><em><a href="">May 15, 2016</a> /<a href="">admin</a>/<a href=""> Co-working</a></em></p>
+                                        <h6><%=relist.get(i).getContent()%></h6>
+                                        <p><em><a href=""><%=relist.get(i).getRegdate()%></a> /<a href=""><%=relist.get(i).getWriter()%></a></em></p>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-4">
-                                <div class="blog_item m-top-20">
-                                    <div class="blog_item_img">
-                                        <img src=".\images/hotel\insta2.jpg" alt="" />
-                                    </div>
-                                    <div class="blog_text roomy-40">
-                                        <h6>PLEASUARE WITHOUT CONSCIENCE</h6>
-                                        <p><em><a href="">May 15, 2016</a> /<a href="">admin</a>/<a href=""> Co-working</a></em></p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="blog_item m-top-20">
-                                    <div class="blog_item_img">
-                                        <img src=".\images/hotel\insta3.jpg" alt="" />
-                                    </div>
-                                    <div class="blog_text roomy-40">
-                                        <h6>PLEASUARE WITHOUT CONSCIENCE</h6>
-                                        <p><em><a href="">May 15, 2016</a> /<a href="">admin</a>/<a href=""> Co-working</a></em></p>
-                                    </div>
-                                </div>
-                            </div>
+<%}} %>
                         </div>
                     </div><!--End off row -->
                 </div><!--End off container -->
@@ -1217,27 +1083,26 @@
                                 </div>
                             </div>
                             <div class="col-md-8 sm-m-top-30">
-                                <form class="" action="subcribe.php">
+                                <form class="" action="./login/SendAccount.jsp">
                                     <div class="row">
                                         <div class="col-sm-6">
                                             <div class="form-group"> 
-                                                <input id="first_name" name="first_name" type="text" placeholder="EMAIL" class="form-control" required="">
+                                                <input id="email" name="email" type="text" placeholder="EMAIL" class="form-control" required="">
                                             </div>
                                         </div>
 
                                         <div class="col-sm-6">
                                             <div class="form-group">  
-                                                <input id="phone" name="phone" type="text" placeholder="NAME" class="form-control">
+                                                <input id="name" name="name" type="text" placeholder="NAME" class="form-control">
                                             </div>
                                         </div>
 
                                         <div class="col-sm-12">
                                             <div class="form-group">  
-                                                <textarea class="form-control" rows="6" placeholder="MESSAGE"></textarea>
+                                                <textarea name="message" class="form-control" rows="6" placeholder="MESSAGE"></textarea>
                                             </div>
                                             <div class="form-group text-center">
-                                              
-                                                <a href="SendAccount.jsp?id=<%=bean.getId()%>" class="btn btn-primary" >SEND MAIL</a>
+                                                <button type="submit" class="btn btn-primary">SEND MAIL</button>
                                             </div>
                                         </div>
 

@@ -6,35 +6,33 @@ import java.sql.ResultSet;
 import java.util.Vector;
 
 
-public class RoomMgr {
+public class ReviewMgr {
 	
 	private DBConnectionMgr pool;
 
-	public RoomMgr() {
+	public ReviewMgr() {
 		pool = DBConnectionMgr.getInstance();
 	}
 	
-	public RoomBean getRoom(int index) {
+	public ReviewBean getReview(int index) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = null;
-		RoomBean regBean = new RoomBean();
+		ReviewBean regBean = new ReviewBean();
 		try {
 			con = pool.getConnection();
-			sql = "select * from hoteldetail where idx=?";
+			sql = "select * from review where idx=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, index);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
-				regBean.setRoomname(rs.getString("roomname"));
-				regBean.setMainpic(rs.getString("mainpic"));
+				regBean.setWriter(rs.getString("writer"));
+				regBean.setTitle(rs.getString("title"));
 				regBean.setContent(rs.getString("content"));
-				regBean.setPrice(rs.getString("price"));
-				regBean.setSubpic(rs.getString("subpic"));
-				regBean.setSubcont1(rs.getString("subcont1"));
-				regBean.setSubcont2(rs.getString("subcont2"));
-				regBean.setSubcont3(rs.getString("subcont3"));
+				regBean.setRegdate(rs.getString("regdate"));
+				regBean.setStar(rs.getString("star"));
+				regBean.setPic(rs.getString("pic"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -44,28 +42,26 @@ public class RoomMgr {
 		return regBean;
 	}
 	
-	public Vector<RoomBean> getMemberList() {
+	public Vector<ReviewBean> getReviewList() {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = null;
-		Vector<RoomBean> vlist = new Vector<>();
+		Vector<ReviewBean> vlist = new Vector<>();
 		try {
 			con = pool.getConnection();
-			sql = "select * from hoteldetail";
+			sql = "select * from review";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
-				RoomBean regBean = new RoomBean();
+				ReviewBean regBean = new ReviewBean();
 				regBean.setIdx(rs.getInt("idx"));
-				regBean.setRoomname(rs.getString("roomname"));
-				regBean.setMainpic(rs.getString("mainpic"));
+				regBean.setWriter(rs.getString("writer"));
+				regBean.setTitle(rs.getString("title"));
 				regBean.setContent(rs.getString("content"));
-				regBean.setPrice(rs.getString("price"));
-				regBean.setSubpic(rs.getString("subpic"));
-				regBean.setSubcont1(rs.getString("subcont1"));
-				regBean.setSubcont2(rs.getString("subcont2"));
-				regBean.setSubcont3(rs.getString("subcont3"));
+				regBean.setRegdate(rs.getString("regdate"));
+				regBean.setStar(rs.getString("star"));
+				regBean.setPic(rs.getString("pic"));
 				vlist.addElement(regBean);
 			}
 		} catch (Exception e) {
