@@ -1,0 +1,126 @@
+/* BASIC css start */
+#wrap { clear:both; }
+
+#reviewForm li {list-style:none; }
+#reviewForm em { font-style: normal; }
+#reviewForm  #authimgdiv { bottom:0; width:98%; }
+#reviewForm { font-size: 16px; box-sizing: content-box;}
+
+/* header */
+#pr-header {  position:relative; border-bottom: 1px solid #e0e0e0; background: #fff; height: 48px; }
+#pr-header li {list-style:none;}
+#pr-header h1 { padding-left: 10px; color: #444; font-size: 1.375em; font-weight: bold; letter-spacing: -1px; line-height: 48px; }
+#pr-header .menu { z-index:100; display: none; position: absolute; top: 48px; left: 10px; width: 130px; border: 1px solid #dadada; border-top: 0; background: #fff; }
+#pr-header .menu li { height: 33px; }
+#pr-header .menu li a { display: block; height: 100%; line-height: 33px; padding-left: 10px; color: #808080; font-size: 0.875em; letter-spacing: -1px; }
+#pr-header .menu li a:hover { background: #f9f9f9; }
+#pr-header .list { position: absolute; top: 0; left: 0; width: 46px; height: 48px; background: url(/images/d3/m_01/btn/btn_list@2x.gif) no-repeat 50% 50%; background-size: 18px 16px; text-indent: -9999px; }
+#pr-header .side { position: absolute; top: 0; right: 0; width: 46px; height: 48px; background: url(/images/d3/m_01/btn/btn_side@2x.gif) no-repeat 50% 50%; background-size: 46px 48px; text-indent: -9999px; }
+
+#reviewForm .btn-h26 { display: inline-block; line-height:34px; color:#fff; background:#333; text-align:center; font-size: .75em; padding: 0 10px; }
+#reviewForm .pr-box-write {  position: relative; padding:10px 0;  }
+#reviewForm .prbox-login { text-align:right; margin-bottom: 10px; }
+#reviewForm .pr-member { overflow: hidden; padding: 6px 10px 12px; background: #e2e2e2; margin-top: 20px; margin-bottom:20px; }
+#reviewForm .pr-member-update { margin-top: 0; }
+#reviewForm .pr-member dt, 
+#reviewForm .pr-member dd { float: left; margin-top: 6px; color: #838383; font-size: .75em; line-height: 24px; }
+#reviewForm .pr-member dt { width: 25%; font-weight: bold; letter-spacing: -1px; white-space: nowrap; }
+#reviewForm .pr-member dd { width: 75%; }
+#reviewForm .pr-member input[type='text'], 
+#reviewForm .pr-member input[type='password'] { width: 95%; }
+#reviewForm .pr-member-update { margin-top: 0; }
+#reviewForm .pr-star { padding-top: 7px; }
+#reviewForm .pr-star .star-list { position: relative; border: 1px solid #dadada; }
+#reviewForm .pr-star .star-list a { display: block; height: 30px; line-height: 25px; padding-left: 10px; color: #838383; }
+#reviewForm .pr-star .star-list em { color: #cfcfcf; font-style:normal; letter-spacing: 1px; }
+#reviewForm .pr-star .star-list span { position: absolute; top: 0; right: 35px; color: #444; font-size: .75em;   }
+#reviewForm .pr-star .star-list > span.bull { position: absolute; top: 6px; right: 15px; }
+#reviewForm .pr-star .star-list ul { display: none; position: absolute; top: 30px; left: -1px; width: 100%; border: 1px solid #dadada; border-top: 0; background-color: #fff; z-index: 999;}
+#reviewForm .pr-star .star-list ul li { position: relative;  }
+#reviewForm .pr-star .star-list ul li a { height: 26px; line-height: 26px; border: 0 none; }
+#reviewForm .pr-star .star-list ul li a:hover { background: #eee; }
+#reviewForm .terms { margin-top: 20px; }
+#reviewForm .terms dt { position: relative; color: #444; letter-spacing: -1px; }
+#reviewForm .terms dt a { position: absolute; top: 0; right: 0; color: #000; font-weight: bold; }
+#reviewForm .terms dd { overflow: hidden; margin-top: 5px; color: #838383; }
+#reviewForm .terms dd label { float: left; width: 30%; }
+#reviewForm .score-total { position:relative; padding:10px 15px; background:#f7f7f7; }
+#reviewForm .score-total ul:after { content: ''; clear: both; display: block; }
+#reviewForm .score-total ul li { float:left; }
+#reviewForm .score-total ul li.score { text-align:center; line-height:18px; }
+#reviewForm .score-total ul li.score span { font-size: .65em; }
+#reviewForm .score-total ul li.score strong { font-size: 1.3em; }
+#reviewForm .score-total ul li.prt-star { padding:0 15px; line-height:40px; }
+#reviewForm .score-total ul li.prt-star span { font-size: 1.1em; letter-spacing:2px; color: #DCDDE1; }
+#reviewForm .score-total ul li.review { text-align:center; line-height:17px; }
+#reviewForm .score-total ul li.review span { display:inline-block; font-size: .75em; padding-top:3px; }
+#reviewForm .score-total ul li.review strong { font-size: .95em; }
+#reviewForm .score-total a { position:absolute; top:15px; right:15px; width:68px; line-height:34px; color:#fff; background:#333; text-align:center; font-size: .75em; }
+#reviewForm .score-total .prt-star img { width: 16px; }
+#reviewForm .prd-wrap { padding:10px; }
+#reviewForm .score-thumb { position:relative; height:60px; padding:10px 10px 10px 80px; border: 1px solid #dadada; box-sizing: content-box; }
+#reviewForm .score-thumb .thumb { position:absolute; top:10px; left:10px; width:60px; height: 60px; }
+#reviewForm .write {position:relative; }
+#reviewForm .score-thumb .thumb img { width:60px; height:60px; }
+#reviewForm .score-thumb ul li a { color:#000; font-size: .90em; font-weight:bold; }
+#reviewForm .score-thumb ul li.option { padding-top:3px; color:#999; font-size:0.75em; }
+#reviewForm .info { margin-top: 10px; padding:10px; border: 1px solid #dadada; text-align:center; font-size: .75em; }
+#reviewForm .info strong { text-decoration:underline; }
+#reviewForm .multi-score { padding-top:7px; }
+#reviewForm .multi-score ul li { clear:both; color:#666; margin-top:3px; font-size: .75em; padding:0 5px; }
+#reviewForm .multi-score ul li span { display:inline-block; }
+#reviewForm .multi-score ul li .stit { overflow:hidden; width:15%; color:#000; font-weight:bold; text-overflow:ellipsis; white-space:nowrap; vertical-align:middle; padding-bottom: 10px; }
+#reviewForm .multi-score ul li a { color:#aaa; font-size: 2.4em; font-family:'sans-serif'; }
+#reviewForm .multi-score ul li .txt { float:right; padding-top: 3px; }
+#reviewForm .write .pr-options { margin-top: 10px; padding: 4px 10px 10px; border: 1px solid #dadada; }
+#reviewForm .write .pr-options { zoom: 1; overflow: hidden; }
+#reviewForm .write .pr-options dt, 
+#reviewForm .write .pr-options dd { float: left; margin-top: 6px; color: #000; font-size: .75em; line-height: 24px; }
+#reviewForm .write .pr-options dt { width: 25%; font-weight: bold; letter-spacing: -1px; white-space: nowrap; }
+#reviewForm .write .pr-options dd { width: 75%; }
+#reviewForm .write .pr-options input[type='text'] { width: 100%; }
+#reviewForm .write .pr-options select { width: 100%; height: 24px; line-height: 24px; padding: 0 5px; text-align: right; }
+#reviewForm .write .pr-options select option { text-align: right; }
+#reviewForm .write .pr-options label { display: inline-block; margin-right: 10px; }
+#reviewForm .txtbox { margin-top:10px; padding:10px; border: 1px solid #dadada; background:#f7f7f7; }
+#reviewForm .txtbox textarea { width: 100%; height: 150px; border: 0 none; outline:none; color:#000; font-size:0.75em; background:#f7f7f7; }
+#reviewForm .ctr { z-index: 1; margin-top: 10px; font-size: .75em; }
+#reviewForm .ctr:after { content: ''; clear: both; display: block; }
+#reviewForm .ctr > li { float: left; width: 20%; }
+#reviewForm .ctr > li.pr-file-wrap {  float:left; text-align:center; width: 59%; }
+#reviewForm .ctr > li .lnk-good, 
+#reviewForm .ctr > li .lnk-benefit { box-sizing: content-box; display: block; height: 30px; line-height: 30px; border: 1px solid #dadada; color: #000; text-align: center; }
+#reviewForm .ctr > li .lnk-good { margin-right: 4px; }
+#reviewForm .ctr > li .lnk-benefit.now { border: 1px solid #ff6452; background: #ff6452; color: #fff; font-weight: bold; letter-spacing: -1px; }
+#reviewForm .ctr > li .lnk-good span { color:#ff0000; }
+#reviewForm .btn-form { display: block; height: 42px; line-height: 42px; margin-top: 20px; border: 1px solid #000; background: #333; color: #fff; font-size: 1.125em; font-weight: bold; letter-spacing: -1px; text-align: center; }
+#reviewForm .btn-wrap { position: relative; height: 32px; }
+#reviewForm .write .btn { overflow: hidden; }
+#reviewForm .write .btn .file-attach { float:left; }
+#reviewForm .write .btn a.file { overflow:hidden;position:relative;}
+#reviewForm .write .btn a.btn-file .file-trick { position: absolute;top: 0;left: 0; width: 48px;height: 48px;cursor: pointer;border: 0 none;background: 0 none;opacity: 0;  }
+#reviewForm .write .btn .file-attach > a,
+#reviewForm .write .btn .cvr { float: left; margin-right: 3px; } 
+#reviewForm .write .btn > a { display: inline-block; width: 38px; height: 20px; padding-top: 30px; color: #fff; font-weight: bold; letter-spacing: -1px; text-align: center; }
+#reviewForm .write .btn a.btn-h38 { width: 38px; height: 38px; }
+#reviewForm .write .btn a.btn-h38 span { background: url(/images/d3/modern_simple/ico_camera_w_h38.jpg) no-repeat 50% 0; width: 100%; height: 100%; display: inline-block; }
+#reviewForm .write .btn .cvr { position: relative; width: 38px; height: 38px; }
+#reviewForm .write .btn .cvr .bg { width: 100%; height: 100%; }
+#reviewForm .write .btn .cvr .cover { position: absolute; top: 0; left: 0; width: 100%; height: 100%; line-height: 38px; color: #fff; font-weight: bold; letter-spacing: -1px; text-align: center; background: #000; opacity: 0.4; filter: alpha(opacity=40); }
+#reviewForm .write .btn .cvr .cover:hover { opacity: 0.6; filter: alpha(opacity=60); }
+#reviewForm .ctr .benefit { position: relative; float:right;}
+#layerBenefit { display: none; z-index: 1; position: absolute; bottom: 48px; right: 0; width: 235px; padding: 10px; border: 1px solid #e2e2e2; background: #fff; }
+#layerBenefit .bul { position: absolute; bottom: -13px; right: 30px; width: 23px; height: 12px; background: url(/images/d3/m_01/bull/bul_layer@2x.gif) no-repeat 0 0; background-size: 23px 12px; }
+#layerBenefit li { padding-left: 10px; background: url(/images/d3/m_01/bull/bul_circle@2x.gif) no-repeat 0 7px; background-size: 6px 6px; color: #808080; }
+#authimgdiv {width: 90%; background-color: #fff; left: 0; right: 0; margin: 0 auto; text-align: center; padding: 20px 0; box-shadow: 0 1px 10px #717171;}
+#authimgdiv .head {color:#f26c09;}
+#authimgdiv .contents table td { padding: 5px 0; }
+#authimgdiv .btns {padding:0 10px; margin-top: 10px;}
+#authimgdiv .btns a {display:block; background-color: #393939; color:#fff; padding:10px 0;}
+
+#reviewForm .pr-red { color:red; }
+#reviewForm .write .pr-text-length { text-align:right; padding-top: 5px; font-size: .75em; }
+#reviewForm .write .pr-text-length em { margin-right: 3px; }
+#reviewForm .write .pr-text-length span { font-weight: bold; }
+/* BASIC css end */
+

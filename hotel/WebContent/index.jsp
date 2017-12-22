@@ -78,6 +78,7 @@
 		$(document).ready(function() {
 			var loginBox = $('#login-box');
 			var roomBox = $('#room-box');
+			var reviewBox = $('#review-box');
 			$('.login-window').click(function() {
 				// Getting the variable's value from a link 
 				//Fade in the Popup and add close button
@@ -95,9 +96,16 @@
 			return false;
 			});
 			$(roomBox).click(function() { 
-				if(!$(this).is('.roomdetail'))
+				if(!$(this).is('.roomdet'))
 				 $(loginBox).fadeOut(300 , function() {
 					 $('.room-popup').css("display", "none"); 
+				}); 
+			return false;
+			});
+			$(reviewBox).click(function() { 
+				if(!$(this).is('.reviewdet'))
+				 $(reviewBox).fadeOut(300 , function() {
+					 $('.review-popup').css("display", "none"); 
 				}); 
 			return false;
 			});
@@ -136,6 +144,12 @@
 			});
 			return false;
 		}
+		function c() {
+			var reviewBox = $('#review-box');
+			$('.reviewdet').fadeIn(300,function(){
+				$(reviewBox).css("display", "block"); 
+			});
+		}
 		</script>
     </head>
 
@@ -145,6 +159,9 @@
 		</div>
         <div id="room-box" class="room-popup">
 		<iframe class=roomdet src="./roomdetail/roomdetail.jsp?index=1" height="100%" width="100%" style="border: 5px dashed rgba(94, 106, 80, 0.92)"></iframe>
+		</div>
+        <div id="review-box" class="review-popup">
+		<iframe class=reviewdet src="./login/review.html" height="100%" width="100%" style="border: 5px dashed rgba(94, 106, 80, 0.92)"></iframe>
 		</div>
         <!-- Preloader -->
         <div id="loading">
@@ -894,11 +911,9 @@
                         <div class="main_pricing roomy-100">
                             <div class="col-md-8 col-md-offset-2 col-sm-12">
                                 <div class="head_title text-center">
-                                    <h2><i class="fa fa-th-large" aria-hidden="true"></i>&nbsp;PACKAGES</h2>
+                                    <h2><i class="fa fa-th-large" aria-hidden="true"></i>&nbsp;WRITE REVIEW!</h2>
                                     <div class="separator_auto"></div>
-                                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
-                                        sed diam nonummy nibh euismod tincidunt tation ullamcorper 
-                                        suscipit lobortis nisl ut aliquip ex ea commodo consequat. </p>
+									<button onclick="c()">review</button>
                                 </div>
                             </div>
 
@@ -1028,7 +1043,6 @@
                                 <div class="head_title text-center">
                                     <h2><i class="fa fa-instagram" aria-hidden="true"></i>&nbsp;YOUR #INSTAGRAM</h2>
                                     <div class="separator_auto"></div>
-                                    <p>UPLOAD</p>
                                 </div>
                             </div>
 <%for(int i=0;i<relist.size();i++){if(!relist.get(i).getPic().equals("none")){ %>

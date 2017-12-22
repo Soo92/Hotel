@@ -1,0 +1,180 @@
+function mobile_homebutton(title) {
+    var page_uri   = "http://" + document.domain,
+        main_uri   = page_uri + "/m/main.html",
+        icon_uri   = '',
+        user_agent = navigator.userAgent.toLowerCase();
+    var title        = (title.length > 0)
+            ? title
+            : shop_name,
+        encode_title = encodeURI(title);
+
+    (function (jQuery) {
+        jQuery(function () {
+            jQuery('link').each(function () {
+                if (jQuery(this).attr('rel') == "apple-touch-icon-precomposed") {
+                    icon_uri = page_uri + jQuery(this).attr('href');
+                }
+            });
+        });
+    })(jQuery);
+
+    var call_uri = "intent://addshortcut?url=" + main_uri + "&icon=" +
+            icon_uri + "&title=" + encode_title + "&oq=" + encode_title + "&serviceCode=nst" +
+            "ore&version=7#Intent;scheme=naversearchapp;action=android.intent.action.VIEW;c" +
+            "ategory=android.intent.category.BROWSABLE;package=com.nhn.android.search;end";
+    if (user_agent.match(/ipad|iphone|ipod/g)) {
+        alert('아이폰, 아이패드계열은 직접 홈버튼 추가를 사용하셔야 합니다.');
+    } else {
+        alert(
+            title + '을(를) 홈화면에 추가합니다. 네이버앱이 없는 고객님께서는 네이버앱 설치페이지로 이동됩니다.'
+        );
+        document.location.href = call_uri;
+    }
+}
+
+jQuery("#menu").click(function (e) {
+    e.preventDefault();
+    if (jQuery(this).children(".fa").attr("class") == "fa fa-navicon fa-2x") {
+        //var windowHeight = window.innerHeight;
+        jQuery("aside").stop().animate({'left': 0});
+        jQuery("aside, #mask").show();
+        jQuery("html, body").addClass("menu_on");
+        jQuery('.headerTop').addClass('top-pt-01');
+        jQuery(this).children(".fa").attr("class", "fa fa-times fa-2x");
+    } else {
+        jQuery("aside")
+            .stop()
+            .animate({'left': '-100%'});
+        jQuery("#mask").hide();
+        jQuery("html, body").removeClass("menu_on");
+        jQuery('.headerTop').removeClass('top-pt-01');
+        jQuery(this).children(".fa").attr("class", "fa fa-navicon fa-2x");
+    }
+    return false
+});
+
+jQuery(window).load(function () {
+    jQuery('.close-btn, #mask').click(function (e) {
+        e.preventDefault();
+        jQuery("#mask").hide();
+        jQuery("aside").stop().animate({'left': '-100%'});
+        jQuery("html, body").removeClass("menu_on");
+        jQuery('.headerTop').removeClass('top-pt-01');
+        jQuery('#menu').children(".fa").attr("class", "fa fa-navicon fa-2x");
+    });
+});
+
+//jQuery("aside nav .fa").click(function() {
+//    jQuery(this).parent().siblings().children("ul").hide();
+//    jQuery(this).parent().siblings().children(".fa-angle-down").removeClass("fa-rotate-180");
+//    jQuery(this).next("ul").toggle();
+//
+//    if (jQuery(this).text() == "+") {
+//        jQuery(this).text("-");
+//    } else if (jQuery(this).text() == "-") {
+//        jQuery(this).text("+");
+//    } else {
+//        jQuery(this).toggleClass("fa-rotate-180");
+//    }
+//    return false
+//});
+
+jQuery("#category").click(function () {
+    jQuery(this).addClass("act").siblings().removeClass("act");
+    jQuery(".navCategory").show();
+    jQuery(".navCommunity, .navMypage").hide();
+});
+jQuery("#community").click(function () {
+    jQuery(this).addClass("act").siblings().removeClass("act");
+    jQuery(".navCommunity").show();
+    jQuery(".navCategory, .navMypage").hide();
+});
+jQuery("#mypage").click(function () {
+    jQuery(this).addClass("act").siblings().removeClass("act");
+    jQuery(".navMypage").show();
+    jQuery(".navCategory, .navCommunity").hide();
+});
+jQuery("#search").click(function () {
+    jQuery("#header .search").toggle();
+    jQuery("#keyword").focus()
+});
+
+// jQuery("#btn_lastView").click(function() {    jQuery("#ly_lastView").show();
+// }); jQuery("#ly_lastView .fa-times").click(function() {
+// jQuery("#ly_lastView").hide(); });
+
+
+jQuery(function () {
+    jQuery("aside a[href='/m/personal.html?type=guest']").click(function (e) {
+        alert(" *비회원용 문의입니다.\n 회원문의는 마이페이지를 이용하세요.");
+    });
+});
+
+jQuery(window).scroll(function () {
+    if (jQuery(this).scrollTop() > 200) {
+        jQuery('.headerTop').addClass("top-pt-02");
+    } else {
+        jQuery('.headerTop').removeClass("top-pt-02");
+    }
+});
+
+jQuery(window).scroll(function () {
+    if (jQuery(this).scrollTop() > 0) {
+        jQuery('.header_fixed').addClass("top-pt-02");
+        jQuery('#menu').css('position', 'fixed');
+        jQuery('.header_fixed').css('border-bottom', '1px solid #dadada');
+        jQuery('.sha').css('display', 'block');
+
+    } else {
+        jQuery('.header_fixed').removeClass("top-pt-02");
+        jQuery('#menu').css('position', 'absolute');
+        jQuery('.header_fixed').css('border-bottom', '0px');
+        jQuery('.sha').css('display', 'none');
+
+    }
+});
+
+// 검색창
+jQuery(function () {
+    jQuery('.MS_search_word').attr('placeholder', '검색어를 입력해주세요.');
+});
+
+// 상단fixed
+jQuery(window).scroll(function () {
+    if (jQuery(this).scrollTop() > 200) {
+        jQuery('header').addClass("nav-up");
+    } else {
+        jQuery('header').removeClass("nav-up");
+    }
+});
+//side 국가
+jQuery(function () {
+    jQuery('.side-wrap .side-top .country-wrap > li').click(function () {
+        jQuery(this).children('.gl-box').fadeToggle();
+    });
+});
+// 좌측 카테고리
+jQuery("#leftside-navigation .sub-menu > a").click(function (e) {
+    jQuery("#leftside-navigation ul ul").slideUp(),
+    jQuery(this).next().is(":visible") || jQuery(this).next().slideDown();
+    jQuery("#leftside-navigation .sub-menu > a").not(jQuery(this)).find('span.fa').removeClass('fa-rotate-180');
+    jQuery(this).find('.fa').toggleClass('fa-rotate-180');
+
+    e.stopPropagation()
+});
+
+// 최근본상품
+//jQuery('#btn_lastView').click(function (e) {
+//    jQuery('#ly_lastView').slideToggle('fast');
+//
+//});
+
+jQuery('#btn_lastView').toggle(function() {
+    jQuery('#ly_lastView').slideUp('100');
+    jQuery(this).find('img').attr("src","/design/codecosme/m/img/view-prd-off.png");
+},
+    function(){
+    jQuery('#ly_lastView').slideDown('100');      
+    jQuery(this).find('img').attr("src","/design/codecosme/m/img/view-prd-on.png");    
+});
+
