@@ -27,6 +27,7 @@ public class RoomMgr {
 			pstmt.setInt(1, index);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
+				regBean.setIdx(rs.getInt("idx"));
 				regBean.setRoomname(rs.getString("roomname"));
 				regBean.setMainpic(rs.getString("mainpic"));
 				regBean.setContent(rs.getString("content"));

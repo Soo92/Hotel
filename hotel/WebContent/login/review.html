@@ -17,477 +17,99 @@
 <meta name="format-detection" content="telephone=no">
 <link rel="apple-touch-icon-precomposed"
 	href="http://moonshot-cosmetics.com/m/images/icon.png">
-<title>파워리뷰 작성</title>
+<title>리뷰 작성</title>
 <link type="text/css" rel="stylesheet" href="./review_files/common.css">
 <link type="text/css" rel="stylesheet"
 	href="./review_files/font-awesome.min.css">
-<script type="text/javascript" src="./review_files/wcslog.js.다운로드"></script>
+</head>
 <body>
-	<script type="text/javascript"
-		src="./review_files/jquery-1.7.2.min.js.다운로드"></script>
-	<script type="text/javascript">
-function getCookiefss(name) {
-    lims = document.cookie;
-    var index = lims.indexOf(name + "=");
-    if (index == -1) {
-        return null;
-    }
-    index = lims.indexOf("=", index) + 1; // first character
-    var endstr = lims.indexOf(';', index);
-    if (endstr == -1) {
-        endstr = lims.length; // last character
-    }
-    return unescape(lims.substring(index, endstr));
-}
-</script>
-	<script type="text/javascript">
-var MOBILE_USE = '1';
-</script>
-	<script type="text/javascript">
-    var is_powerpack = 0;
-    var StringBuffer = function() {
-    	this.buffer = new Array();
-    };
-
-    StringBuffer.prototype.append = function(str) {
-    	this.buffer[this.buffer.length] = str;
-    };
-
-    StringBuffer.prototype.toString = function() {
-    	return this.buffer.join("");
-    };
-    function checkSession() {
-    if (navigator.userAgent.match(/(iPad|iPhone|iPod)/g)) {
-		return 'N';
-	} else {
-		alert('N');
-	}
-}
-    function checkPowerappLoginState() {
-    var checkreq = {'login':'N', 'login_id_key':''};
-    $.ajax({
-        url: '/m/userinfo_check.ajax.html',
-        type: 'POST',
-        dataType: 'json',
-        async: false,
-        data: {
-            action_type : "powerapp_login_chk"
-        },
-        success: function(req) {
-            checkreq.login = req.login;
-            checkreq.login_id_key = req.login_id_key;
-        }
-    });
-	if (navigator.userAgent.match(/(iPad|iPhone|iPod)/g)) {
-		return checkreq;
-	} else {
-        window.android.checkPowerappLoginState(checkreq.login, checkreq.login_id_key);
-        return;
-	}
-}
-    </script>
-	<style type="text/css">
-#reviewForm .score-thumb .score dd em {
-	color: #939393;
-}
-
-#reviewForm .write .pr-star .star-list em {
-	color: #939393;
-}
-
-#reviewForm .info span em {
-	color:;
-}
-
-#reviewForm #authimgdiv {
-	z-index: 999999;
-	border: 1px solid #ccc;
-}
-
-#reviewForm .score-total .prt-star span em {
-	color: #939393;
-}
-
-#reviewForm .multi-score .score1 .selected {
-	color: #939393;
-}
+<style type="text/css">
+#reviewForm .score-thumb .score dd em { color: #939393; }
+#reviewForm .write .pr-star .star-list em { color: #939393; }
+#reviewForm .info span em { color:; }
+#reviewForm #authimgdiv { z-index: 999999; border: 1px solid #ccc; }
+#reviewForm .score-total .prt-star span em { color: #939393; }
+#reviewForm .multi-score .score1 .selected { color: #939393; }
 </style>
-	<script type="text/javascript" src="./review_files/jquery.form.js.다운로드"></script>
-	<script type="text/javascript"
-		src="./review_files/jquery.ui.widget.js.다운로드"></script>
-	<script type="text/javascript"
-		src="./review_files/jquery.iframe-transport.js.다운로드"></script>
-	<script type="text/javascript"
-		src="./review_files/jquery.fileupload.js.다운로드"></script>
-	<script type="text/javascript"
-		src="./review_files/jquery.popupoverlay.js.다운로드"></script>
-	<script type="text/javascript"
-		src="./review_files/power_review.js.다운로드"></script>
-	<script type="text/javascript">
-    function sns_login(us_type) {
-        var action_url = '';
-        var _chk = 'Y';
-        switch(us_type) {
-            case 'facebook':
-            case 'naver':
-            case 'kakao':
-            case 'twitter':
-                action_url = '/list/API/login_' + us_type + '.html';
-                break;
-        }
-        if (action_url != '') {
-            
-            if (_chk == 'Y') {
-                document.login_form.id.value = '';
-                document.login_form.passwd.value = '';
-                document.login_form.msecure_key.value = '';
-                document.login_form.target = '_self';
-                document.login_form.action = action_url;
-                document.login_form.submit();
-            }
-        }
-    }
-
-function userexit(){
-            alert('로그인후 이용가능합니다');
-            location.href = '/m/login.html';
-}
-
-var shop_name = 'moonshot';
-
+<link type="text/css" rel="stylesheet" href="./review_files/power_review_write.css">
+<link type="text/css" rel="stylesheet" href="./review_files/header.1.css">
+<link href="./review_files/css" rel="stylesheet">
+<script type="text/javascript">
+	function menu() {
+		document.getElementById("menus").style.display="block";
+	}
+	function star(a) {
+		document.getElementById("targeta").text = document.getElementById(a).text;
+		document.getElementById("menus").style.display="none";
+	}
+	function submit1(){
+		document.getElementById("toname").value=document.getElementById("toname").value;
+		document.getElementById("totitle").value=document.getElementById("title").value;
+		document.getElementById("toboard").value=document.getElementById("board").value;
+		document.getElementById("tostar").value=document.getElementById("targeta").text.length;
+		document.prw_file_form.submit();
+	}
 </script>
-
-	<link type="text/css" rel="stylesheet"
-		href="./review_files/power_review_write.css">
-
-	<link type="text/css" rel="stylesheet"
-		href="./review_files/header.1.css">
-	<link href="./review_files/css" rel="stylesheet">
-	<link rel="stylesheet" href="./review_files/slick.css">
-	<script type="text/javascript" src="./review_files/slick.min.js.다운로드"></script>
-	<div id="top"></div>
-	<style type="text/css">
-aside .asideTop a {
-	width: 50%;
-}
-</style>
-
-	<script type="text/javascript" src="./review_files/header.1.js.다운로드"></script>
 	<div id="wrap">
-
 		<div id="container">
 			<div id="reviewForm">
 				<div class="prd-wrap">
 					<div class="write" id="writePowerReview">
-						<form name="prw_form" id="prw_form"
-							action="http://moonshot-cosmetics.com/m/power_review_write.action.html"
-							method="post" autocomplete="off">
-							<div class="pr-box-write">
-								<div class="pr-star">
-									<div class="star-list">
-										<a
-											href="http://moonshot-cosmetics.com/m/power_review_write.html?product_uid=3195085#none"><em>★★★★★</em><span>아주만족</span></a>
-										<span class="bull">▼</span>
-										<ul>
-											<li><a
-												href="http://moonshot-cosmetics.com/m/power_review_write.html?product_uid=3195085#none"><em>★★★★★</em><span>아주만족</span></a></li>
-											<li><a
-												href="http://moonshot-cosmetics.com/m/power_review_write.html?product_uid=3195085#none"><em>★★★★</em><span>만족</span></a></li>
-											<li><a
-												href="http://moonshot-cosmetics.com/m/power_review_write.html?product_uid=3195085#none"><em>★★★</em><span>보통</span></a></li>
-											<li><a
-												href="http://moonshot-cosmetics.com/m/power_review_write.html?product_uid=3195085#none"><em>★★</em><span>미흡</span></a></li>
-											<li><a
-												href="http://moonshot-cosmetics.com/m/power_review_write.html?product_uid=3195085#none"><em>★</em><span>불만족</span></a></li>
-										</ul>
-									</div>
-								</div>
-								<dl class="pr-member">
-									<dt>작성자</dt>
-									<dd>
-										<input type="text" name="hname" value="">
-									</dd>
-									<dt>제목</dt>
-									<dd>
-										<input type="password" name="passwd" value="">
-									</dd>
-								</dl>
-								<div class="txtbox">
-									<textarea name="content"
-										style="margin: 0px; width: 100%; height: 104px;"></textarea>
-									<textarea style="display: none" name="board_writeword"></textarea>
-									<div class="pr-text-length">
-										<em class="pr-red"><span id="PR_CONTENT_LENGTH">0</span></em>자
-									</div>
+						<div class="pr-box-write">
+							<div class="pr-star">
+								<div class="star-list" style="z-index: 10;">
+									<a id="targeta" href="javascript:menu()">★★★</a>
+									<span class="bull">▼</span>
+									<ul id="menus" style="display: none;">
+										<li><a id="a1" href="javascript:star('a1')">★★★★★</a><span>아주만족</span></li>
+										<li><a id="a2" href="javascript:star('a2')">★★★★</a><span>만족</span></li>
+										<li><a id="a3" href="javascript:star('a3')">★★★</a><span>보통</span></li>
+										<li><a id="a4" href="javascript:star('a4')">★★</a><span>미흡</span></li>
+										<li><a id="a5" href="javascript:star('a5')">★</a><span>불만족</span></li>
+									</ul>
 								</div>
 							</div>
-						</form>
+							<dl class="pr-member">
+								<dt>작성자</dt>
+								<dd>
+									<input type="text" id="name" value="">
+								</dd>
+								<dt>제목</dt>
+								<dd>
+									<input type="text" id="title" value="">
+								</dd>
+							</dl>
+							<div class="txtbox">
+								<textarea name="content"
+									style="margin: 0px; width: 1161px; height: 99px;"></textarea>
+								<textarea style="display: none" id="board"></textarea>
+								<div class="pr-text-length">
+									<em class="pr-red"><span id="PR_CONTENT_LENGTH">9</span></em>자
+								</div>
+							</div>
+						</div>
 						<ul class="ctr">
 							<li class="pr-file-wrap">
 								<div id="files" class="files"></div>
-								<form name="prw_file_form" id="prw_file_form"
-									action="http://board.makeshop.co.kr/upload.power_review.html"
+								<form name="prw_file_form" id="prw_file_form" action="reviewProc.jsp"
 									method="post" enctype="multipart/form-data">
-									<input type="hidden" name="type" value="upload"> <input
-										type="hidden" name="servername" value="special268"> <input
-										type="hidden" name="url" value="moonshot-cosmetics.com">
-									<input type="hidden" name="code" value="codecosme_board5">
-									<input type="hidden" name="size" value="307200"> <input
-										type="hidden" name="org" value="codecosme"> <input
-										type="hidden" name="maxsize" value=""> <input
-										type="hidden" name="Btype" value=""> <input
-										type="hidden" name="img_resize" value="N"> <input
-										type="hidden" name="img_maxwidth" value=""> <input
-										type="hidden" name="gallery_type"> <input
-										type="hidden" name="form_name" value=""> <input
-										type="hidden" name="mini_bgcolor" value=""> <input
-										type="hidden" name="mini_size" value="100"> <input
-										type="hidden" name="mini_space" value=""> <input
-										type="hidden" name="fileobj_name" value="file_name1">
-									<input type="hidden" name="device_type" value="MOBILE">
-									<div class="btn-wrap">
-										<div class="btn">
-											<div class="file-attach">
-												<a class="btn-h38 camera file btn-file" href="#none"> <input
-													type="file" id="fileupload" name="file" class="file-trick"
-													style="background-image: url('./review_files/ico_camera_w_h38.jpg')"><span></span></a>
-											</div>
-										</div>
-									</div>
+									<input type="hidden" id="toname" name="writer" value=""> 
+									<input type="hidden" id="totitle" name="title" value=""> 
+									<input type="hidden" id="toboard" name="content" value="">
+									<input type="hidden" id="tostar" name="star" value=""> 
+									<input type="file" id="fileupload" name="pic" style="float: left">
 								</form>
 							</li>
 						</ul>
 					</div>
-					<a href="javascript:power_review_submit();" class="btn-form">리뷰등록</a>
+					<a href="javascript:submit1();"
+						class="btn-form">리뷰등록</a>
 				</div>
 				<!-- #reviewForm -->
 			</div>
 			<!-- #container -->
 		</div>
 		<!-- #wrap -->
-
-		<link type="text/css" rel="stylesheet"
-			href="./review_files/footer.1.css">
-
-		<script type="text/javascript"
-			src="./review_files/power_review_write.js"></script>
-		S <input type="hidden" name="referer" value=""> <input
-			type="hidden" name="return_url" value="">
-
-		<iframe id="loginiframe" name="loginiframe" style="display: none;"
-			frameborder="no" scrolling="no"
-			src="./review_files/saved_resource.html"></iframe>
-
-		<div id="basketpage" name="basketpage"
-			style="position: fixed; visibility: hidden;"></div>
-
-		<script type="text/javascript"
-			src="./review_files/jquery.form.js.다운로드"></script>
-		<script type="text/javascript" src="./review_files/flash.js.다운로드"></script>
-		<script type="text/javascript" src="./review_files/login.js.다운로드"></script>
-
-		<script type="text/javascript">
-
-function MK_join() {
-    (function($) {
-        $(function() {
-            if ($('input[name="return_url"]').val().length > 0) {
-                location.href = './join_contract.html?return_url=' + $('input[name="return_url"]').val()+'&first='+$('input[name="type"]').val();
-                return false;
-            } else {
-                location.href = './join_contract.html';
-                return false;
-            }
-        });
-    })(jQuery);
-}
-
-
-
-function CheckKey_search(e) {
-    e = e || window.event;
-    key = e.keyCode;
-    if (key == 13) {
-        search_submit();
-    }
-}
-
-function search_submit() {
-    /*
-    if (document.getElementById('keyword').value.replace(/\s/, '').length < 2) {
-        alert('검색어는 2자 이상 입력해주세요.');
-        document.getElementById('keyword').focus();
-        return;
-    }
-    */
-    document.search.submit();
-}
-
-function topnotice(temp, temp2) {
-    window.open("/html/notice.html?date=" + temp + "&db=" + temp2, "", "width=450,height=450,scrollbars=yes");
-}
-function notice() {
-    window.open("/html/notice.html?mode=list", "", "width=450,height=450,scrollbars=yes");
-}
-
-            (function($) {
-                var MS_view_product = $('#MS_view_product');
-                function get_block_view_products() {
-if(getCookiefss('viewproduct') != null && getCookiefss('viewproduct').length>0) {
-                    $.ajax({
-                        url: './product_list.action.html?r=13471222',
-                        type: 'POST',
-                        dataType: 'json',
-                        data: {
-                            action_mode: 'get_view_product_list',
-                            design_id: '1',
-                            page_type: 'header'
-                        },
-                        success: function(response) {
-                            // 겔럭시 계열에서 리스트 출력안되는 문제로 인해 setTimeout() 걸어둠
-                            setTimeout(function() {
-                                MS_view_product.html(response.html);
-                            }, 100);
-                            if (response.total > 0 ) {
-                                //MS_retarget_product.show();
-                            }
-                        }
-                    });
-}
-                }
-                get_block_view_products();
-            })(jQuery);
-
-            if (typeof wcs_do == 'function') {
-                wcs_do();
-            }
-
-var power_review_config = {
-    board_auth_write : "A",
-    board_add_clearw : "Y",
-    board_attach_cnt : "3",
-    board_min_length : "5",
-    board_comment_min_length : "0",
-    board_photo_review_type  : "",
-    board_code:"codecosme_board5",
-    file_board_code:"codecosme_board5",
-    product_uid: "3195085",
-    board_host:"http://board.makeshop.co.kr",
-    servername:"special268",
-    shopurl:"moonshot-cosmetics.com",
-    is_login : false,
-    mobile_use: "1",
-    ref_page: ""
-}
-set_power_review_page("write", power_review_config);
-
-</script>
-		<script type="text/javascript">
-if (typeof getCookie == 'undefined') {
-    function getCookie(cookie_name) {
-        var cookie = document.cookie;
-        if (cookie.length > 0) {
-            start_pos = cookie.indexOf(cookie_name);
-            if (start_pos != -1) {
-                start_pos += cookie_name.length;
-                end_pos = cookie.indexOf(';', start_pos);
-                if (end_pos == -1) {
-                    end_pos = cookie.length;
-                }
-                return unescape(cookie.substring(start_pos + 1, end_pos));
-            } else {
-                return false;
-            }
-        } else {
-            return false;
-        }
-    }
-}
-if (typeof setCookie == 'undefined') {
-    function setCookie(cookie_name, cookie_value, expire_date, domain) {
-        var today = new Date();
-        var expire = new Date();
-        expire.setTime(today.getTime() + 3600000 * 24 * expire_date);
-        cookies = cookie_name + '=' + escape(cookie_value) + '; path=/;';
-
-        if (domain != undefined) {
-            cookies += 'domain=' + domain +  ';';
-        }  else if (document.domain.match('www.') != null) {
-            cookies += 'domain=' + document.domain.substr(3) + ';';
-        }
-        if (expire_date != 0) cookies += 'expires=' + expire.toGMTString();
-        document.cookie = cookies;
-    }
-}
-
-function setMakeshopLogUniqueId() {
-    function s4() {
-        return Math.floor((1 + Math.random()) * 0x10000)
-        .toString(16)
-        .substring(1);
-    }
-    return s4() + s4() + s4() + s4() + s4() + s4() + s4() + s4();
-}
-
-if (getCookie('MakeshopLogUniqueId')) {
-    var MakeshopLogUniqueId = getCookie('MakeshopLogUniqueId');
-} else {
-    var MakeshopLogUniqueId = setMakeshopLogUniqueId();
-    setCookie('MakeshopLogUniqueId', MakeshopLogUniqueId);
-}
-
-function MSLOG_loadJavascript(url) {
-    var head= document.getElementsByTagName('head')[0];
-    var script= document.createElement('script');
-    script.type= 'text/javascript';
-    var loaded = false;
-    script.onreadystatechange= function () {
-        if (this.readyState == 'loaded' || this.readyState == 'complete')
-        { if (loaded) { return; } loaded = true; }
-    }
-    script.src = url;
-    head.appendChild(script);
-}
-var MSLOG_charset = "euc-kr";
-var MSLOG_server  = document.location.protocol + "//log22.makeshop.co.kr";
-var MSLOG_code = "codecosme";
-var MSLOG_var = "V1ZSdmVrOXVkSHBQYWtWNlQybEtkbU50VW14amJEbHlXbGhzTTJJelNtdEphblI2VDJwTmQwOXBTak5rTTJOMVdqSTVkbG95ZUd4TWJVNTJURzEwZVdaSWQzbE5SRVV6VFZSSmVVMXFSWHBPUkUxcFR6Tk5OazVxYjJsamJWWnRaRmhLYzBscWRFOVBNMDAyVGxSdmFXUkhPV3RaV0d0cFR6Tk5OazFFYjJsSmFuUTU=";
-if (document.charset) MSLOG_charset = document.charset.toLowerCase();
-if (document.characterSet) MSLOG_charset = document.characterSet.toLowerCase();  //firefox;
-MSLOG_loadJavascript(MSLOG_server + "/js/mslog.js?r=" + Math.random());
-</script>
-		<script type="text/javascript" src="./review_files/cookie.js.다운로드"></script>
-		<script type="text/javascript">
-function __mk_open(url, name, option) {
-    window.open(url, name, option);
-    //return false;
-}
-
-function action_invalidity() {
-    return false;
-}
-</script>
-		<script type="text/javascript"></script>
-		<script type="text/javascript"></script>
-		<script>
-var inputs = document.getElementsByTagName("input");
-for (x=0; x<=inputs.length; x++) {
-    if (inputs[x]) {
-        myname = inputs[x].getAttribute("name");
-        if(myname == "ssl") {
-            inputs[x].checked = 'checked';
-        }
-    }
-}
-(function($) {
-    $(document).ready(function() {
-        jQuery(':checkbox[name=ssl]').click(function() {
-            this.checked = true;
-        });
-    });
-})(jQuery);
-</script>
-		<script type="text/javascript" src="./review_files/common.js.다운로드"></script>
 	</div>
 </body>
 </html>

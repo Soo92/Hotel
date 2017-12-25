@@ -448,19 +448,16 @@
                                 <div class="head_title text-center">
                                     <h2><i class="fa fa-check" aria-hidden="true"></i> &nbsp;ROOMS&SUITES</h2>
                                     <div class="separator_auto"></div>
-                                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, 
-                                        sed diam nonummy nibh euismod nostrud exerci tation ullamcorper 
-                                        suscipit lobortis nisl ut aliquip ex ea commodo consequat. </p>
+                                    <p>객실 소개~~ </p>
                                 </div>
                             </div>
 
                             <div class="portfolio_content">
-                                <div class="col-md-8">
                                     <div class="row">
 <%for(int i=0;i<vlist.size();i++) {%>
                                         <div class="col-md-9">
                                             <div class="portfolio_item">
-		                                        <img src="<%=vlist.get(i).getMainpic()%>" alt="<%=vlist.get(i).getMainpic()%>" />
+		                                        <img src="./images/<%=vlist.get(i).getMainpic()%>" alt="<%=vlist.get(i).getMainpic()%>" />
                                                 <div class="portfolio_hover text-center">
                                                     <h6 class="text-uppercase text-white"><%=vlist.get(i).getRoomname()%></h6>
                                                     <p class=" text-white"><%=vlist.get(i).getContent()%></p>
@@ -473,7 +470,6 @@
                                         </div>
 <%} %>                            
                                     </div>
-                                </div>
                         </div>
                     </div><!--End off row -->
                 </div><!--End off container -->
@@ -628,7 +624,7 @@
                             <div class="col-md-4">
                                 <div class="blog_item m-top-20">
                                     <div class="blog_item_img">
-                                        <img src="<%=relist.get(i).getPic()%>" alt="<%=relist.get(i).getPic()%>" />
+                                        <img src="./images/review/<%=relist.get(i).getPic()%>" alt="<%=relist.get(i).getPic()%>" />
                                     </div>
                                     <div class="blog_text roomy-40">
                                         <h6><%=relist.get(i).getContent()%></h6>
