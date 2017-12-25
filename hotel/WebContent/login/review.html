@@ -43,7 +43,7 @@
 		document.getElementById("menus").style.display="none";
 	}
 	function submit1(){
-		document.getElementById("toname").value=document.getElementById("toname").value;
+		document.getElementById("toname").value=document.getElementById("name").value;
 		document.getElementById("totitle").value=document.getElementById("title").value;
 		document.getElementById("toboard").value=document.getElementById("board").value;
 		document.getElementById("tostar").value=document.getElementById("targeta").text.length;
@@ -80,9 +80,7 @@
 								</dd>
 							</dl>
 							<div class="txtbox">
-								<textarea name="content"
-									style="margin: 0px; width: 1161px; height: 99px;"></textarea>
-								<textarea style="display: none" id="board"></textarea>
+								<textarea id="board" style="margin: 0px; width: 1161px; height: 99px;"></textarea>
 								<div class="pr-text-length">
 									<em class="pr-red"><span id="PR_CONTENT_LENGTH">9</span></em>ÀÚ
 								</div>

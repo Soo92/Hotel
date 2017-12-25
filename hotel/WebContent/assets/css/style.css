@@ -226,7 +226,6 @@ h6 {
     margin: 0;
     font-family: 'Montserrat', sans-serif;
     color:#1a1a1a;
-    margin-bottom: 10px;
 }
 
 h1 {
@@ -326,6 +325,7 @@ ul{
     top:0;
     width:100%;
     height: 100%;
+    text-align: center;
 }
 
 
@@ -1154,8 +1154,9 @@ Video Section style
 .main_video{
     display: block;
     /*z-index: 2;*/
-    /*position: relative;*/
-}
+    position: relative;
+    top: -45px;
+    height: 200px;}
 .main_video i,
 .main_video span.fa,
 .main_video span.icon{

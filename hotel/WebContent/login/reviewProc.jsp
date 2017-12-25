@@ -2,14 +2,11 @@
 <%request.setCharacterEncoding("utf-8");%>
 <jsp:useBean id="mgr" class="hotel.FileloadMgr"/>
 <%
-		String a = null;
 		boolean result = mgr.fileUpload(request);
-		if(result){
-		}else{
-			a="오류";
-			response.sendRedirect("fupload.jsp");
-		}
 %>
 <script>
-	alert(<%=a%>)
+	if(<%=result%>){
+		parent.location.reload();
+		parent.location.href="../index.jsp#testimonial";
+	}
 </script>

@@ -41,9 +41,8 @@ public class FileloadMgr {
 			if(multi.getFilesystemName("pic")!=null) {
 				filename = multi.getFilesystemName("pic");
 			}
-			System.out.println(saveFolder);
 			con = pool.getConnection();
-			sql = "insert review(writer,title,content,regdate,star,pic) values(?,?,?,now(),?,?)";
+			sql = "insert review(writer,title,content,regdate,star,pic) values(?,?,?,DATE_FORMAT(NOW(),\"%Y.%m.%d.\"),?,?)";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, multi.getParameter("writer"));
 			pstmt.setString(2, multi.getParameter("title"));

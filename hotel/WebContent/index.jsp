@@ -161,7 +161,7 @@
 		<iframe class=roomdet src="./roomdetail/roomdetail.jsp?index=1" height="100%" width="100%" style="border: 5px dashed rgba(94, 106, 80, 0.92)"></iframe>
 		</div>
         <div id="review-box" class="review-popup">
-		<iframe class=reviewdet src="./login/review.html" height="100%" width="100%" style="border: 5px dashed rgba(94, 106, 80, 0.92)"></iframe>
+		<iframe class=reviewdet src="./login/review.html" height="100%" width="100%" style="border: 5px dashed rgba(94, 106, 80, 0.92)" scrolling="no"></iframe>
 		</div>
         <!-- Preloader -->
         <div id="loading">
@@ -225,8 +225,8 @@
                         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
                             <i class="fa fa-bars"></i>
                         </button>
-                        <a class="navbar-brand" href="#brand">
-                            <img src="assets/images/tree1.png" class="logo logo-display m-top-10" alt="" height=49  >
+                        <a class="navbar-brand" href="#brand" style="width: 230px;">
+                            <img src="assets/images/tree1.png" class="logo logo-display" alt="" height=49  >
                             <img src="assets/images/tree2.png" class="logo logo-scrolled" alt="" height=49  >
                             <br>&nbsp;&nbsp;
                             <b>PACIFIC COVE</b> 
@@ -288,7 +288,6 @@
 							            <div class="slide"> 
 							                <!-- Slide image -->
 							                <img src=".\images/hotel\vhotel.jpg">
-							               <!--  <iframe width="2100" height="1181" src="https://www.youtube.com/embed/V73LSnLuGC4?rel=0&amp;controls=0&amp;showinfo=0&autoplay=1" frameborder="0"  allowfullscreen></iframe>-->
 							                <!-- /Slide image -->
 							                <!-- Texts container -->
 							                <div class="slide_content">
@@ -310,7 +309,6 @@
 							            </div>
 							            <!-- /Duplicate to create more slides -->
 							            <div class="slide">
-							                <!-- <iframe width="1920" height="1080" src="https://www.youtube.com/embed/eaSdTJAYl6s?rel=0&amp;controls=0&amp;showinfo=0&autoplay=1" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>-->
 							                <img src=".\images/hotel\vhotel4.jpg">
 							                <div class="slide_content">
 							                     <div class="slide_content_wrap">
@@ -324,7 +322,6 @@
 							                </div>
 							            </div>
 							            <div class="slide">
-							               <!--  <iframe width="1920" height="1080" src="https://www.youtube.com/embed/k-o9DL5yf7M?rel=0&amp;controls=0&amp;showinfo=0&autoplay=1" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>-->
 							               <img src=".\images/hotel\vhotel3.jpg">
 							                <div class="slide_content">
 							                     <div class="slide_content_wrap">
@@ -337,7 +334,6 @@
 							            </div>
 							            <!--/slide -->
 							            <div class="slide">
-							                <!-- <iframe width="1920" height="1080" src="https://www.youtube.com/embed/eaSdTJAYl6s?rel=0&amp;controls=0&amp;showinfo=0&autoplay=1" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>-->
 							                <img src=".\images/hotel\vhotel2.jpg">
 							                <div class="slide_content">
 							                     <div class="slide_content_wrap">
@@ -349,7 +345,6 @@
 							                </div>
 							            </div>
 							            <div class="slide">
-							                <!-- <iframe width="1920" height="1080" src="https://www.youtube.com/embed/eaSdTJAYl6s?rel=0&amp;controls=0&amp;showinfo=0&autoplay=1" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>-->
 							                <img src=".\images/hotel\vhotel5.jpg">
 							                <div class="slide_content">
 							                     <div class="slide_content_wrap">
@@ -382,12 +377,10 @@
             <hr>
             <!--Video section-->
             <section id="video" class="video">
-                <div class="overlay"><img src=".\images/hotel\vhotel6.jpg"></div>
-                <div class="main_video roomy-100 m-top-100 m-bottom-100 text-center">
-                    <div class="video_text text-center">
-                        <img src="" alt="" />
-                        <a href="" class="video-link"><span class="fa fa-play"></span></a>
-                    </div>
+                <div class="overlay">
+  				</div>
+                <div class="main_video m-top-100 m-bottom-100 text-center">
+					<iframe id="yout" width="560" height="315" src="https://www.youtube.com/embed/bKlQ1fRLGUU?modestbranding=1&enablejsapi=1&version=3&playerapiid=ytplayer&rel=0&controls=0&showinfo=0" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>
                 </div>
             </section><!--End off video section -->
             <div class="container">
@@ -440,10 +433,10 @@
             </div><!-- End off featured slider -->
 
             <!--Portfolio Section-->
-            <section id="portfolio" class="portfolio lightbg">
+            <section id="portfolio" class="portfolio lightbg m-top-100 p-bottom-100">
                 <div class="container">
                     <div class="row">
-                        <div class="main_portfolio roomy-100">
+                        <div class="main_portfolio">
                             <div class="col-md-8 col-md-offset-2">
                                 <div class="head_title text-center">
                                     <h2><i class="fa fa-check" aria-hidden="true"></i> &nbsp;ROOMS&SUITES</h2>
@@ -567,8 +560,8 @@
 
             <!--Testimonial Section-->
             <section id="testimonial" class="testimonial fix">
-                <div class="overlay"><img src=".\images/hotel\vhotel8.jpg"></div>
-                <div class="container">
+                <div class="overlay pricing_body"><img src=".\images/hotel\vhotel8.jpg"></div>
+                <div class="container m-top-100">
                     <div class="row">
                         <div class="main_testimonial roomy-100">
                             <div class="head_title text-center">
@@ -597,12 +590,12 @@
             <section id="pricing" class="pricing lightbg">
                 <div class="container">
                     <div class="row">
-                        <div class="main_pricing roomy-100">
+                        <div class="main_pricing">
                             <div class="col-md-8 col-md-offset-2 col-sm-12">
-                                <div class="head_title text-center">
-                                    <h2><i class="fa fa-th-large" aria-hidden="true"></i>&nbsp;WRITE REVIEW!</h2>
-                                    <div class="separator_auto"></div>
-									<button onclick="c()">review</button>
+                                <div class="padding-sixty text-center">
+                                <a href="javascript:c()">
+                                    <h4><i class="fa fa-th-large" aria-hidden="true"></i>&nbsp;WRITE REVIEW!</h4>
+								</a>
                                 </div>
                             </div>
                         </div>
@@ -613,9 +606,9 @@
             <section id="blog" class="blog">
                 <div class="container">
                     <div class="row">
-                        <div class="main_blog text-center roomy-100">
+                        <div class="main_blog text-center">
                             <div class="col-sm-8 col-sm-offset-2">
-                                <div class="head_title text-center">
+                                <div class="m-top-50 padding-sixty text-center">
                                     <h2><i class="fa fa-instagram" aria-hidden="true"></i>&nbsp;YOUR #PICTURE</h2>
                                     <div class="separator_auto"></div>
                                 </div>
@@ -641,7 +634,7 @@
 
 
             <!--Maps Section-->
-            <div class="main_maps text-center fix">
+            <div class="main_maps text-center fix m-top-100">
                 <div class="overlay"></div>
                 <div class="maps_text">
                     <h3 class="text-white" onclick="showmap()">FIND US ON THE MAP <i class="fa fa-angle-down"></i></h3>
@@ -709,7 +702,7 @@
             </div><!-- End off scroll up -->
 
 
-            <footer id="footer" class="footer bg-black">
+            <footer id="footer" class="bg-black">
                 <div class="container">
                     <div class="row">
                         <div class="main_footer text-center p-top-40 p-bottom-30">
