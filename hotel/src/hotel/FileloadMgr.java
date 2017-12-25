@@ -38,9 +38,10 @@ public class FileloadMgr {
 			MultipartRequest multi = 
 					new MultipartRequest(req, saveFolder,maxSize,
 							encType, new DefaultFileRenamePolicy());
-			if(multi.getFilesystemName("pic")!=null) {
-				filename = multi.getFilesystemName("pic");
+			if(multi.getFilesystemName("mainImg")!=null) {
+				filename = multi.getFilesystemName("mainImg");
 			}
+			System.out.println(filename);
 			con = pool.getConnection();
 			sql = "insert review(writer,title,content,regdate,star,pic) values(?,?,?,DATE_FORMAT(NOW(),\"%Y.%m.%d.\"),?,?)";
 			pstmt = con.prepareStatement(sql);
