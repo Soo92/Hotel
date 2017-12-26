@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.*"%>
+<jsp:useBean id="cmgr" class="hotel.CountMgr"/>
 <%
 		request.setCharacterEncoding("utf-8");
 		String email = (String)session.getAttribute("emailKey");
@@ -163,4 +164,7 @@
 </div>
 </div>		
 </body>
+<script>
+self.resizeTo(document.body.scrollWidth , document.body.scrollHeight + 10);
+</script>
 </html>

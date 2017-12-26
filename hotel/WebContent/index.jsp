@@ -6,6 +6,7 @@
 <jsp:useBean id="rmgr" class="hotel.RoomMgr"/>
 <jsp:useBean id="rbean" class="hotel.RoomBean"/>
 <jsp:useBean id="remgr" class="hotel.ReviewMgr"/>
+<jsp:useBean id="cmgr" class="hotel.CountMgr"/>
 <jsp:useBean id="rebean" class="hotel.ReviewBean"/>
 <%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%
@@ -17,8 +18,16 @@
 		Vector<ReviewBean> relist = remgr.getReviewList();
 		String id = (String)bean.getId();
 		String pw = (String)bean.getPass();
+	    if(request.getAttribute("recount")==null) request.setAttribute("recount", 1);
+		    else request.setAttribute("recount", Integer.parseInt(request.getAttribute("recount").toString())+1);
+	    if(session.getAttribute("secount")==null) session.setAttribute("secount", 1);
+		    else session.setAttribute("secount", Integer.parseInt(session.getAttribute("secount").toString())+1);
+	    if(application.getAttribute("apcount")==null) application.setAttribute("apcount", 1);
+	   		else application.setAttribute("apcount", Integer.parseInt(application.getAttribute("apcount").toString())+1);
+	    String requestcount = request.getAttribute("recount").toString();
+	    int sessioncount = (Integer)session.getAttribute("secount");
+	    String applicationcount = application.getAttribute("apcount").toString();
 %>
-
 <!DOCTYPE HTML>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
@@ -27,6 +36,11 @@
     
     <!--Designerd by: http://bootstrapthemes.co-->
     <head>
+<script type="text/javascript">
+	function aa() {
+		<%cmgr.UpdateTotal(); %>;
+	}
+</script>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>2Team Hotel Page</title>
         <meta name="description" content="">
@@ -38,13 +52,13 @@
         <link href="https://fonts.googleapis.com/css?family=Raleway:400,600,700" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
 		<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="assets/css/bootstrap.css" type='text/css'>
 		<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
         <link rel="stylesheet" href="assets/css/slick.css" type='text/css'>
         <link rel="stylesheet" href="assets/css/slick-theme.css" type='text/css'>
         <link rel="stylesheet" href="assets/css/animate.css" type='text/css'>
         <link rel="stylesheet" href="assets/css/fonticons.css" type='text/css'>
         <link rel="stylesheet" href="assets/css/font-awesome.min.css" type='text/css'>
-        <link rel="stylesheet" href="assets/css/bootstrap.css" type='text/css'>
         <link rel="stylesheet" href="assets/css/magnific-popup.css" type='text/css'>
         <link rel="stylesheet" href="assets/css/bootsnav.css" type='text/css'>
          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css" type='text/css'>
@@ -153,7 +167,7 @@
 		</script>
     </head>
 
-    <body data-spy="scroll" data-target=".navbar-collapse">
+    <body data-spy="scroll" data-target=".navbar-collapse" onload="aa()">
         <div id="login-box" class="login-popup">
 		<iframe class=signin src="./login/login.jsp"></iframe>
 		</div>
@@ -525,30 +539,30 @@
                         <div class="skill_bottom_content text-center">
                             <div class="col-md-3">
                                 <div class="skill_bottom_item">
-                                    <h2 class="statistic-counter">3468</h2>
+                                    <h2 class="statistic-counter"><%=cmgr.getCount().getTotal() %></h2>
                                     <div class="separator_small"></div>
-                                    <h5><em>Projects Finished</em></h5>
+                                    <h5><em>Visitor count</em></h5>
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="skill_bottom_item">
-                                    <h2 class="statistic-counter">4638</h2>
+                                    <h2 class="statistic-counter"><%=requestcount%></h2>
                                     <div class="separator_small"></div>
-                                    <h5><em>Happy Clients</em></h5>
+                                    <h5><em>Request count</em></h5>
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="skill_bottom_item">
-                                    <h2 class="statistic-counter">3468</h2>
+                                    <h2 class="statistic-counter"><%=sessioncount %></h2>
                                     <div class="separator_small"></div>
-                                    <h5><em>Hours of work</em></h5>
+                                    <h5><em>Session count</em></h5>
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="skill_bottom_item">
-                                    <h2 class="statistic-counter">3468</h2>
+                                    <h2 class="statistic-counter"><%=applicationcount %></h2>
                                     <div class="separator_small"></div>
-                                    <h5><em>Cup of coffee</em></h5>
+                                    <h5><em>Application count</em></h5>
                                 </div>
                             </div>
                         </div>

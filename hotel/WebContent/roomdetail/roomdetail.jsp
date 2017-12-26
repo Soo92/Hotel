@@ -1,3 +1,5 @@
+<%@page import="hotel.RoomBean"%>
+<%@page import="java.util.Vector"%>
 <%@page import="hotel.RoomMgr"%>
 <%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <jsp:useBean id="roomMgr" class="hotel.RoomMgr"/>
@@ -10,7 +12,12 @@
 		String roomname = roomBean.getRoomname();
 		String pic = roomBean.getMainpic();
 		String subpic = roomBean.getSubpic();
+		String content = roomBean.getContent();
 		String price = roomBean.getPrice();
+		String subcont1 = roomBean.getSubcont1();
+		String subcont2 = roomBean.getSubcont2();
+		String subcont3 = roomBean.getSubcont3();
+		Vector<RoomBean> vlist = roomMgr.getMemberList();
 %>
 <!DOCTYPE html>
 <!-- saved from url=(0054)file:///C:/Users/it/Desktop/roomdetail/roomdetail.html -->
@@ -39,7 +46,7 @@
     <!--  
     Stylesheets
     =============================================
-    
+  
     -->
     <!-- Default stylesheets-->
     <link href="./roomdetail_files/bootstrap.min.css" rel="stylesheet">
@@ -78,39 +85,39 @@
         <section class="module">
           <div class="container">
             <div class="row">
-              <div class="col-sm-8 mb-sm-40"><a class="gallery" href="./roomdetail_files/product-7.jpg"><img src="./roomdetail_files/product-7.jpg" alt="Single Product Image"></a>
+              <div class="col-sm-8 mb-sm-40"><a class="gallery" href=../images/<%=pic%>><img src=../images/<%=pic%> alt="Single Product Image"></a>
     
                
  <!-- 화면딴 -->  
                 <ul class="product-gallery">
-                  <li><a class="gallery" href="#"></a><img src=<%=roomname%> alt="Single Product"></li>
-                  <li><a class="gallery" href="./roomdetail_files/002.jpg"></a><img src="./roomdetail_files/002.jpg" alt="Single Product"></li>
-                  <li><a class="gallery" href="./roomdetail_files/004.jpg"></a><img src="./roomdetail_files/004.jpg" alt="Single Product"></li>
+                  <li><a class="gallery" href="#"></a><img src="../images/<%=subcont1%>" alt="Single Product"></li>
+                  <li><a class="gallery" href=../images/<%=subcont2%>></a><img src=../images/<%=subcont2%> alt="Single Product"></li>
+                  <li><a class="gallery" href=../images/<%=subcont3%>></a><img src=../images/<%=subcont3%> alt="Single Product"></li>
                 </ul>
               </div>
               <div class="col-sm-4">
                 <div class="row">
                   <div class="col-sm-12">
-                    <h1 class="product-title font-alt"><%=pic %></h1>
+                    <h1 class="product-title font-alt"><%=roomname %></h1>
                   </div>
                 </div>
                 
                 <div class="row mb-20">
                   <div class="col-sm-12">
-                    <div class="price font-alt"><span class="amount">이건머지</span></div>
+                    <div class="price font-alt"><span class="amount"><%=content %></span></div>
                   </div>
                 </div>
                 <div class="row mb-20">
                   <div class="col-sm-12">
                     <div class="description">
-                   <p>이젠 알수가 없네</p>
+                   <p><%=subpic %></p>
                     </div>
                   </div>
                 </div>
                 <div class="row mb-20">
                   
                   <div class="col-sm-8">
-                  <a class="btn btn-lg btn-block btn-round btn-b" href="http://localhost:8080/w4/shop_single_product.html#">예약확인</a></div>
+                  <a class="btn btn-lg btn-block btn-round btn-b" href="javascript:">예약하러가기</a></div>
                 </div>   
               </div>
             </div>
@@ -181,38 +188,49 @@
               </div>
             </div>
             <div class="row multi-columns-row">
+            
+            
+            
+<%for(int i=0;i<vlist.size();i++) {%>
               <div class="col-sm-6 col-md-3 col-lg-3">
                 <div class="shop-item">
-                  <div class="shop-item-image"><img src="./roomdetail_files/product-11.jpg" alt="Accessories Pack">
-                    <div class="shop-item-detail"><a class="btn btn-round btn-b"><span class="icon-basket">더블</span></a></div>
+                  <div class="shop-item-image"><img src="../images/<%=vlist.get(i).getMainpic()%>" alt="Accessories Pack">
+                    <div class="shop-item-detail"><a class="./roomdetail.jsp?index=<%=vlist.get(i).getIdx()%>">
+                    <span class="icon-basket"><%=vlist.get(i).getRoomname()%></span></a></div>
                   </div>
-                  <h4 class="shop-item-title font-alt"><a href="http://localhost:8080/w4/shop_single_product.html#">싱글</a></h4>
+                  <h4 class="shop-item-title font-alt"><a href="./roomdetail.jsp?index=<%=vlist.get(i).getIdx()%>"><%=vlist.get(i).getRoomname()%></a></h4>
+                </div>
+              </div>
+<%} %>             
+              
+           
+<!--               <div class="col-sm-6 col-md-3 col-lg-3">
+                <div class="shop-item">
+                  <div class="shop-item-image"><img src="../images/de.jpg" alt="Menâs Casual Pack">
+                    <div class="shop-item-detail"><a class="btn btn-round btn-b"><span class="icon-basket">디럭스</span></a></div>
+                  </div>
+                  <h4 class="shop-item-title font-alt"><a href="http://localhost:8080/w4/shop_single_product.html#">디럭스</a></h4>
                 </div>
               </div>
               <div class="col-sm-6 col-md-3 col-lg-3">
                 <div class="shop-item">
-                  <div class="shop-item-image"><img src="./roomdetail_files/product-12.jpg" alt="Menâs Casual Pack">
-                    <div class="shop-item-detail"><a class="btn btn-round btn-b"><span class="icon-basket">싱글</span></a></div>
+                  <div class="shop-item-image"><img src="../images/supe.jpg" alt="Menâs Garb">
+                    <div class="shop-item-detail"><a class="btn btn-round btn-b"><span class="icon-basket">슈페리어</span></a></div>
                   </div>
-                  <h4 class="shop-item-title font-alt"><a href="http://localhost:8080/w4/shop_single_product.html#">더블</a></h4>
+                  <h4 class="shop-item-title font-alt"><a href="http://localhost:8080/w4/shop_single_product.html#">슈페리어</a></h4>
                 </div>
               </div>
               <div class="col-sm-6 col-md-3 col-lg-3">
                 <div class="shop-item">
-                  <div class="shop-item-image"><img src="./roomdetail_files/product-13.jpg" alt="Menâs Garb">
-                    <div class="shop-item-detail"><a class="btn btn-round btn-b"><span class="icon-basket">더블</span></a></div>
+                  <div class="shop-item-image"><img src="../images/st.jpg"" alt="Cold Garb">
+                    <div class="shop-item-detail"><a class="btn btn-round btn-b"><span class="icon-basket">스탠다드</span></a></div>
                   </div>
-                  <h4 class="shop-item-title font-alt"><a href="http://localhost:8080/w4/shop_single_product.html#">더블</a></h4>
+                  <h4 class="shop-item-title font-alt"><a href="http://localhost:8080/w4/shop_single_product.html#">스탠다드</a></h4>
                 </div>
-              </div>
-              <div class="col-sm-6 col-md-3 col-lg-3">
-                <div class="shop-item">
-                  <div class="shop-item-image"><img src="./roomdetail_files/product-14.jpg" alt="Cold Garb">
-                    <div class="shop-item-detail"><a class="btn btn-round btn-b"><span class="icon-basket">single</span></a></div>
-                  </div>
-                  <h4 class="shop-item-title font-alt"><a href="http://localhost:8080/w4/shop_single_product.html#">single</a></h4>
-                </div>
-              </div>
+              </div> -->
+              
+              
+              
             </div>
           </div>
         </section>

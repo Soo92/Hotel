@@ -1071,8 +1071,9 @@ span.next:hover {
 		width:95%;
 	}
 	.logo{
-		width: 32.333333%;
-	}
+		width: 20%;
+   		height: 149%;
+   	}
 	.h_right{
 		width:60.333333%;
 	}
@@ -1084,6 +1085,16 @@ span.next:hover {
 	}
 	.date_btn {
 		margin: 0 0 20px;
+	}
+	.container {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: 0px;
+    margin-left: 0px;
+	}
+	.row{
+    margin-right: 0px;
+   	margin-left: 0px;
 	}
 }
 @media only screen and (max-width: 320px) {
