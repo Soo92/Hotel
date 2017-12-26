@@ -1,6 +1,6 @@
+<jsp:useBean id="mgr" class="hotel.FileloadMgr"/>
 <%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%request.setCharacterEncoding("utf-8");%>
-<jsp:useBean id="mgr" class="hotel.FileloadMgr"/>
 <%
 		boolean result = mgr.fileUpload(request);
 %>

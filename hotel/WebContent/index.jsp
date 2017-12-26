@@ -39,27 +39,27 @@
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
 		<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
 		<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
-        <link rel="stylesheet" href="assets/css/slick.css">
-        <link rel="stylesheet" href="assets/css/slick-theme.css">
-        <link rel="stylesheet" href="assets/css/animate.css">
-        <link rel="stylesheet" href="assets/css/fonticons.css">
-        <link rel="stylesheet" href="assets/css/font-awesome.min.css">
-        <link rel="stylesheet" href="assets/css/bootstrap.css">
-        <link rel="stylesheet" href="assets/css/magnific-popup.css">
-        <link rel="stylesheet" href="assets/css/bootsnav.css">
-         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+        <link rel="stylesheet" href="assets/css/slick.css" type='text/css'>
+        <link rel="stylesheet" href="assets/css/slick-theme.css" type='text/css'>
+        <link rel="stylesheet" href="assets/css/animate.css" type='text/css'>
+        <link rel="stylesheet" href="assets/css/fonticons.css" type='text/css'>
+        <link rel="stylesheet" href="assets/css/font-awesome.min.css" type='text/css'>
+        <link rel="stylesheet" href="assets/css/bootstrap.css" type='text/css'>
+        <link rel="stylesheet" href="assets/css/magnific-popup.css" type='text/css'>
+        <link rel="stylesheet" href="assets/css/bootsnav.css" type='text/css'>
+         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css" type='text/css'>
          <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
-         <link href="css/text.css" rel="stylesheet" type="text/css">
+         <link href="css/text.css" rel="stylesheet" type="text/css" type='text/css'>
         
         <!--For Plugins external css-->
         <!--<link rel="stylesheet" href="assets/css/plugins.css" />-->
 
         <!--Theme custom css -->
-        <link rel="stylesheet" href="assets/css/style.css">
-        <!--<link rel="stylesheet" href="assets/css/colors/maron.css">-->
+        <link rel="stylesheet" href="assets/css/style.css" type='text/css'>
+        <!--<link rel="stylesheet" href="assets/css/colors/maron.css" type='text/css'>-->
 
         <!--Theme Responsive css-->
-        <link rel="stylesheet" href="assets/css/responsive.css" />
+        <link rel="stylesheet" href="assets/css/responsive.css"  type='text/css'/>
 
         <script src="assets/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
 		<script src="js/jquery.min.js"></script>
@@ -613,7 +613,7 @@
                                     <div class="separator_auto"></div>
                                 </div>
                             </div>
-<%for(int i=0;i<relist.size();i++){if(!relist.get(i).getPic().equals("none")){ %>
+<%for(int i=0;i<relist.size();i++){if(relist.get(i).getPic()!=null){ %>
                             <div class="col-md-4">
                                 <div class="blog_item m-top-20">
                                     <div class="blog_item_img">

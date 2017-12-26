@@ -38,8 +38,8 @@ public class FileloadMgr {
 			MultipartRequest multi = 
 					new MultipartRequest(req, saveFolder,maxSize,
 							encType, new DefaultFileRenamePolicy());
-			if(multi.getFilesystemName("mainImg")!=null) {
-				filename = multi.getFilesystemName("mainImg");
+			if(multi.getFilesystemName("pic")!=null) {
+				filename = multi.getFilesystemName("pic");
 			}
 			System.out.println(filename);
 			con = pool.getConnection();
