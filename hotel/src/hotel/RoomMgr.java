@@ -45,6 +45,38 @@ public class RoomMgr {
 		return regBean;
 	}
 	
+	public RoomBean getpic(String roomname) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		RoomBean regBean = new RoomBean();
+		try {
+			con = pool.getConnection();
+			sql = "select * from hoteldetail where price=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, roomname);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				regBean.setIdx(rs.getInt("idx"));
+				regBean.setRoomname(rs.getString("roomname"));
+				regBean.setMainpic(rs.getString("mainpic"));
+				regBean.setContent(rs.getString("content"));
+				regBean.setPrice(rs.getString("price"));
+				regBean.setSubpic(rs.getString("subpic"));
+				regBean.setSubcont1(rs.getString("subcont1"));
+				regBean.setSubcont2(rs.getString("subcont2"));
+				regBean.setSubcont3(rs.getString("subcont3"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			pool.freeConnection(con);
+		}
+		return regBean;
+	}
+
+	
 	public Vector<RoomBean> getMemberList() {
 		Connection con = null;
 		PreparedStatement pstmt = null;

@@ -1,4 +1,5 @@
 <jsp:useBean id="mgr" class="hotel.MemberMgr"/>
+<jsp:useBean id="rmgr" class="hotel.RoomMgr"/>
 <jsp:useBean id="bean" class="hotel.MemberBean"/>
 <%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%
@@ -436,13 +437,11 @@ h1 a {
 			<div class="link"><i class="fa fa-picture-o"></i>My Reservation <small><%=a.length-1 %></small><i class="fa fa-chevron-down"></i></div>
 			<ul class="submenu" style="display: none;">
 				<li class="photosgurdeep">
-<%for(int i=1;i<a.length;i++) {%>
-                <a href="https://s.bootsnipp.com/iframe/z4P39#"><img class="img-responsive iamgurdeeposahan" alt="<%=mgr.getCart(Integer.parseInt(a[i])).getPay()%>" src="./mypage_files/gurdeeposahan.jpg">    
-    			</a>
-<%}if(a.length>4){%>               
-                <a class="view-all" href="https://web.facebook.com/iamgurdeeposahan" target="_blank">3+
-        		</a>
-<%} %>    			    
+<%for(int i=1;i<(a.length>6?6:a.length);i++) {if(mgr.getCart(Integer.parseInt(a[i]))!=null){%>
+                <a href="https://s.bootsnipp.com/iframe/z4P39#"><img class="img-responsive iamgurdeeposahan" alt="<%=mgr.getCart(Integer.parseInt(a[i])).getPay()%>" src="../images/<%=rmgr.getpic(mgr.getCart(Integer.parseInt(a[i])).getRoomname()).getMainpic()%>"> </a>
+<%}}if(a.length>4){ %>          
+                <a class="view-all" href="https://web.facebook.com/iamgurdeeposahan" target="_blank"><%=a.length-6%>+</a>
+<%} %>  			    
 				</li>
 			</ul>
 		</li>

@@ -490,37 +490,31 @@
                         <div class="main_skill">
                             <div class="col-md-6">
                                 <div class="skill_content wow fadeIn">
-                                    <h2>Our skill</h2>
+                                    <h2>Our Pride</h2>
                                     <div class="separator_left"></div>
 
-                                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, 
-                                        sed diam nonummy nibh euismod tincidunt ut laoreet dolore 
-                                        magna aliquam erat volutpat. Ut wisi enim ad minim veniam, 
-                                        quis nostrud exerci tation ullamcorper suscipit lobortis 
-                                        nisl ut aliquip ex ea commodo consequat. Lorem ipsum dolor
-                                        sit amet, consectetuer adipiscing elit, sed diam nonummy nibh
-                                        euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
-                                        Ut wisi enim ad minim veniam, quis nostrud exerci tation 
-                                        ullamcorper suscipit lobortis nisl ut aliquip 
-                                        ex ea commodo consequat. </p>
+                                    <p>At Pacific Cove, we believe in recognizing a familiar face, 
+                                    welcoming a new one and treating every one we meet the way we would want to be treated ourselves. 
+                                    Whether you work with us, stay with us, live with us, discover with us, 
+                                    we believe our purpose is to create impressions that will stay with you for a lifetime. 
+                                    It comes from our belief that life is richer when we truly connect to the people and the world around us.. </p>
 
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="skill_bar sm-m-top-50">    
-                                    <div class="teamskillbar clearfix m-top-20" data-percent="80%">
-                                        <h6>GRAPHIC DESIGN</h6>
+                                    <div class="teamskillbar clearfix m-top-20" data-percent="95%">
+                                        <h6>RETENTION RATE</h6>
                                         <div class="teamskillbar-bar"></div>
                                     </div> <!-- End Skill Bar -->
 
-                                    <div class="teamskillbar clearfix m-top-50" data-percent="75%">
-                                        <h6>TYPOGRAPHY</h6>
+                                    <div class="teamskillbar clearfix m-top-50" data-percent="98%">
+                                        <h6>SATISFACTION</h6>
                                         <div class="teamskillbar-bar"></div>
                                     </div> <!-- End Skill Bar -->
 
-                                    <div class="teamskillbar clearfix m-top-50" data-percent="90%">
-                                        <h6>HTML / CSS</h6>
-                                        <div class="teamskillbar-bar"></div>
+                                    <div class="teamskillbar clearfix m-top-50" data-percent="97%">
+                                        <h6>SERVICE</h6>                                        <div class="teamskillbar-bar"></div>
                                     </div> <!-- End Skill Bar -->
                                 </div>
                             </div>

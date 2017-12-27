@@ -94,9 +94,10 @@
 						<h4>number of rooms</h4>
 						<select name="roomname" id="country" class="frm-field required">
 							<option value="0">Select a type of Room</option>
-				            <option value="3000">Suite room</option>         
-				            <option value="2000">Single room</option>
-							<option value="4000">Double room</option>
+				            <option value="90000">킹</option>         
+				            <option value="50000">디럭스</option>
+							<option value="300000">슈페리어</option>
+							<option value="150000">스탠다드</option>
 		        		</select>
 					</div>	
 					<div class="sel_room left" >
