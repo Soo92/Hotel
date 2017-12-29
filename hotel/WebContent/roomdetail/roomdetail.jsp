@@ -241,18 +241,18 @@
     JavaScripts
     =============================================
     -->
-    <script src="./roomdetail_files/jquery.js.다운로드"></script>
-    <script src="./roomdetail_files/bootstrap.min.js.다운로드"></script>
-    <script src="./roomdetail_files/wow.js.다운로드"></script>
-    <script src="./roomdetail_files/jquery.mb.YTPlayer.js.다운로드"></script>
-    <script src="./roomdetail_files/isotope.pkgd.js.다운로드"></script>
-    <script src="./roomdetail_files/imagesloaded.pkgd.js.다운로드"></script>
-    <script src="./roomdetail_files/jquery.flexslider.js.다운로드"></script>
-    <script src="./roomdetail_files/owl.carousel.min.js.다운로드"></script>
-    <script src="./roomdetail_files/smoothscroll.js.다운로드"></script>
-    <script src="./roomdetail_files/jquery.magnific-popup.js.다운로드"></script>
-    <script src="./roomdetail_files/jquery.simple-text-rotator.min.js.다운로드"></script>
-    <script src="./roomdetail_files/plugins.js.다운로드"></script>
-    <script src="./roomdetail_files/main.js.다운로드"></script>
+    <script src="./roomdetail_files/jquery.js"></script>
+    <script src="./roomdetail_files/bootstrap.min.js"></script>
+    <script src="./roomdetail_files/wow.js"></script>
+    <script src="./roomdetail_files/jquery.mb.YTPlayer.js"></script>
+    <script src="./roomdetail_files/isotope.pkgd.js"></script>
+    <script src="./roomdetail_files/imagesloaded.pkgd.js"></script>
+    <script src="./roomdetail_files/jquery.flexslider.js"></script>
+    <script src="./roomdetail_files/owl.carousel.min.js"></script>
+    <script src="./roomdetail_files/smoothscroll.js"></script>
+    <script src="./roomdetail_files/jquery.magnific-popup.js"></script>
+    <script src="./roomdetail_files/jquery.simple-text-rotator.min.js"></script>
+    <script src="./roomdetail_files/plugins.js"></script>
+    <script src="./roomdetail_files/main.js"></script>
   
 </body></html>

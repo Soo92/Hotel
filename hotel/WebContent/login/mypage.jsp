@@ -400,8 +400,8 @@ h1 a {
     z-index: 10;
 }
     </style>
-    <script src="./mypage_files/jquery-1.10.2.min.js.다운로드"></script>
-    <script src="./mypage_files/bootstrap.min.js.다운로드"></script>
+    <script src="./mypage_files/jquery-1.10.2.min.js"></script>
+    <script src="./mypage_files/bootstrap.min.js"></script>
     <script>
     function update(){
 		document.frm.submit();
