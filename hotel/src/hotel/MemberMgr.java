@@ -3,6 +3,7 @@ package hotel;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.Vector;
 
 
 public class MemberMgr {
@@ -186,7 +187,33 @@ public class MemberMgr {
 		}
 		return flag;
 	}
-	
+	public Vector<CartBean> getCartList() {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		Vector<CartBean> vlist = new Vector<>();
+		try {
+			con = pool.getConnection();
+			sql = "select * from cart";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				CartBean regBean = new CartBean();
+				regBean.setRoomname(rs.getString("roomname"));
+				regBean.setCheckin(rs.getString("checkin"));
+				regBean.setCheckout(rs.getString("checkout"));
+				regBean.setPeople(rs.getString("people"));
+				regBean.setPay(rs.getString("pay"));
+				vlist.addElement(regBean);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			pool.freeConnection(con);
+		}
+		return vlist;
+	}	
 	public CartBean getCart(int num) {
 		Connection con = null;
 		PreparedStatement pstmt = null;

@@ -1,11 +1,13 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@page import="hotel.CartBean"%>
+<%@page import="java.util.Vector"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
+<jsp:useBean id="roommgr" class="hotel.MemberMgr" />
 <!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 2 | Calendar</title>
+  <title>AdminHotel | Calendar</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -57,16 +59,16 @@
         <div class="col-md-3">
           <div class="box box-solid">
             <div class="box-header with-border">
-              <h4 class="box-title">Draggable Events</h4>
+              <h4 class="box-title">Event Handler</h4>
             </div>
             <div class="box-body">
               <!-- the events -->
               <div id="external-events">
-                <div class="external-event bg-green">Lunch</div>
-                <div class="external-event bg-yellow">Go home</div>
-                <div class="external-event bg-aqua">Do homework</div>
-                <div class="external-event bg-light-blue">Work on UI design</div>
-                <div class="external-event bg-red">Sleep tight</div>
+                <div class="external-event bg-green">Complete</div>
+                <div class="external-event bg-yellow">Waiting for payment</div>
+                <div class="external-event bg-aqua">InStore Reservation</div>
+                <div class="external-event bg-light-blue">Cart Reservation</div>
+                <div class="external-event bg-red">No Show</div>
                 <div class="checkbox">
                   <label for="drop-remove">
                     <input type="checkbox" id="drop-remove">
@@ -155,21 +157,17 @@
 <!-- Page specific script -->
 <script>
   $(function () {
-
     /* initialize the external events
      -----------------------------------------------------------------*/
     function init_events(ele) {
       ele.each(function () {
-
         // create an Event Object (http://arshaw.com/fullcalendar/docs/event_data/Event_Object/)
         // it doesn't need to have a start or end
         var eventObject = {
           title: $.trim($(this).text()) // use the element's text as the event title
         }
-
         // store the Event Object in the DOM element so we can get to it later
         $(this).data('eventObject', eventObject)
-
         // make the event draggable using jQuery UI
         $(this).draggable({
           zIndex        : 1070,
@@ -179,9 +177,7 @@
 
       })
     }
-
     init_events($('#external-events div.external-event'))
-
     /* initialize the calendar
      -----------------------------------------------------------------*/
     //Date for the calendar events (dummy data)
@@ -203,42 +199,18 @@
       },
       //Random default events
       events    : [
+<%Vector<CartBean> relist = roommgr.getCartList();
+for(int i=0;i<relist.size();i++){
+	String datein[] = relist.get(i).getCheckin().split("/");
+	String dateout[] = relist.get(i).getCheckout().split("/");%>
         {
-          title          : 'All Day Event',
-          start          : new Date(y, m, 1),
+          title          : <%=relist.get(i).getRoomname()%>,
+          start          : new Date(<%=datein[2]%>, <%=datein[0]%>-1, <%=datein[1]%>),
+          end            : new Date(<%=dateout[2]%>, <%=dateout[0]%>-1, <%=dateout[1]%>),
           backgroundColor: '#f56954', //red
           borderColor    : '#f56954' //red
         },
-        {
-          title          : 'Long Event',
-          start          : new Date(y, m, d - 5),
-          end            : new Date(y, m, d - 2),
-          backgroundColor: '#f39c12', //yellow
-          borderColor    : '#f39c12' //yellow
-        },
-        {
-          title          : 'Meeting',
-          start          : new Date(y, m, d, 10, 30),
-          allDay         : false,
-          backgroundColor: '#0073b7', //Blue
-          borderColor    : '#0073b7' //Blue
-        },
-        {
-          title          : 'Lunch',
-          start          : new Date(y, m, d, 12, 0),
-          end            : new Date(y, m, d, 14, 0),
-          allDay         : false,
-          backgroundColor: '#00c0ef', //Info (aqua)
-          borderColor    : '#00c0ef' //Info (aqua)
-        },
-        {
-          title          : 'Birthday Party',
-          start          : new Date(y, m, d + 1, 19, 0),
-          end            : new Date(y, m, d + 1, 22, 30),
-          allDay         : false,
-          backgroundColor: '#00a65a', //Success (green)
-          borderColor    : '#00a65a' //Success (green)
-        },
+<%}%>
         {
           title          : 'Click for Google',
           start          : new Date(y, m, 28),
@@ -251,23 +223,18 @@
       editable  : true,
       droppable : true, // this allows things to be dropped onto the calendar !!!
       drop      : function (date, allDay) { // this function is called when something is dropped
-
         // retrieve the dropped element's stored Event Object
         var originalEventObject = $(this).data('eventObject')
-
         // we need to copy it, so that multiple events don't have a reference to the same object
         var copiedEventObject = $.extend({}, originalEventObject)
-
         // assign it the date that was reported
         copiedEventObject.start           = date
         copiedEventObject.allDay          = allDay
         copiedEventObject.backgroundColor = $(this).css('background-color')
         copiedEventObject.borderColor     = $(this).css('border-color')
-
         // render the event on the calendar
         // the last `true` argument determines if the event "sticks" (http://arshaw.com/fullcalendar/docs/event_rendering/renderEvent/)
         $('#calendar').fullCalendar('renderEvent', copiedEventObject, true)
-
         // is the "remove after drop" checkbox checked?
         if ($('#drop-remove').is(':checked')) {
           // if so, remove the element from the "Draggable Events" list
@@ -276,7 +243,6 @@
 
       }
     })
-
     /* ADDING EVENTS */
     var currColor = '#3c8dbc' //Red by default
     //Color chooser button
@@ -288,6 +254,7 @@
       //Add color effect to button
       $('#add-new-event').css({ 'background-color': currColor, 'border-color': currColor })
     })
+    
     $('#add-new-event').click(function (e) {
       e.preventDefault()
       //Get value and make sure it is not null
@@ -295,7 +262,6 @@
       if (val.length == 0) {
         return
       }
-
       //Create events
       var event = $('<div />')
       event.css({

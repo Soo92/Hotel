@@ -1,11 +1,16 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@page import="org.apache.jasper.tagplugins.jstl.core.ForEach"%>
+<%@page import="java.util.ArrayList"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
+<jsp:useBean id="tablemgr" class="hotel.AllTableMgr" />
+<%
+	ArrayList<String> tablelist = tablemgr.findTable();
+%>
 <!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 2 | Data Tables</title>
+  <title>AdminHotel | Data Tables</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -45,13 +50,9 @@
       <h1>Data Tables
               <div class="form-group">
                 <select class="form-control select2" multiple="multiple" data-placeholder="Select Table" style="width: 50%;">
-                  <option>Alabama</option>
-                  <option>Alaska</option>
-                  <option>California</option>
-                  <option>Delaware</option>
-                  <option>Tennessee</option>
-                  <option>Texas</option>
-                  <option>Washington</option>
+             <%for(int i=0;i<tablelist.size();i++) {%>
+                  <option><%=tablelist.get(i) %></option>
+             <%} %>
                 </select>
               </div>
       </h1>
@@ -66,131 +67,39 @@
     <section class="content">
       <div class="row">
         <div class="col-xs-12">
-          <div class="box" id="Alaska">
+   <%for(int i=0;i<tablelist.size();i++) {%>
+          <div class="box" id="<%=tablelist.get(i) %>">
             <div class="box-header">
-              <h3 class="box-title">Alaska</h3>
+              <h3 class="box-title"><%=tablelist.get(i) %></h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-              <table id="example1" class="table table-bordered table-striped">
+              <table id="example<%=i %>" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                  <th>Rendering engine</th>
-                  <th>Browser</th>
-                  <th>Platform(s)</th>
-                  <th>Engine version</th>
-                  <th>CSS grade</th>
+        <%ArrayList<String> Column = tablemgr.GetColumn(tablelist.get(i));
+        for(int j=0;j<Column.size();j++) {%>
+                  <th><%=Column.get(j) %></th>
+		<%} %>
                 </tr>
                 </thead>
-                <tbody>
+                 <tbody>
+        <%ArrayList<ArrayList<String>> Content = tablemgr.GetFullContent(tablelist.get(i), Column);
+        for(int j=0;j<Content.size();j++) {%>
                 <tr>
-                  <td>Trident</td>
-                  <td>Internet
-                    Explorer 4.0
-                  </td>
-                  <td>Win 95+</td>
-                  <td> 4</td>
-                  <td>X</td>
+	        <% for(int k=0;k<Column.size();k++) {
+	        	%>
+                  <td><%=Content.get(j).get(k) %></td>
+			<%} %>
                 </tr>
+		<%} %>
                 </tbody>
-                <tfoot>
-                <tr>
-                  <th>Rendering engine</th>
-                  <th>Browser</th>
-                  <th>Platform(s)</th>
-                  <th>Engine version</th>
-                  <th>CSS grade</th>
-                </tr>
-                </tfoot>
               </table>
             </div>
             <!-- /.box-body -->
           </div>
           <!-- /.box -->
-
-          <div class="box" id="Alabama">
-            <div class="box-header">
-              <h3 class="box-title">Alabama</h3>
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body">
-              <table id="example2" class="table table-bordered table-striped">
-                <thead>
-                <tr>
-                  <th>Rendering engine</th>
-                  <th>Browser</th>
-                  <th>Platform(s)</th>
-                  <th>Engine version</th>
-                  <th>CSS grade</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                  <td>Trident</td>
-                  <td>Internet
-                    Explorer 4.0
-                  </td>
-                  <td>Win 95+</td>
-                  <td> 4</td>
-                  <td>X</td>
-                </tr>
-                </tbody>
-                <tfoot>
-                <tr>
-                  <th>Rendering engine</th>
-                  <th>Browser</th>
-                  <th>Platform(s)</th>
-                  <th>Engine version</th>
-                  <th>CSS grade</th>
-                </tr>
-                </tfoot>
-              </table>
-            </div>
-            <!-- /.box-body -->
-          </div>
-          <!-- /.box -->
-
-          <div class="box" id="Texas">
-            <div class="box-header">
-              <h3 class="box-title">Texas</h3>
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body">
-              <table id="example3" class="table table-bordered table-striped">
-                <thead>
-                <tr>
-                  <th>Rendering engine</th>
-                  <th>Browser</th>
-                  <th>Platform(s)</th>
-                  <th>Engine version</th>
-                  <th>CSS grade</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                  <td>Trident</td>
-                  <td>Internet
-                    Explorer 4.0
-                  </td>
-                  <td>Win 95+</td>
-                  <td> 4</td>
-                  <td>X</td>
-                </tr>
-                </tbody>
-                <tfoot>
-                <tr>
-                  <th>Rendering engine</th>
-                  <th>Browser</th>
-                  <th>Platform(s)</th>
-                  <th>Engine version</th>
-                  <th>CSS grade</th>
-                </tr>
-                </tfoot>
-              </table>
-            </div>
-            <!-- /.box-body -->
-          </div>
-          <!-- /.box -->
+	<%} %>
         </div>
         <!-- /.col -->
       </div>
@@ -223,9 +132,9 @@
 <script>
 $(function () {
   $('.select2').select2()
-  $('#example1').DataTable()
-  $('#example2').DataTable()
-  $('#example3').DataTable()
+<%for(int i=0;i<tablelist.size();i++) {%>
+  $('#example<%=i%>').DataTable()
+<%}%>
 })
 var speed=300;
 $(".select2").change("select2:select", function (e) { 

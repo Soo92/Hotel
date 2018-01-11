@@ -4,8 +4,8 @@
 	String email = session.getAttribute("admin")+"";
 	boolean login = session.getAttribute("admin")!=(null);
 	boolean lock = session.getAttribute("remem")!=null;
-	if(lock&&!login) response.sendRedirect("pages/admin_login/lockscreen.jsp");
-	else if(!login) response.sendRedirect("pages/admin_login/login.html");
+	if(lock&&!login) response.sendRedirect("/hotel/admin/pages/admin_login/lockscreen.jsp");
+	else if(!login) response.sendRedirect("/hotel/admin/pages/admin_login/login.html");
 %>
   <header class="main-header">
     <!-- Logo -->
