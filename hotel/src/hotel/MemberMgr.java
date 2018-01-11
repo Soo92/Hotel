@@ -38,6 +38,33 @@ public class MemberMgr {
 		return flag;
 	}
 
+	public boolean Checkgrade(String email, String pass) {
+		boolean flag = false;
+		if(loginMember(email, pass)) {
+			Connection con = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			String sql = null;
+			try {
+				con = pool.getConnection();
+				sql = "select grade from tblhotel "
+						+ "where email=? and pass=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, email);
+				pstmt.setString(2, pass);
+				rs = pstmt.executeQuery();
+				if(rs.next()&&rs.getString(1).equals("admin")) {
+					flag = true;
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				pool.freeConnection(con, pstmt, rs);
+			}
+		}
+		return flag;
+	}
+	
 	//Email 중복확인 - true 중복
 	public boolean checkId(String email) {
 		Connection con = null;
@@ -101,6 +128,7 @@ public class MemberMgr {
 				regBean.setPass(rs.getString("pass"));
 				regBean.setEmail(rs.getString("email"));
 				regBean.setCart(rs.getString("cart"));
+				regBean.setGrade(rs.getString("grade"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

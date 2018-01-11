@@ -6,7 +6,14 @@ public class MemberBean {
 	private String pass;
 	private String email;
 	private String cart;
+	private String Grade;
 	
+	public String getGrade() {
+		return Grade;
+	}
+	public void setGrade(String grade) {
+		Grade = grade;
+	}
 	public String getId() {
 		return id;
 	}

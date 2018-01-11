@@ -1,12 +1,19 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-   pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
+<jsp:useBean id="mgr" class="hotel.MemberMgr"/>
+<%
+	String email = session.getAttribute("admin")+"";
+	boolean login = session.getAttribute("admin")!=(null);
+	boolean lock = session.getAttribute("remem")!=null;
+	if(lock&&!login) response.sendRedirect("pages/admin_login/lockscreen.jsp");
+	else if(!login) response.sendRedirect("pages/admin_login/login.html");
+%>
   <header class="main-header">
     <!-- Logo -->
-    <a href="index2.html" class="logo">
+    <a href="/hotel/admin/index.html" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>A</b>LT</span>
+      <span class="logo-mini"><b>A</b>HO</span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Admin</b>LTE</span>
+      <span class="logo-lg"><b>Admin</b>HOTEL</span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
@@ -31,7 +38,7 @@
                   <li><!-- start message -->
                     <a href="#">
                       <div class="pull-left">
-                        <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                        <img src="/hotel/admin/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
                       </div>
                       <h4>
                         Support Team
@@ -44,7 +51,7 @@
                   <li>
                     <a href="#">
                       <div class="pull-left">
-                        <img src="dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">
+                        <img src="/hotel/admin/dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">
                       </div>
                       <h4>
                         AdminLTE Design Team
@@ -56,7 +63,7 @@
                   <li>
                     <a href="#">
                       <div class="pull-left">
-                        <img src="dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">
+                        <img src="/hotel/admin/dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">
                       </div>
                       <h4>
                         Developers
@@ -68,7 +75,7 @@
                   <li>
                     <a href="#">
                       <div class="pull-left">
-                        <img src="dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">
+                        <img src="/hotel/admin/dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">
                       </div>
                       <h4>
                         Sales Department
@@ -80,7 +87,7 @@
                   <li>
                     <a href="#">
                       <div class="pull-left">
-                        <img src="dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">
+                        <img src="/hotel/admin/dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">
                       </div>
                       <h4>
                         Reviewers
@@ -217,33 +224,18 @@
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-              <span class="hidden-xs">Alexander Pierce</span>
+              <img src="/hotel/admin/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+              <span class="hidden-xs"><%=mgr.getMember(email).getId() %></span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                <img src="/hotel/admin/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
                 <p>
-                  Alexander Pierce - Web Developer
-                  <small>Member since Nov. 2012</small>
+                  <%=mgr.getMember(email).getId() %>
+                  <small><%=mgr.getMember(email).getGrade() %></small>
                 </p>
-              </li>
-              <!-- Menu Body -->
-              <li class="user-body">
-                <div class="row">
-                  <div class="col-xs-4 text-center">
-                    <a href="#">Followers</a>
-                  </div>
-                  <div class="col-xs-4 text-center">
-                    <a href="#">Sales</a>
-                  </div>
-                  <div class="col-xs-4 text-center">
-                    <a href="#">Friends</a>
-                  </div>
-                </div>
-                <!-- /.row -->
               </li>
               <!-- Menu Footer-->
               <li class="user-footer">
@@ -251,7 +243,7 @@
                   <a href="#" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
-                  <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                  <a href="/hotel/admin/pages/admin_login/logout.jsp" class="btn btn-default btn-flat">Sign out</a>
                 </div>
               </li>
             </ul>
@@ -271,10 +263,10 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel">
         <div class="pull-left image">
-          <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+          <img src="/hotel/admin/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>Alexander Pierce</p>
+          <p><%=mgr.getMember(email).getId() %></p>
           <!-- Status -->
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
@@ -284,14 +276,18 @@
       <ul class="sidebar-menu" id="sdme" data-widget="tree">
         <li class="header">HEADER</li>
         <!-- Optionally, you can add icons to the links -->
-        <li class="active"><a href="index.jsp"><i class="fa fa-pie-chart"></i> <span>DASHBOARD</span></a></li>
-        <li><a href="/hotel/admin/pages/tables/data.html"><i class="fa fa-users"></i> <span>CLIENT</span></a></li>
-        <li><a href="/hotel/admin/pages/mailbox/mailbox.html"><i class="fa fa-calendar"></i> <span>RESERVATION</span></a></li>
-        <li><a href="/hotel/admin/pages/mailbox/mailbox.html"><i class="fa fa-hotel"></i> <span>ROOM&REVIEW</span></a></li>
-        <li><a href="/hotel/admin/pages/mailbox/mailbox.html"><i class="fa fa-envelope"></i> <span>MAIL</span></a></li>
-        <li><a href="/hotel/admin/pages/tables/data.html"><i class="fa fa-table"></i> <span>TABLE</span></a></li>
+        <li id="index"><a href="/hotel/admin/index.jsp"><i class="fa fa-pie-chart"></i> <span>DASHBOARD</span></a></li>
+        <li id="client"><a href="/hotel/admin/pages/admin_link/client.jsp"><i class="fa fa-users"></i> <span>CLIENT</span></a></li>
+        <li id="reservation"><a href="/hotel/admin/pages/admin_link/reservation.jsp"><i class="fa fa-calendar"></i> <span>RESERVATION</span></a></li>
+        <li id="room&review"><a href="/hotel/admin/pages/admin_link/room&review.jsp"><i class="fa fa-hotel"></i> <span>ROOM&REVIEW</span></a></li>
+        <li id="mail"><a href="/hotel/admin/pages/admin_link/mail.jsp"><i class="fa fa-envelope"></i> <span>MAIL</span></a></li>
+        <li id="table"><a href="/hotel/admin/pages/admin_link/table.jsp"><i class="fa fa-table"></i> <span>TABLE</span></a></li>
       </ul>
       <!-- /.sidebar-menu -->
     </section>
     <!-- /.sidebar -->
   </aside>
+<script>
+	var title = location.pathname.split("/")[location.pathname.split("/").length-1].replace(".jsp","");
+	document.getElementById(title).className="active";
+</script>
