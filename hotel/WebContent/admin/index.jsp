@@ -1,4 +1,8 @@
+<%@page import="hotel.CountBean"%>
+<%@page import="java.util.Vector"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
+<jsp:useBean id="cmgr" class="hotel.CountMgr" />
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -405,17 +409,17 @@
               <div class="row">
                 <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
                   <div id="sparkline-1"></div>
-                  <div class="knob-label">Visitors</div>
+                  <div class="knob-label">Year</div>
                 </div>
                 <!-- ./col -->
                 <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
                   <div id="sparkline-2"></div>
-                  <div class="knob-label">Online</div>
+                  <div class="knob-label">Month</div>
                 </div>
                 <!-- ./col -->
                 <div class="col-xs-4 text-center">
                   <div id="sparkline-3"></div>
-                  <div class="knob-label">Exists</div>
+                  <div class="knob-label">Day</div>
                 </div>
                 <!-- ./col -->
               </div>
@@ -643,17 +647,17 @@ $(function () {
 
   // jvectormap data
   var visitorsData = {
-    US: 398, // USA
-    SA: 400, // Saudi Arabia
-    CA: 1000, // Canada
-    DE: 500, // Germany
-    FR: 760, // France
-    CN: 300, // China
-    AU: 700, // Australia
-    BR: 600, // Brazil
-    IN: 800, // India
-    GB: 320, // Great Britain
-    RU: 3000 // Russia
+//     US: 400, // USA
+//     SA: 400, // Saudi Arabia
+//     CA: 400, // Canada
+//     DE: 400, // Germany
+//     FR: 400, // France
+//     CN: 400, // China
+//     AU: 400, // Australia
+//     BR: 400, // Brazil
+//     IN: 400, // India
+//     GB: 400, // Great Britain
+    KR: <%=cmgr.getCount().getTotal()%> // Korea
   };
   // World map by jvectormap
   $('#world-map').vectorMap({
@@ -684,7 +688,13 @@ $(function () {
   });
 
   // Sparkline charts
-  var myvalues = [1000, 1200, 920, 927, 931, 1027, 819, 930, 1021];
+  <%Vector<CountBean> vlist =  cmgr.getCount("year", 6);%>
+  var myvalues = [
+	  <% for(int i=0; i<vlist.size();i++){%>
+	  <%if(i==vlist.size()-1){%><%=vlist.get(i).getTotal()%>
+	  <%}else{%><%=vlist.get(i).getTotal()+", "%>
+	  <%}}%>
+	  ];
   $('#sparkline-1').sparkline(myvalues, {
     type     : 'line',
     lineColor: '#92c1dc',
@@ -692,7 +702,13 @@ $(function () {
     height   : '50',
     width    : '80'
   });
-  myvalues = [515, 519, 520, 522, 652, 810, 370, 627, 319, 630, 921];
+  <%vlist =  cmgr.getCount("month", 6);%>
+  myvalues = [
+	  <% for(int i=0; i<vlist.size();i++){%>
+	  <%if(i==vlist.size()-1){%><%=vlist.get(i).getTotal()%>
+	  <%}else{%><%=vlist.get(i).getTotal()+", "%>
+	  <%}}%>
+	  ];
   $('#sparkline-2').sparkline(myvalues, {
     type     : 'line',
     lineColor: '#92c1dc',
@@ -700,7 +716,13 @@ $(function () {
     height   : '50',
     width    : '80'
   });
-  myvalues = [15, 19, 20, 22, 33, 27, 31, 27, 19, 30, 21];
+  <%vlist =  cmgr.getCount("day", 6);%>
+  myvalues = [
+	  <% for(int i=0; i<vlist.size();i++){%>
+	  <%if(i==vlist.size()-1){%><%=vlist.get(i).getTotal()%>
+	  <%}else{%><%=vlist.get(i).getTotal()+", "%>
+	  <%}}%>
+	  ];
   $('#sparkline-3').sparkline(myvalues, {
     type     : 'line',
     lineColor: '#92c1dc',
