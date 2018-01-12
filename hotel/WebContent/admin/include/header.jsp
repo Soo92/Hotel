@@ -9,7 +9,7 @@
 %>
   <header class="main-header">
     <!-- Logo -->
-    <a href="/hotel/admin/index.html" class="logo">
+    <a href="/hotel/admin/starter.html" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>A</b>HO</span>
       <!-- logo for regular state and mobile devices -->
