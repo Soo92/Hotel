@@ -11,6 +11,14 @@ public class RoomBean {
 	private String subcont1;	  		
 	private String subcont2;	  		
 	private String subcont3;
+	private String color;
+	
+	public String getColor() {
+		return color;
+	}
+	public void setColor(String color) {
+		this.color = color;
+	}
 	public int getIdx() {
 		return idx;
 	}

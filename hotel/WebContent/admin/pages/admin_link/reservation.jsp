@@ -1,7 +1,10 @@
+<%@page import="hotel.RoomBean"%>
 <%@page import="hotel.CartBean"%>
 <%@page import="java.util.Vector"%>
-<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
+<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <jsp:useBean id="roommgr" class="hotel.MemberMgr" />
+<jsp:useBean id="rmmgr" class="hotel.RoomMgr" />
+<% rmmgr.checkRoom(); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -60,21 +63,59 @@
           <div class="box box-solid">
             <div class="box-header with-border">
               <h4 class="box-title">Event Handler</h4>
+              <a class="fa fa-save" style="float: right;margin-left:5px;"></a>
+              <a class="fa fa-repeat" style="float: right;"></a>
             </div>
             <div class="box-body">
               <!-- the events -->
-              <div id="external-events">
-                <div class="external-event bg-green">Complete</div>
-                <div class="external-event bg-yellow">Waiting for payment</div>
-                <div class="external-event bg-aqua">InStore Reservation</div>
-                <div class="external-event bg-light-blue">Cart Reservation</div>
-                <div class="external-event bg-red">No Show</div>
-                <div class="checkbox">
-                  <label for="drop-remove">
-                    <input type="checkbox" id="drop-remove">
-                    remove after drop
-                  </label>
-                </div>
+            <div id="external-events">
+            <div class="external-noevent bg-green">Complete</div>
+            <div class="external-noevent bg-red">No Show</div>
+            <div class="external-noevent bg-yellow">Online Reservation</div>
+			<div class="external-event bg-aqua">InStore Reservation</div>
+			  <div class="btn-group">
+                  <button id="" type="button" class="btn btn-info btn-flat dropdown-toggle" data-toggle="dropdown">Room Name</button>
+                  <ul class="dropdown-menu" role="menu">
+		<%Vector<RoomBean> roomlist = rmmgr.getRoomList();
+		for(int i=0;i<roomlist.size();i++){%>
+                    <li><a id="<%=roomlist.get(i).getPrice() %>" class="<%=roomlist.get(i).getRoomname() %>" href="#" onclick="$(this).parent().parent().siblings('button').text($(this).text());$(this).parent().parent().siblings('button').attr('id',this.id);">
+                    <%=roomlist.get(i).getRoomname() %></a></li>
+        <%} %>
+                  </ul>
+              </div>
+			  <div class="btn-group">
+        		  <button type="button" class="btn btn-info btn-flat dropdown-toggle" data-toggle="dropdown">Adult</button>
+                  <ul class="dropdown-menu" role="menu">
+		<%for(int i=0;i<5;i++){%>
+                    <li><a href="#" onclick="$(this).parent().parent().siblings('button').text($(this).text());">
+                    <%=i %></a></li>
+        <%} %>
+                  </ul>
+              </div>
+			  <div class="btn-group">
+          		  <button type="button" class="btn btn-info btn-flat dropdown-toggle" data-toggle="dropdown">Child<05</button>
+                  <ul class="dropdown-menu" role="menu">
+		<%for(int i=0;i<5;i++){%>
+                    <li><a href="#" onclick="$(this).parent().parent().siblings('button').text($(this).text());">
+                    <%=i %></a></li>
+        <%} %>
+                  </ul>
+              </div>
+			  <div class="btn-group">
+        		  <button type="button" class="btn btn-info btn-flat dropdown-toggle" data-toggle="dropdown">Child>06</button>
+                  <ul class="dropdown-menu" role="menu">
+		<%for(int i=0;i<5;i++){%>
+                    <li><a href="#" onclick="$(this).parent().parent().siblings('button').text($(this).text());">
+                    <%=i %></a></li>
+        <%} %>
+                  </ul>
+              </div>
+               <div class="checkbox">
+	              <label for="drop-remove">
+	                <input type="checkbox" id="drop-remove">
+	                remove after drop
+	              </label>
+             	</div>
               </div>
             </div>
             <!-- /.box-body -->
@@ -136,6 +177,9 @@
 <%@include file="../../include/footer.jsp"%>
 </div>
 <!-- ./wrapper -->
+<form action="../admin_cart/cart_proc.jsp" name="cartP">
+	<input type="hidden" name="array">
+</form>
 
 <!-- jQuery 3 -->
 <script src="../../bower_components/jquery/dist/jquery.min.js"></script>
@@ -164,7 +208,7 @@
         // create an Event Object (http://arshaw.com/fullcalendar/docs/event_data/Event_Object/)
         // it doesn't need to have a start or end
         var eventObject = {
-          title: $.trim($(this).text()) // use the element's text as the event title
+           title: $.trim($(this).text()) // use the element's text as the event title
         }
         // store the Event Object in the DOM element so we can get to it later
         $(this).data('eventObject', eventObject)
@@ -181,6 +225,12 @@
     /* initialize the calendar
      -----------------------------------------------------------------*/
     //Date for the calendar events (dummy data)
+    var bcolor = {
+	    cart: '#f39c12',
+	    instore: '#00c0ef',
+	    complete: '#00a65a',
+	    noshow: '#dd4b39'
+	};
     var date = new Date()
     var d    = date.getDate(),
         m    = date.getMonth(),
@@ -197,51 +247,110 @@
         week : 'week',
         day  : 'day'
       },
-      //Random default events
       events    : [
 <%Vector<CartBean> relist = roommgr.getCartList();
 for(int i=0;i<relist.size();i++){
 	String datein[] = relist.get(i).getCheckin().split("/");
 	String dateout[] = relist.get(i).getCheckout().split("/");%>
         {
-          title          : <%=relist.get(i).getRoomname()%>,
-          start          : new Date(<%=datein[2]%>, <%=datein[0]%>-1, <%=datein[1]%>),
-          end            : new Date(<%=dateout[2]%>, <%=dateout[0]%>-1, <%=dateout[1]%>),
-          backgroundColor: '#f56954', //red
-          borderColor    : '#f56954' //red
+          id		     : '<%=relist.get(i).getNum()%>',
+          title          : '<%=relist.get(i).getRoomname()%> <%=relist.get(i).getPeople()%> Total <%=relist.get(i).getPay()%>',
+          start          : new Date(<%=datein[2]%>, <%=Integer.parseInt(datein[0])-1%>, <%=datein[1]%>),
+          end            : new Date(<%=dateout[2]%>, <%=Integer.parseInt(datein[0])-1%>, <%=dateout[1]%>),
+          url            : '#',
+          backgroundColor: bcolor['<%=relist.get(i).getStatus()%>'] ,
+          borderColor	 : '<%=rmmgr.getRoomColor(relist.get(i).getRoomname())%>', 
+          allDay 		 : true
         },
 <%}%>
-        {
-          title          : 'Click for Google',
-          start          : new Date(y, m, 28),
-          end            : new Date(y, m, 29),
-          url            : 'http://google.com/',
-          backgroundColor: '#3c8dbc', //Primary (light-blue)
-          borderColor    : '#3c8dbc' //Primary (light-blue)
-        }
       ],
       editable  : true,
+      eventLimit: true,
       droppable : true, // this allows things to be dropped onto the calendar !!!
       drop      : function (date, allDay) { // this function is called when something is dropped
         // retrieve the dropped element's stored Event Object
         var originalEventObject = $(this).data('eventObject')
         // we need to copy it, so that multiple events don't have a reference to the same object
         var copiedEventObject = $.extend({}, originalEventObject)
-        // assign it the date that was reported
+        var end=new moment(date);
+      	var b=end.add(1,'day');
+		// assign it the date that was reported
+        copiedEventObject.id           	  = ($(this).next().children('button').length>0?"instore/":"memo/")+new Date().getTime()
+	    copiedEventObject.title           = $(this).next().children('button').length>0?(
+        									(($.trim($(this).next().children('button').text())=="Room Name")?"<%=rmmgr.getRoomDefault().getRoomname()%>":($.trim($(this).next().children('button').text())))
+        									+" "+(($.trim($(this).next().next().children('button').text())=="Adult")?1:($.trim($(this).next().next().children('button').text())))
+        									+"/"+(($.trim($(this).next().next().next().children('button').text())=="Child<05")?0:($.trim($(this).next().next().next().children('button').text())))
+        									+"/"+(($.trim($(this).next().next().next().next().children('button').text())=="Child>06")?0:($.trim($(this).next().next().next().next().children('button').text())))
+        									+" Total "+(($.trim($(this).next().children('button').text())=="Room Name")?
+        											(<%=rmmgr.getRoomPrice(rmmgr.getRoomDefault().getRoomname())%>*(($.trim($(this).next().next().children('button').text())=="Adult")?
+        													1:($.trim($(this).next().next().children('button').text()))))
+        											:($.trim($(this).next().children('button').attr('id')))))
+        									:$.trim($(this).text())
         copiedEventObject.start           = date
-        copiedEventObject.allDay          = allDay
-        copiedEventObject.backgroundColor = $(this).css('background-color')
-        copiedEventObject.borderColor     = $(this).css('border-color')
+		var id=copiedEventObject.id.split("/")[0];
+        if(id!="memo"){
+        	copiedEventObject.end         = b
+        }
+		copiedEventObject.borderColor     = $(this).css('border-color')
         // render the event on the calendar
         // the last `true` argument determines if the event "sticks" (http://arshaw.com/fullcalendar/docs/event_rendering/renderEvent/)
-        $('#calendar').fullCalendar('renderEvent', copiedEventObject, true)
+		$(this).next().children('button').text("Room Name")
+		$(this).next().next().children('button').text("Adult")
+		$(this).next().next().next().children('button').text("Child<05")
+		$(this).next().next().next().next().children('button').text("Child>06")
+		$('#calendar').fullCalendar('renderEvent', copiedEventObject, true)
         // is the "remove after drop" checkbox checked?
         if ($('#drop-remove').is(':checked')) {
           // if so, remove the element from the "Draggable Events" list
           $(this).remove()
         }
+      },
+      eventResize: function(event, delta, revertFunc) {
+          event.title = event.title.replace(event.title.split(" ")[event.title.split(" ").length-1],
+        		  event.title.split(" ")[1].split("/")[0]*$('.'+(event.title.split(" ")[0])).attr('id')*(event.end.diff(event.start,'days')));
+	      $('#calendar').fullCalendar('updateEvent', event);
+      },
+      eventDragStop: function(event,jsEvent) {
+    	    var trashEl = jQuery('#calendar');
+    	    var ofs = trashEl.offset();
+    	    var x1 = ofs.left;
+    	    var x2 = ofs.left + trashEl.outerWidth(true);
+    	    var y1 = ofs.top;
+    	    var y2 = ofs.top + trashEl.outerHeight(true);
+    	    if (!(jsEvent.pageX >= x1 && jsEvent.pageX <= x2 &&
+        	        jsEvent.pageY >= y1 && jsEvent.pageY <= y2)) {
+   	           if (confirm("Are you sure about this change?")) {
+        	   		trashEl.fullCalendar('removeEvents', event.id);
+   	           }
+    	    }
+    	}
+    })
+    $('.fa-save').click(function(){
+    	var myArray = new Array( new Array(6), new Array($('#calendar').fullCalendar('clientEvents').length) );
+    	for(var i=0;i<$('#calendar').fullCalendar('clientEvents').length;i++){
+    		var cal=$('#calendar').fullCalendar('clientEvents')[i];
+    		var id=cal.id.split("/")[0];
+    		var title=cal.title.split(" ");
+    		console.log("---------");
+    		console.log(id);
+		    console.log(title[0]);
+    		console.log(cal.start.format());
+    		if(id!="memo"){
+    			console.log(cal.end.format());
+    		}
+		    console.log(title[1]);
+		    console.log(title[3]);
 
-      }
+		    myArray[0][i]=id;
+		    myArray[1][i]=title[0];
+    		myArray[2][i]=cal.start.format();
+    		if(id!="memo"){
+    			myArray[3][i]=cal.end.format();
+    		}
+    		myArray[4][i]=title[1];
+    		myArray[5][i]=title[3];
+   		}
+    	console.log(myArray);
     })
     /* ADDING EVENTS */
     var currColor = '#3c8dbc' //Red by default
@@ -270,7 +379,7 @@ for(int i=0;i<relist.size();i++){
         'color'           : '#fff'
       }).addClass('external-event')
       event.html(val)
-      $('#external-events').prepend(event)
+      $('#external-events').append(event)
 
       //Add draggable funtionality
       init_events(event)

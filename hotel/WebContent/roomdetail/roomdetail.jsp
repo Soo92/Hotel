@@ -17,7 +17,7 @@
 		String subcont1 = roomBean.getSubcont1();
 		String subcont2 = roomBean.getSubcont2();
 		String subcont3 = roomBean.getSubcont3();
-		Vector<RoomBean> vlist = roomMgr.getMemberList();
+		Vector<RoomBean> vlist = roomMgr.getRoomList();
 %>
 <!DOCTYPE html>
 <!-- saved from url=(0054)file:///C:/Users/it/Desktop/roomdetail/roomdetail.html -->

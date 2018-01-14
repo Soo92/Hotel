@@ -130,6 +130,7 @@ public class MemberMgr {
 				regBean.setEmail(rs.getString("email"));
 				regBean.setCart(rs.getString("cart"));
 				regBean.setGrade(rs.getString("grade"));
+				regBean.setPic(rs.getString("pic"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -169,14 +170,15 @@ public class MemberMgr {
 		boolean flag = false;
 		try {
 			con = pool.getConnection();
-			sql = "insert cart(roomname,checkin,checkout,people,pay)"
-					+ "values(?,?,?,?,?)";
+			sql = "insert cart(roomname,checkin,checkout,people,pay,status)"
+					+ "values(?,?,?,?,?,?)";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, bean.getRoomname());
 			pstmt.setString(2, bean.getCheckin());
 			pstmt.setString(3, bean.getCheckout());
 			pstmt.setString(4, bean.getPeople());
 			pstmt.setString(5, bean.getPay());
+			pstmt.setString(6, "cart");
 			if(pstmt.executeUpdate()==1) {
 				flag = true;
 			}
@@ -200,11 +202,13 @@ public class MemberMgr {
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				CartBean regBean = new CartBean();
+				regBean.setNum(rs.getInt("num"));
 				regBean.setRoomname(rs.getString("roomname"));
 				regBean.setCheckin(rs.getString("checkin"));
 				regBean.setCheckout(rs.getString("checkout"));
 				regBean.setPeople(rs.getString("people"));
 				regBean.setPay(rs.getString("pay"));
+				regBean.setStatus(rs.getString("status"));
 				vlist.addElement(regBean);
 			}
 		} catch (Exception e) {
@@ -227,11 +231,13 @@ public class MemberMgr {
 			pstmt.setInt(1, num);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
+				regBean.setNum(rs.getInt("num"));
 				regBean.setRoomname(rs.getString("roomname"));
 				regBean.setCheckin(rs.getString("checkin"));
 				regBean.setCheckout(rs.getString("checkout"));
 				regBean.setPeople(rs.getString("people"));
 				regBean.setPay(rs.getString("pay"));
+				regBean.setStatus(rs.getString("status"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -314,6 +320,10 @@ public class MemberMgr {
 		String title = name+" 문의 내역";
 		String content = "email : " + email + ", " + "name : " + name
 				+"\ncontent : " + message;
-		Gmail_Mail.send(title, content, "bigdata8686@gmail.com");
+		Gmail_Mail.send(title, content, email);
+	}
+	public void Mailing(String title,String content,String email) {
+		System.out.println(content);
+		Gmail_Mail.send(title, content, email);
 	}
 }

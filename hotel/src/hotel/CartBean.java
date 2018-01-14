@@ -7,6 +7,14 @@ public class CartBean {
 	String checkout;
 	String people;
 	String pay;
+	String status;
+	
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
 	public int getNum() {
 		return num;
 	}

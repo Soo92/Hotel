@@ -12,11 +12,14 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 public class Gmail_Mail {
+
+	static String Sender = "bigdata8686";
+	static String SenderPw = "bigdata868686";
 	
-	public static void send(String title, String content, String Email/*包府磊*/) {
+	public static void send(String title, String content, String Email) {
 		
 		Properties p = new Properties();
-		p.put("mail.smtp.user", Email); 
+		p.put("mail.smtp.user", Sender+"@gmail.com"); 
 		p.put("mail.smtp.host", "smtp.gmail.com");
 		p.put("mail.smtp.port", "465");
 		p.put("mail.smtp.starttls.enable", "true");
@@ -36,13 +39,15 @@ public class Gmail_Mail {
 			String message = content;
 			msg.setSubject(title);
 			
-			Address fromAddr = new InternetAddress(Email); 
+			Address fromAddr = new InternetAddress(Sender+"@gmail.com"); 
 			msg.setFrom(fromAddr);
 			
 			Address toAddr = new InternetAddress(Email); 
 			msg.addRecipient(Message.RecipientType.TO, toAddr);
-			msg.setContent(message, "text/plain;charset=KSC5601");
-			
+			if(Email.equals(Sender+"@gmail.com"))
+				msg.setContent(message, "text/plain; charset=KSC5601");
+			else
+				msg.setContent(message, "text/html; charset=utf-8");
 			Transport.send(msg);
 			
 		} catch (Exception e) { 
@@ -52,14 +57,9 @@ public class Gmail_Mail {
 
 	private static class SMTPAuthenticator extends Authenticator {
 		public PasswordAuthentication getPasswordAuthentication() {
-			return new PasswordAuthentication("bigdata8686", "bigdata868686");
+			return new PasswordAuthentication(Sender, SenderPw);
 		}
 	}
-	
-/*	public static void main(String[] args) {
-		send("力格111", "郴侩111", "simba222@naver.com");
-		System.out.println("傈价己傍");
-	}*/
 }
 
 

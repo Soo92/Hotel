@@ -14,6 +14,26 @@ public class RoomMgr {
 		pool = DBConnectionMgr.getInstance();
 	}
 	
+	public void checkRoom() {
+		;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		try {
+			con = pool.getConnection();
+			sql = "update cart set status='noshow' where checkin<date_format(now(), '%m/%d/%Y')";
+			pstmt = con.prepareStatement(sql);
+			pstmt.executeUpdate();
+			sql = "update cart set status='cart' where checkin>=date_format(now(), '%m/%d/%Y')";
+			pstmt = con.prepareStatement(sql);
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			pool.freeConnection(con);
+		}
+	}
+
 	public RoomBean getRoom(int index) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -36,6 +56,7 @@ public class RoomMgr {
 				regBean.setSubcont1(rs.getString("subcont1"));
 				regBean.setSubcont2(rs.getString("subcont2"));
 				regBean.setSubcont3(rs.getString("subcont3"));
+				regBean.setColor(rs.getString("color"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -45,6 +66,82 @@ public class RoomMgr {
 		return regBean;
 	}
 	
+	public String getRoomColor(String RoomName) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		String reg = "";
+		try {
+			con = pool.getConnection();
+			sql = "select color from hoteldetail where roomname=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, RoomName);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				reg=rs.getString("color");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			pool.freeConnection(con);
+		}
+		return reg;
+	}	
+	public String getRoomPrice(String RoomName) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		String reg = "";
+		try {
+			con = pool.getConnection();
+			sql = "select price from hoteldetail where roomname=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, RoomName);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				reg=rs.getString("price");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			pool.freeConnection(con);
+		}
+		return reg;
+	}
+	public RoomBean getRoomDefault() {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		String reg = "";
+		RoomBean regBean = new RoomBean();
+		try {
+			con = pool.getConnection();
+			sql = "select * from hoteldetail where price = (SELECT MIN(price) FROM hoteldetail)";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				regBean.setIdx(rs.getInt("idx"));
+				regBean.setRoomname(rs.getString("roomname"));
+				regBean.setMainpic(rs.getString("mainpic"));
+				regBean.setContent(rs.getString("content"));
+				regBean.setPrice(rs.getString("price"));
+				regBean.setSubpic(rs.getString("subpic"));
+				regBean.setSubcont1(rs.getString("subcont1"));
+				regBean.setSubcont2(rs.getString("subcont2"));
+				regBean.setSubcont3(rs.getString("subcont3"));
+				regBean.setColor(rs.getString("color"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			pool.freeConnection(con);
+		}
+		return regBean;
+	}
+
 	public RoomBean getpic(String roomname) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -67,6 +164,7 @@ public class RoomMgr {
 				regBean.setSubcont1(rs.getString("subcont1"));
 				regBean.setSubcont2(rs.getString("subcont2"));
 				regBean.setSubcont3(rs.getString("subcont3"));
+				regBean.setColor(rs.getString("color"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -77,7 +175,7 @@ public class RoomMgr {
 	}
 
 	
-	public Vector<RoomBean> getMemberList() {
+	public Vector<RoomBean> getRoomList() {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -99,6 +197,7 @@ public class RoomMgr {
 				regBean.setSubcont1(rs.getString("subcont1"));
 				regBean.setSubcont2(rs.getString("subcont2"));
 				regBean.setSubcont3(rs.getString("subcont3"));
+				regBean.setColor(rs.getString("color"));
 				vlist.addElement(regBean);
 			}
 		} catch (Exception e) {

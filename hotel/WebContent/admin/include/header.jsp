@@ -1,4 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
 <jsp:useBean id="mgr" class="hotel.MemberMgr"/>
 <%
 	String email = session.getAttribute("admin")+"";
@@ -38,7 +37,7 @@
                   <li><!-- start message -->
                     <a href="#">
                       <div class="pull-left">
-                        <img src="/hotel/admin/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                        <img src="/hotel/admin/dist/img/<%=mgr.getMember(email).getPic() %>" class="img-circle" alt="User Image" onerror="this.src='/hotel/admin/dist/img/user_default.png'">
                       </div>
                       <h4>
                         Support Team
@@ -224,14 +223,13 @@
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="/hotel/admin/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+                <img src="dist/img/<%=mgr.getMember(email).getPic() %>"  alt="user image" class="user-image" onerror="this.src='/hotel/admin/dist/img/user_default.png'">
               <span class="hidden-xs"><%=mgr.getMember(email).getId() %></span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src="/hotel/admin/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-
+                <img src="dist/img/<%=mgr.getMember(email).getPic() %>"  alt="user image" class="img-circle" onerror="this.src='/hotel/admin/dist/img/user_default.png'">
                 <p>
                   <%=mgr.getMember(email).getId() %>
                   <small><%=mgr.getMember(email).getGrade() %></small>
@@ -263,7 +261,7 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel">
         <div class="pull-left image">
-          <img src="/hotel/admin/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+          <img src="dist/img/<%=mgr.getMember(email).getPic() %>"  alt="user image" class="img-circle" onerror="this.src='/hotel/admin/dist/img/user_default.png'">
         </div>
         <div class="pull-left info">
           <p><%=mgr.getMember(email).getId() %></p>

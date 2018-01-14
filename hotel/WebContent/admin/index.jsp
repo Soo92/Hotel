@@ -1,7 +1,16 @@
+<%@page import="java.util.Date"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="hotel.MemberBean"%>
+<%@page import="hotel.CountryBean"%>
 <%@page import="hotel.CountBean"%>
 <%@page import="java.util.Vector"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
 <jsp:useBean id="cmgr" class="hotel.CountMgr" />
+<jsp:useBean id="memgr" class="hotel.MemberMgr"/>
+<%
+	String email1 = session.getAttribute("admin")+"";
+	MemberBean mem = memgr.getMember(email1);
+%>
 
 <!DOCTYPE html>
 <html>
@@ -151,67 +160,35 @@
 
               <div class="box-tools pull-right" data-toggle="tooltip" title="Status">
                 <div class="btn-group" data-toggle="btn-toggle">
-                  <button type="button" class="btn btn-default btn-sm active"><i class="fa fa-square text-green"></i>
-                  </button>
+                  <button type="button" class="btn btn-default btn-sm active"><i class="fa fa-square text-green"></i> </button>
                   <button type="button" class="btn btn-default btn-sm"><i class="fa fa-square text-red"></i></button>
                 </div>
               </div>
             </div>
             <div class="box-body chat" id="chat-box">
-              <!-- chat item -->
-              <div class="item">
-                <img src="dist/img/user4-128x128.jpg" alt="user image" class="online">
-
-                <p class="message">
+	        <!-- chat item -->
+				<div class="mydummy" style="display:none;">
+					<img src="dist/img/<%=mem.getPic() %>" alt="user image" class="online" style="float: right;" onerror="this.src='dist/img/user_default.png'">
+					<p class="message" style="float: right;">
+						<a href="#" class="name" style="text-align: right;"> 
+							<small class="text-muted pull-right" style="margin-left: 10px;"><i class="fa fa-clock-o"></i> <%=(new SimpleDateFormat("HH:mm")).format( new Date() ) %></small>
+                    	<span><%=mem.getId() %></span>
+						</a> 
+	                  <span id="mydummy_span" style="display: block; max-width: 300px; word-wrap: break-word;"">
+	                  </span>
+					</p>
+				</div>
+			  <!-- /.item -->
+              <!-- dummy item -->
+              <div class="dummy" style="display:none;">
+                <img src="dist/img/<%=mem.getPic() %>"  alt="user image" class="online" style="float: left;" onerror="this.src='dist/img/user_default.png'">
+                <p class="message" style="float: left;">
                   <a href="#" class="name">
-                    <small class="text-muted pull-right"><i class="fa fa-clock-o"></i> 2:15</small>
-                    Mike Doe
+                    <small class="text-muted pull-right" style="margin-left: 10px;"><i class="fa fa-clock-o"></i> <%=(new SimpleDateFormat("HH:mm")).format( new Date() ) %></small>
+                    <span id="nick"><%=mem.getId() %></span>
                   </a>
-                  I would like to meet you to discuss the latest news about
-                  the arrival of the new theme. They say it is going to be one the
-                  best themes on the market
-                </p>
-                <div class="attachment">
-                  <h4>Attachments:</h4>
-
-                  <p class="filename">
-                    Theme-thumbnail-image.jpg
-                  </p>
-
-                  <div class="pull-right">
-                    <button type="button" class="btn btn-primary btn-sm btn-flat">Open</button>
-                  </div>
-                </div>
-                <!-- /.attachment -->
-              </div>
-              <!-- /.item -->
-              <!-- chat item -->
-              <div class="item">
-                <img src="dist/img/user3-128x128.jpg" alt="user image" class="offline">
-
-                <p class="message">
-                  <a href="#" class="name">
-                    <small class="text-muted pull-right"><i class="fa fa-clock-o"></i> 5:15</small>
-                    Alexander Pierce
-                  </a>
-                  I would like to meet you to discuss the latest news about
-                  the arrival of the new theme. They say it is going to be one the
-                  best themes on the market
-                </p>
-              </div>
-              <!-- /.item -->
-              <!-- chat item -->
-              <div class="item">
-                <img src="dist/img/user2-160x160.jpg" alt="user image" class="offline">
-
-                <p class="message">
-                  <a href="#" class="name">
-                    <small class="text-muted pull-right"><i class="fa fa-clock-o"></i> 5:30</small>
-                    Susan Doe
-                  </a>
-                  I would like to meet you to discuss the latest news about
-                  the arrival of the new theme. They say it is going to be one the
-                  best themes on the market
+                  <span id="dummy_span" style="display: block; max-width: 300px; word-wrap: break-word;">
+                  </span>
                 </p>
               </div>
               <!-- /.item -->
@@ -219,10 +196,9 @@
             <!-- /.chat -->
             <div class="box-footer">
               <div class="input-group">
-                <input class="form-control" placeholder="Type message...">
-
+                <input class="form-control" id="inputMessage" placeholder="Type message..." onkeypress="if(event.keyCode==13) {send(); return false;}">
                 <div class="input-group-btn">
-                  <button type="button" class="btn btn-success"><i class="fa fa-plus"></i></button>
+                  <input type="submit" id="send" onclick="send()" class="btn btn-success" value="send"><i class="fa fa-plus"></i></button>
                 </div>
               </div>
             </div>
@@ -343,15 +319,14 @@
           <!-- /.box -->
 
           <!-- quick email widget -->
+          <form name="mailing" action="./pages/admin_link/SendAccount.jsp">
           <div class="box box-info">
             <div class="box-header">
               <i class="fa fa-envelope"></i>
-
               <h3 class="box-title">Quick Email</h3>
               <!-- tools box -->
               <div class="pull-right box-tools">
-                <button type="button" class="btn btn-info btn-sm" data-widget="remove" data-toggle="tooltip"
-                        title="Remove">
+                <button type="button" class="btn btn-info btn-sm" data-widget="remove" data-toggle="tooltip" title="Remove">
                   <i class="fa fa-times"></i></button>
               </div>
               <!-- /. tools -->
@@ -359,23 +334,22 @@
             <div class="box-body">
               <form action="#" method="post">
                 <div class="form-group">
-                  <input type="email" class="form-control" name="emailto" placeholder="Email to:">
+                  <input type="email" class="form-control" name="email" placeholder="Email to:" required>
                 </div>
                 <div class="form-group">
-                  <input type="text" class="form-control" name="subject" placeholder="Subject">
+                  <input type="text" class="form-control" name="title" placeholder="Title">
                 </div>
                 <div>
-                  <textarea class="textarea" placeholder="Message"
-                            style="width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                  <textarea class="textarea" name="message" placeholder="Message" style="width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
                 </div>
               </form>
             </div>
             <div class="box-footer clearfix">
-              <button type="button" class="pull-right btn btn-default" id="sendEmail">Send
+              <button type="submit" class="pull-right btn btn-default" id="sendEmail">Send
                 <i class="fa fa-arrow-circle-right"></i></button>
             </div>
           </div>
-
+		  </form>
         </section>
         <!-- /.Left col -->
         <!-- right col (We are only adding the ID to make the widgets sortable)-->
@@ -409,17 +383,17 @@
               <div class="row">
                 <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
                   <div id="sparkline-1"></div>
-                  <div class="knob-label">Year</div>
+                  <div class="knob-label">6 Year</div>
                 </div>
                 <!-- ./col -->
                 <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
                   <div id="sparkline-2"></div>
-                  <div class="knob-label">Month</div>
+                  <div class="knob-label">6 Month</div>
                 </div>
                 <!-- ./col -->
                 <div class="col-xs-4 text-center">
                   <div id="sparkline-3"></div>
-                  <div class="knob-label">Day</div>
+                  <div class="knob-label">6 Day</div>
                 </div>
                 <!-- ./col -->
               </div>
@@ -607,7 +581,7 @@
  *      This is a demo file used only for the main dashboard (index.jsp)
  **/
 $(function () {
-  'use strict';
+	'use strict';
   // Make the dashboard widgets sortable Using jquery UI
   $('.connectedSortable').sortable({
     placeholder         : 'sort-highlight',
@@ -647,18 +621,12 @@ $(function () {
 
   // jvectormap data
   var visitorsData = {
-//     US: 400, // USA
-//     SA: 400, // Saudi Arabia
-//     CA: 400, // Canada
-//     DE: 400, // Germany
-//     FR: 400, // France
-//     CN: 400, // China
-//     AU: 400, // Australia
-//     BR: 400, // Brazil
-//     IN: 400, // India
-//     GB: 400, // Great Britain
-    KR: <%=cmgr.getCount().getTotal()%> // Korea
-  };
+		  <%Vector<CountryBean> clist = cmgr.getCountry();
+		  for(int i=0;i<clist.size();i++) {%>
+    	<%if(i==clist.size()-1){%><%=clist.get(i).getCountry()+": "+clist.get(i).getTotal()%>
+    	<%}else{%><%=clist.get(i).getCountry()+": "+clist.get(i).getTotal()+","%>
+	<%}}%>
+ 	 };
   // World map by jvectormap
   $('#world-map').vectorMap({
     map              : 'world_mill_en',
@@ -683,12 +651,20 @@ $(function () {
     },
     onRegionLabelShow: function (e, el, code) {
       if (typeof visitorsData[code] != 'undefined')
-        el.html(el.html() + ': ' + visitorsData[code] + ' new visitors');
+        el.html(el.html() + '<br>' + visitorsData[code]+' visited');
     }
   });
+$('.jvectormap-label').css({
+    position: 'absolute',
+    border: '10px',
+     padding:'6px',
+     background: 'rgba(255,255,255,0.8)',
+     font: 'sans-serif 12px'
+});
 
   // Sparkline charts
-  <%Vector<CountBean> vlist =  cmgr.getCount("year", 6);%>
+  <%Vector<CountBean> vlist =  cmgr.getCount("year", 6);
+  if(vlist.size()<10) cmgr.genCount();%>
   var myvalues = [
 	  <% for(int i=0; i<vlist.size();i++){%>
 	  <%if(i==vlist.size()-1){%><%=vlist.get(i).getTotal()%>
@@ -702,7 +678,8 @@ $(function () {
     height   : '50',
     width    : '80'
   });
-  <%vlist =  cmgr.getCount("month", 6);%>
+  <%vlist =  cmgr.getCount("month", 6);
+  if(vlist.size()<7) cmgr.genCount();%>
   myvalues = [
 	  <% for(int i=0; i<vlist.size();i++){%>
 	  <%if(i==vlist.size()-1){%><%=vlist.get(i).getTotal()%>
@@ -716,7 +693,8 @@ $(function () {
     height   : '50',
     width    : '80'
   });
-  <%vlist =  cmgr.getCount("day", 6);%>
+  <%vlist =  cmgr.getCount("day", 6);
+  if(vlist.size()<10) cmgr.genCount();%>
   myvalues = [
 	  <% for(int i=0; i<vlist.size();i++){%>
 	  <%if(i==vlist.size()-1){%><%=vlist.get(i).getTotal()%>
@@ -738,7 +716,7 @@ $(function () {
   $('#chat-box').slimScroll({
     height: '250px'
   });
-
+  
   /* Morris.js Charts */
   // Sales chart
   var area = new Morris.Area({
@@ -808,8 +786,59 @@ $(function () {
       window.console.log($(this), 'The element has been unchecked');
     }
   });
-
 });
+var chat_in = $('#chat-box');
+var webSocket = new WebSocket('ws://localhost:8090/hotel/broadcasting');
+var inputMessage = document.getElementById('inputMessage');
+webSocket.onerror = function(event) {
+	onError(event)
+};
+webSocket.onopen = function(event) {
+	onOpen(event)
+};
+webSocket.onclose = function(event) {
+	onClose(event)
+};
+webSocket.onmessage = function(event) {
+	onMessage(event)
+	chat_in.slimScroll({ scrollTo : chat_in.prop('scrollHeight') + 'px' });
+};
+function onMessage(event) {
+	if("<%=mem.getId()%>"!=(event.data.substr(event.data.indexOf("/")+1,event.data.split("/")[0]))){
+		$('#dummy_span').text(event.data.substring(event.data.indexOf("/")+1+Number(event.data.split("/")[0])));
+		$('#nick').text(event.data.substr(event.data.indexOf("/")+1,event.data.split("/")[0]));
+	    var d = $('.dummy').clone(true);
+	    chat_in.append(d.removeClass('dummy').attr('class', 'item').show());
+	}else{
+		$('#mydummy_span').text(event.data.substring(event.data.indexOf("/")+1+Number(event.data.split("/")[0])));
+	    var d = $('.mydummy').clone(true);
+	    chat_in.append(d.removeClass('mydummy').attr('class', 'item').show());
+	}
+}
+function onOpen(event) {
+	<%if(mem.getId()!=null){%>
+		webSocket.send("<%=mem.getId().length()+"/"+mem.getId() %>"+"Chatted in");
+	<%}%>
+}
+function onClose(event) {
+	<%if(mem.getId()!=null){%>
+		webSocket.send("<%=mem.getId().length()+"/"+mem.getId() %>"+"Chatted out");
+	<%}%>
+}
+function onError(event) {
+	alert(event.data);
+}
+function send() {
+	$('#mydummy_span').text(inputMessage.value);
+    var d = $('.mydummy').clone(true);
+    chat_in.append(d.removeClass('mydummy').attr('class', 'item').show());
+	chat_in.slimScroll({ scrollTo : chat_in.prop('scrollHeight') + 'px' });
+	<%if(mem.getId()!=null){%>
+		webSocket.send("<%=mem.getId().length()+"/"+mem.getId() %>"+inputMessage.value);
+	<%}%>
+	inputMessage.value = "";
+	inputMessage.focus();
+}
 </script>
 <!-- AdminLTE for demo purposes -->
 <script src="dist/js/demo.js"></script>

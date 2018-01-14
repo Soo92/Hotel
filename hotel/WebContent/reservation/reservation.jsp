@@ -1,11 +1,14 @@
+<%@page import="hotel.RoomBean"%>
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.*"%>
 <jsp:useBean id="cmgr" class="hotel.CountMgr"/>
+<jsp:useBean id="hmgr" class="hotel.RoomMgr"/>
 <%
 		request.setCharacterEncoding("utf-8");
 		String email = (String)session.getAttribute("emailKey");
 		boolean off = email == null || email.equals("");
+		Vector<RoomBean> vlist = hmgr.getRoomList();
 %>
 <!DOCTYPE HTML>
 <html>
@@ -28,9 +31,11 @@
 	  !isNaN(document.getElementById("datepicker1").value.split("/")[1]-document.getElementById("datepicker").value.split("/")[1])){
 		document.getElementById("day").textContent=document.getElementById("datepicker1").value.split("/")[1]-document.getElementById("datepicker").value.split("/")[1];
 		document.getElementById("day").value=document.getElementById("datepicker1").value.split("/")[1]-document.getElementById("datepicker").value.split("/")[1];
-		document.getElementById("daytotal").textContent=document.getElementById("day").value*document.getElementById("country").value;
+		document.getElementById("daytotal").textContent=document.getElementById("day").value*document.getElementById("roompay").value;
 	  }
-	  document.getElementById("perday").textContent=document.getElementById("country").value;
+      var target = document.getElementById("roompay");
+	  document.getElementById("roomname").value=target.options[target.selectedIndex].text;
+	  document.getElementById("perday").textContent=document.getElementById("roompay").value;
 		document.getElementById("adult").textContent=document.getElementById("country1").value;
 		document.getElementById("ch05").textContent=document.getElementById("country2").value;
 		document.getElementById("ch12").textContent=document.getElementById("country3").value;
@@ -92,12 +97,11 @@
 					</div>	
 					<div class="sel_room" >
 						<h4>number of rooms</h4>
-						<select name="roomname" id="country" class="frm-field required">
+						<select id="roompay" class="frm-field required">
 							<option value="0">Select a type of Room</option>
-				            <option value="90000">킹</option>         
-				            <option value="50000">디럭스</option>
-							<option value="300000">슈페리어</option>
-							<option value="150000">스탠다드</option>
+					<%for(int i=0;i<vlist.size();i++) {%>
+				            <option value="<%=vlist.get(i).getPrice() %>"><%=vlist.get(i).getRoomname() %></option>         
+					<%} %>
 		        		</select>
 					</div>	
 					<div class="sel_room left" >
@@ -150,12 +154,11 @@
 						<li><span>Child </span><span id="ch05">0</span>/<span id="ch12">0</span>명</li>
 					</ul>
 				</div>
+  				<div class="row" style="float:right">
+						<input name="roomname" type="hidden" id="roomname" value="none">
 						<input name="people" type="hidden" id="people" value="0/0/0">
 						<input name="pay" type="hidden" id="pay" value="0">
-  				<div class="row" style="float:right">
-					<form>
 						<input type="button" onclick="send()" value="book now" style="width: 100%;">
-					</form>
 				</div>
 				</div>
 				<div class="clear"></div>

@@ -14,7 +14,7 @@
 		String email = (String)session.getAttribute("emailKey");
 		boolean off = email == null || email.equals("");
 		bean = mgr.getMember(email);
-		Vector<RoomBean> vlist = rmgr.getMemberList();
+		Vector<RoomBean> vlist = rmgr.getRoomList();
 		Vector<ReviewBean> relist = remgr.getReviewList();
 		String id = (String)bean.getId();
 		String pw = (String)bean.getPass();
@@ -27,6 +27,7 @@
 	    String requestcount = request.getAttribute("recount").toString();
 	    int sessioncount = (Integer)session.getAttribute("secount");
 	    String applicationcount = application.getAttribute("apcount").toString();
+		cmgr.UpdateTotal(request.getRemoteAddr());
 %>
 <!DOCTYPE HTML>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
@@ -131,9 +132,6 @@
 			});
 </script>
 <script>
-		function aa() {
-			<%cmgr.UpdateTotal(); %>;
-		}
 		function a() {
 			var loginBox = $('#login-box');
 			$(loginBox).fadeIn(300,function(){
@@ -156,7 +154,7 @@
 		}
 		</script>
 </head>
-<body data-spy="scroll" data-target=".navbar-collapse" onload="aa()">
+<body data-spy="scroll" data-target=".navbar-collapse">
 	<div id="login-box" class="login-popup">
 		<iframe class=signin src="./login/login.jsp"></iframe>
 	</div>
@@ -642,8 +640,7 @@
 						<div class="col-sm-8 col-sm-offset-2">
 							<div class="m-top-50 padding-sixty text-center">
 								<h2>
-									<i class="fa fa-instagram" aria-hidden="true"></i>&nbsp;YOUR
-									#PICTURE
+									<i class="fa fa-instagram" aria-hidden="true"></i>&nbsp;YOUR #PICTURE
 								</h2>
 								<div class="separator_auto"></div>
 							</div>
@@ -652,14 +649,12 @@
 						<div class="col-md-4">
 							<div class="blog_item m-top-20">
 								<div class="blog_item_img">
-									<img src="./images/review/<%=relist.get(i).getPic()%>"
-										alt="<%=relist.get(i).getPic()%>" />
+									<img src="./images/review/<%=relist.get(i).getPic()%>" alt="<%=relist.get(i).getPic()%>" />
 								</div>
 								<div class="blog_text roomy-40">
 									<h6><%=relist.get(i).getContent()%></h6>
 									<p>
-										<em><a href=""><%=relist.get(i).getRegdate()%></a> /<a
-											href=""><%=relist.get(i).getWriter()%></a></em>
+										<em><a href=""><%=relist.get(i).getRegdate()%></a> /<a href=""><%=relist.get(i).getWriter()%></a></em>
 									</p>
 								</div>
 							</div>
@@ -676,8 +671,7 @@
 		<div class="main_maps text-center fix m-top-100">
 			<div class="overlay"></div>
 			<div class="maps_text">
-				<h3 class="text-white" onclick="showmap()">
-					FIND US ON THE MAP <i class="fa fa-angle-down"></i>
+				<h3 class="text-white" onclick="showmap()"> FIND US ON THE MAP <i class="fa fa-angle-down"></i>
 				</h3>
 				<div id="map_canvas" class="mapheight"></div>
 			</div>
@@ -692,8 +686,7 @@
 							<div class="rage_widget">
 								<div class="widget_head">
 									<h3 class="text-white">
-										<i class="fa fa-phone-square" aria-hidden="true"></i>&nbsp;CONTACT
-										US
+										<i class="fa fa-phone-square" aria-hidden="true"></i>&nbsp;CONTACT US
 									</h3>
 									<div class="separator_small"></div>
 								</div>
@@ -709,8 +702,7 @@
 								<div class="row">
 									<div class="col-sm-6">
 										<div class="form-group">
-											<input id="email" name="email" type="text"
-												placeholder="EMAIL" class="form-control" required="">
+											<input id="email" name="email" type="text" placeholder="EMAIL" class="form-control" required="">
 										</div>
 									</div>
 									<div class="col-sm-6">
@@ -725,8 +717,7 @@
 												placeholder="MESSAGE"></textarea>
 										</div>
 										<div class="form-group text-center">
-											<button type="submit" class="btn btn-primary">SEND
-												MAIL</button>
+											<button type="submit" class="btn btn-primary">SEND MAIL</button>
 										</div>
 									</div>
 								</div>
@@ -748,9 +739,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="main_footer text-center p-top-40 p-bottom-30">
-						<p class="wow fadeInRight" data-wow-duration="1s"
-							style="color: white";>©2 TEAM Hotels Limited 2017-. All
-							Rights Reserved.</p>
+						<p class="wow fadeInRight" data-wow-duration="1s" style="color: white";>©2 TEAM Hotels Limited 2017-. All Rights Reserved.</p>
 					</div>
 				</div>
 			</div>
