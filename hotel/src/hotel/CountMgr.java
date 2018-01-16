@@ -144,6 +144,7 @@ public class CountMgr {
 		try {
         	Locale locale = InetAddressLocator.getLocale(ip);
      	    Country = locale.getCountry();
+     	    if(Country.equals("**")) Country="KR";
 	    } catch (InetAddressLocatorException e) {
             e.printStackTrace();
         }

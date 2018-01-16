@@ -63,8 +63,8 @@
           <div class="box box-solid">
             <div class="box-header with-border">
               <h4 class="box-title">Event Handler</h4>
-              <a class="fa fa-save" style="float: right;margin-left:5px;"></a>
-              <a class="fa fa-repeat" style="float: right;"></a>
+              <a class="fa fa-save" style="float: right;margin-left:5px;display:none"></a>
+              <a href="javascript:location.reload()" class="fa fa-repeat" style="float: right;display:none"></a>
             </div>
             <div class="box-body">
               <!-- the events -->
@@ -178,7 +178,7 @@
 </div>
 <!-- ./wrapper -->
 <form action="../admin_cart/cart_proc.jsp" name="cartP">
-	<input type="hidden" name="array">
+	<input type="hidden" name="array" id="array_form">
 </form>
 
 <!-- jQuery 3 -->
@@ -256,7 +256,7 @@ for(int i=0;i<relist.size();i++){
           id		     : '<%=relist.get(i).getNum()%>',
           title          : '<%=relist.get(i).getRoomname()%> <%=relist.get(i).getPeople()%> Total <%=relist.get(i).getPay()%>',
           start          : new Date(<%=datein[2]%>, <%=Integer.parseInt(datein[0])-1%>, <%=datein[1]%>),
-          end            : new Date(<%=dateout[2]%>, <%=Integer.parseInt(datein[0])-1%>, <%=dateout[1]%>),
+          end            : new Date(<%=dateout[2]%>, <%=Integer.parseInt(dateout[0])-1%>, <%=dateout[1]%>),
           url            : '#',
           backgroundColor: bcolor['<%=relist.get(i).getStatus()%>'] ,
           borderColor	 : '<%=rmmgr.getRoomColor(relist.get(i).getRoomname())%>', 
@@ -268,6 +268,8 @@ for(int i=0;i<relist.size();i++){
       eventLimit: true,
       droppable : true, // this allows things to be dropped onto the calendar !!!
       drop      : function (date, allDay) { // this function is called when something is dropped
+    	$('.fa-save').show(300);
+    	$('.fa-repeat').show(300);
         // retrieve the dropped element's stored Event Object
         var originalEventObject = $(this).data('eventObject')
         // we need to copy it, so that multiple events don't have a reference to the same object
@@ -309,8 +311,12 @@ for(int i=0;i<relist.size();i++){
           event.title = event.title.replace(event.title.split(" ")[event.title.split(" ").length-1],
         		  event.title.split(" ")[1].split("/")[0]*$('.'+(event.title.split(" ")[0])).attr('id')*(event.end.diff(event.start,'days')));
 	      $('#calendar').fullCalendar('updateEvent', event);
+    	$('.fa-save').show(300);
+    	$('.fa-repeat').show(300);
       },
       eventDragStop: function(event,jsEvent) {
+      	$('.fa-save').show(300);
+    	$('.fa-repeat').show(300);
     	    var trashEl = jQuery('#calendar');
     	    var ofs = trashEl.offset();
     	    var x1 = ofs.left;
@@ -326,31 +332,24 @@ for(int i=0;i<relist.size();i++){
     	}
     })
     $('.fa-save').click(function(){
-    	var myArray = new Array( new Array(6), new Array($('#calendar').fullCalendar('clientEvents').length) );
+    	var myArray = [];
     	for(var i=0;i<$('#calendar').fullCalendar('clientEvents').length;i++){
     		var cal=$('#calendar').fullCalendar('clientEvents')[i];
     		var id=cal.id.split("/")[0];
     		var title=cal.title.split(" ");
-    		console.log("---------");
-    		console.log(id);
-		    console.log(title[0]);
-    		console.log(cal.start.format());
-    		if(id!="memo"){
-    			console.log(cal.end.format());
-    		}
-		    console.log(title[1]);
-		    console.log(title[3]);
-
-		    myArray[0][i]=id;
-		    myArray[1][i]=title[0];
-    		myArray[2][i]=cal.start.format();
-    		if(id!="memo"){
-    			myArray[3][i]=cal.end.format();
-    		}
-    		myArray[4][i]=title[1];
-    		myArray[5][i]=title[3];
+        	myArray[i] = new Array();
+	    	console.log(myArray);
+		    myArray[i][0]=id;
+		    myArray[i][1]=title[0];
+     		myArray[i][2]=cal.start.format();
+     		if(id!="memo"){
+     			myArray[i][3]=cal.end.format();
+     		}
+     		myArray[i][4]=title[1];
+     		myArray[i][5]=title[3];
    		}
-    	console.log(myArray);
+    	$('#array_form').val(myArray);
+    	document.cartP.submit();
     })
     /* ADDING EVENTS */
     var currColor = '#3c8dbc' //Red by default

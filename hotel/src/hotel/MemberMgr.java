@@ -178,7 +178,34 @@ public class MemberMgr {
 			pstmt.setString(3, bean.getCheckout());
 			pstmt.setString(4, bean.getPeople());
 			pstmt.setString(5, bean.getPay());
-			pstmt.setString(6, "cart");
+			if(bean.getStatus()==null)	pstmt.setString(6, "cart");
+			else	pstmt.setString(6, bean.getStatus());
+			if(pstmt.executeUpdate()==1) {
+				flag = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			pool.freeConnection(con, pstmt);
+		}
+		return flag;
+	}
+	public boolean updateCart(CartBean bean) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		boolean flag = false;
+		try {
+			con = pool.getConnection();
+			sql = "update cart set roomname=?,checkin=date_format(?,'%m/%d/%Y'),checkout=date_format(?,'%m/%d/%Y'),people=?,pay=?"
+					+ "where num=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, bean.getRoomname());
+			pstmt.setString(2, bean.getCheckin());
+			pstmt.setString(3, bean.getCheckout());
+			pstmt.setString(4, bean.getPeople());
+			pstmt.setString(5, bean.getPay());
+			pstmt.setInt(6, bean.getNum());
 			if(pstmt.executeUpdate()==1) {
 				flag = true;
 			}

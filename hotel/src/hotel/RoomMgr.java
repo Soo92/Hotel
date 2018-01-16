@@ -24,7 +24,7 @@ public class RoomMgr {
 			sql = "update cart set status='noshow' where checkin<date_format(now(), '%m/%d/%Y')";
 			pstmt = con.prepareStatement(sql);
 			pstmt.executeUpdate();
-			sql = "update cart set status='cart' where checkin>=date_format(now(), '%m/%d/%Y')";
+			sql = "update cart set status='cart' where checkin>=date_format(now(), '%m/%d/%Y') and status<>'instore'";
 			pstmt = con.prepareStatement(sql);
 			pstmt.executeUpdate();
 		} catch (Exception e) {
