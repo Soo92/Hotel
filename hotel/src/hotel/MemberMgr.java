@@ -317,9 +317,6 @@ public class MemberMgr {
 		return flag;
 	}
 	public boolean updateProfile(MemberBean bean) {
-		System.out.print("aaa");
-		System.out.print(bean.getEmail());
-		System.out.print(bean.getId());
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		String sql = null; 

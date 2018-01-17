@@ -1,5 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@page import="hotel.ReviewBean"%>
+<%@page import="java.util.Vector"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
+<jsp:useBean id="remgr" class="hotel.ReviewMgr"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -189,16 +191,32 @@
       <!-- /.row -->
       <h1>
         <small>Reivew</small>
-      </h1>
+		<div class="btn-group">
+			<button type="button" class="btn btn-default" id="select2">Writer Filter</button>
+			<button type="button" class="btn btn-default dropdown-toggle"
+				data-toggle="dropdown">
+				<span class="caret"></span> <span class="sr-only">Toggle Dropdown</span>
+			</button>
+			<ul class="dropdown-menu" role="menu">
+				<li><a href="#">All Writer</a></li>
+			<%Vector<ReviewBean> relist = remgr.getReviewList(); 
+			for(int i=0;i<relist.size();i++){%>
+				<li><a href="#"><%=relist.get(i).getWriter() %></a></li>
+			<%} %>
+			</ul>
+		</div>
+	  </h1>
       <div class="row">
         <div class="col-md-6">
-          <!-- Box Comment -->
+	<%for(int i=0;i<relist.size();i=i+2){
+		if(relist.get(i).getPic()!=null){%>
+          <!-- Content Box Comment -->
           <div class="box box-widget">
             <div class="box-header with-border">
               <div class="user-block">
-                <img class="img-circle" src="../../dist/img/user1-128x128.jpg" alt="User Image">
-                <span class="username"><a href="#">Review</a></span>
-                <span class="description">with PHOTO</span>
+                <img src="/hotel/admin/dist/img/<%=mgr.getMember(relist.get(i).getWriter()).getPic() %>" class="img-circle" alt="User Image" onerror="this.src='/hotel/admin/dist/img/user_default.png'">
+                <span class="username"><a href="#"><%=relist.get(i).getTitle() %></a></span>
+                <span class="description"><%=relist.get(i).getWriter() %></span>
               </div>
               <!-- /.user-block -->
               <div class="box-tools">
@@ -210,26 +228,44 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-              <img class="img-responsive pad" src="../../dist/img/photo2.png" alt="Photo">
+              <img class="img-responsive pad" src="/hotel/images/review/<%=relist.get(i).getPic() %>" alt="Photo">
 
-              <p>I took this photo this morning. What do you guys think?</p>
-              <button type="button" class="btn btn-default btn-xs"><i class="fa fa-share"></i> Share</button>
-              <button type="button" class="btn btn-default btn-xs"><i class="fa fa-thumbs-o-up"></i> Like</button>
-              <span class="pull-right text-muted">127 likes - 3 comments</span>
+              <p><%=relist.get(i).getContent() %></p>
             </div>
             <!-- /.box-body -->
           </div>
           <!-- /.box -->
+      <%}else{ %>
+          <!-- Photo Box Comment -->
+          <div class="box box-widget">
+            <!-- /.box-header -->
+            <div class="box-footer box-comments">
+              <div class="box-comment">
+                <!-- User image -->
+                <img src="/hotel/admin/dist/img/<%=mgr.getMember(relist.get(i).getWriter()).getPic() %>" class="img-circle img-sm" alt="User Image" onerror="this.src='/hotel/admin/dist/img/user_default.png'">
+                <div class="comment-text">
+                      <span class="username"><%=relist.get(i).getTitle() %> <span class="text-muted pull-right"><%=relist.get(i).getWriter() %></span></span><!-- /.username -->
+                  <%=relist.get(i).getContent() %>
+                </div>
+                <!-- /.comment-text -->
+              </div>
+              <!-- /.box-comment -->
+            </div>
+            <!-- /.box-footer -->
+          </div>
+          <!-- /.box -->
+    <%}} %>
         </div>
-        <!-- /.col -->
         <div class="col-md-6">
-          <!-- Box Comment -->
+	<%for(int i=1;i<relist.size();i=i+2){
+		if(relist.get(i).getPic()!=null){%>
+          <!-- Content Box Comment -->
           <div class="box box-widget">
             <div class="box-header with-border">
               <div class="user-block">
-                <img class="img-circle" src="../../dist/img/user1-128x128.jpg" alt="User Image">
-                <span class="username"><a href="#">Review</a></span>
-                <span class="description">No Photo</span>
+                <img src="/hotel/admin/dist/img/<%=mgr.getMember(relist.get(i).getWriter()).getPic() %>" class="img-circle" alt="User Image" onerror="this.src='/hotel/admin/dist/img/user_default.png'">
+                <span class="username"><a href="#"><%=relist.get(i).getTitle() %></a></span>
+                <span class="description"><%=relist.get(i).getWriter() %></span>
               </div>
               <!-- /.user-block -->
               <div class="box-tools">
@@ -240,54 +276,36 @@
               <!-- /.box-tools -->
             </div>
             <!-- /.box-header -->
+            <div class="box-body">
+              <img class="img-responsive pad" src="/hotel/images/review/<%=relist.get(i).getPic() %>" alt="Photo">
+
+              <p><%=relist.get(i).getContent() %></p>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+      <%}else{ %>
+          <!-- Photo Box Comment -->
+          <div class="box box-widget">
+            <!-- /.box-header -->
             <div class="box-footer box-comments">
               <div class="box-comment">
                 <!-- User image -->
-                <img class="img-circle img-sm" src="../../dist/img/user3-128x128.jpg" alt="User Image">
-
+                <img src="/hotel/admin/dist/img/<%=mgr.getMember(relist.get(i).getWriter()).getPic() %>" class="img-circle img-sm" alt="User Image" onerror="this.src='/hotel/admin/dist/img/user_default.png'">
+                <span class="username"><%=relist.get(i).getWriter() %></span>
+                <span class="description"><%=relist.get(i).getTitle() %></span><!-- /.username -->
                 <div class="comment-text">
-                      <span class="username">
-                        Maria Gonzales
-                        <span class="text-muted pull-right">8:03 PM Today</span>
-                      </span><!-- /.username -->
-                  It is a long established fact that a reader will be distracted
-                  by the readable content of a page when looking at its layout.
+                  <%=relist.get(i).getContent() %>
                 </div>
                 <!-- /.comment-text -->
               </div>
               <!-- /.box-comment -->
-              <div class="box-comment">
-                <!-- User image -->
-                <img class="img-circle img-sm" src="../../dist/img/user5-128x128.jpg" alt="User Image">
-
-                <div class="comment-text">
-                      <span class="username">
-                        Nora Havisham
-                        <span class="text-muted pull-right">8:03 PM Today</span>
-                      </span><!-- /.username -->
-                  The point of using Lorem Ipsum is that it has a more-or-less
-                  normal distribution of letters, as opposed to using
-                  'Content here, content here', making it look like readable English.
-                </div>
-                <!-- /.comment-text -->
-              </div>
-              <!-- /.box-comment -->
-            </div>
-            <!-- /.box-footer -->
-            <div class="box-footer">
-              <form action="#" method="post">
-                <img class="img-responsive img-circle img-sm" src="../../dist/img/user4-128x128.jpg" alt="Alt Text">
-                <!-- .img-push is used to add margin to elements next to floating images -->
-                <div class="img-push">
-                  <input type="text" class="form-control input-sm" placeholder="Press enter to post comment">
-                </div>
-              </form>
             </div>
             <!-- /.box-footer -->
           </div>
           <!-- /.box -->
+    <%}} %>
         </div>
-        <!-- /.col -->
       </div>
       <!-- /.row -->
 
@@ -310,5 +328,20 @@
 <script src="../../dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
+<script>
+var speed=300;
+$("#select2").change("select2:select", function (e) { 
+  var select_val = $(e.currentTarget).val();
+  if(select_val.length!=0)
+	  $('.username').each(function(){
+		  if(jQuery.inArray(this.id, select_val)<0) $(this).hide(speed)
+		  else $(this).show(speed);
+	  })
+	else
+	  $('.username').each(function(){
+		  $(this).show(speed);
+	  })
+});
+</script>
 </body>
 </html>

@@ -33,6 +33,7 @@ public class FileloadMgr {
 		try {
 			saveFolder = req.getServletContext().getRealPath("/images/review/");
 			File dir = new File(saveFolder);
+			System.out.println("aaa");
 			if(!dir.exists())
 				dir.mkdirs();//폴더가 없으면 생성
 			MultipartRequest multi = 

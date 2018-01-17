@@ -18,6 +18,65 @@ public class CountMgr {
 		pool = DBConnectionMgr.getInstance();
 	}
 	
+	public int CountonComing() {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		int count = 0;
+		try {
+			con = pool.getConnection();
+			sql = "select count(*) count from cart where checkin > DATE_FORMAT(NOW(), '%m/%d/%Y')";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if (rs.next()) count=rs.getInt(1);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			pool.freeConnection(con);
+		}
+		return count;
+	}
+	public int CountprevReserve(int day) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		int count = 0;
+		try {
+			con = pool.getConnection();
+			sql = "select count(*) count from cart where checkin<DATE_FORMAT(now(), '%m/%d/%Y') and checkin > DATE_FORMAT(date_add(now(), interval ? day), '%m/%d/%Y')";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, -day);
+			rs = pstmt.executeQuery();
+			if (rs.next()) count=rs.getInt(1);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			pool.freeConnection(con);
+		}
+		return count;
+	}
+	public int CountMember() {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		int count = 0;
+		try {
+			con = pool.getConnection();
+			sql = "select count(*) count from tblhotel";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if (rs.next()) count=rs.getInt(1);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			pool.freeConnection(con);
+		}
+		return count;
+	}	
+	
 	public void genCount() {
 		Connection con = null;
 		PreparedStatement pstmt = null;

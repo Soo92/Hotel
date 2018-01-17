@@ -164,7 +164,6 @@
 	<div id="review-box" class="review-popup">
 		<iframe class=reviewdet src="./review/review.html" height="100%" width="100%" style="border: 5px dashed rgba(94, 106, 80, 0.92)" scrolling="no"></iframe>
 	</div>
-<%if(off) {%>
 	<!-- Preloader -->
 	<div id="loading">
 		<div id="loading-center">
@@ -176,7 +175,6 @@
 			</div>
 		</div>
 	</div>
-<%} %>
 	<!--End off Preloader -->
 	<div class="culmn">
 		<!--Home page style-->
@@ -210,7 +208,7 @@
 							</ul></li>
 						<%if(!off) {%>
 						<li class="my-page"><a href="#"><%=id%> 님
-								<button onclick="location.href='./login/logout.jsp'">x</button></a></li>
+								<i class="fa fa-times" onclick="location.href='./login/logout.jsp'"></i></a></li>
 						<%} %>
 						<li class="search"><a href="/roomdetail/roomdetail.html"><i class="fa fa-search"></i></a></li>
 						<li class="side-menu"><a href="#"><i class="fa fa-bars"></i></a></li>

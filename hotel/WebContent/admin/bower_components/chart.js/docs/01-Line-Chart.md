@@ -52,7 +52,6 @@ The label key on each dataset is optional, and can be used when generating a sca
 
 ### Chart options
 
-These are the customisation options specific to Line charts. These options are merged with the [global chart configuration options](#getting-started-global-chart-configuration), and form the options of the chart.
 
 ```javascript
 {

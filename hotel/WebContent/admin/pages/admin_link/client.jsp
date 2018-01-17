@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@page import="java.util.ArrayList"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
+<jsp:useBean id="tablemgr" class="hotel.AllTableMgr" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -64,33 +65,25 @@
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                  <th>Rendering engine</th>
-                  <th>Browser</th>
-                  <th>Platform(s)</th>
-                  <th>Engine version</th>
-                  <th>CSS grade</th>
+        <%ArrayList<String> Column = tablemgr.GetColumn("tblhotel");
+        for(int j=0;j<Column.size();j++) {%>
+                  <th><%=Column.get(j) %></th>
+		<%} %>
+                  <th>Modify</th>
                 </tr>
                 </thead>
-                <tbody>
+                 <tbody>
+        <%ArrayList<ArrayList<String>> Content = tablemgr.GetFullContent("tblhotel", Column);
+        for(int j=0;j<Content.size();j++) {%>
                 <tr>
-                  <td>Trident</td>
-                  <td>Internet
-                    Explorer 4.0
-                  </td>
-                  <td>Win 95+</td>
-                  <td> 4</td>
-                  <td>X</td>
+	        <% for(int k=0;k<Column.size();k++) {
+	        	%>
+                  <td><%=Content.get(j).get(k) %></td>
+			<%} %>
+                  <td>+</td>
                 </tr>
+		<%} %>
                 </tbody>
-                <tfoot>
-                <tr>
-                  <th>Rendering engine</th>
-                  <th>Browser</th>
-                  <th>Platform(s)</th>
-                  <th>Engine version</th>
-                  <th>CSS grade</th>
-                </tr>
-                </tfoot>
               </table>
             </div>
             <!-- /.box-body -->

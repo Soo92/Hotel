@@ -10,6 +10,8 @@
 <%
 	String email1 = session.getAttribute("admin")+"";
 	MemberBean mem = memgr.getMember(email1);
+	System.out.println();
+	String SocketAddr=request.getRemoteAddr().equals("0:0:0:0:0:0:0:1")?"localhost":request.getRemoteAddr();
 %>
 
 <!DOCTYPE html>
@@ -31,8 +33,6 @@
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css">
-  <!-- Morris chart -->
-  <link rel="stylesheet" href="bower_components/morris.js/morris.css">
   <!-- jvectormap -->
   <link rel="stylesheet" href="bower_components/jvectormap/jquery-jvectormap.css">
   <!-- Date Picker -->
@@ -76,14 +76,13 @@
           <!-- small box -->
           <div class="small-box bg-aqua">
             <div class="inner">
-              <h3>150</h3>
-
+              <h3><%=cmgr.CountonComing() %></h3>
               <p>New Orders</p>
             </div>
             <div class="icon">
               <i class="ion ion-bag"></i>
             </div>
-            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="/hotel/admin/pages/admin_link/reservation.jsp" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->
@@ -91,14 +90,14 @@
           <!-- small box -->
           <div class="small-box bg-green">
             <div class="inner">
-              <h3>53<sup style="font-size: 20px">%</sup></h3>
+              <h3><%=cmgr.CountprevReserve(15)==0?" - ":(cmgr.CountonComing()/(cmgr.CountprevReserve(5)))*100 %><sup style="font-size: 20px">%</sup></h3>
 
               <p>Bounce Rate</p>
             </div>
             <div class="icon">
               <i class="ion ion-stats-bars"></i>
             </div>
-            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="#bounce" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->
@@ -106,14 +105,14 @@
           <!-- small box -->
           <div class="small-box bg-yellow">
             <div class="inner">
-              <h3>44</h3>
+              <h3><%=cmgr.CountMember() %></h3>
 
               <p>User Registrations</p>
             </div>
             <div class="icon">
               <i class="ion ion-person-add"></i>
             </div>
-            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="/hotel/admin/pages/admin_link/client.jsp" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->
@@ -121,9 +120,9 @@
           <!-- small box -->
           <div class="small-box bg-red">
             <div class="inner">
-              <h3>65</h3>
+              <h3><%=cmgr.getCount("day", 1).size()==0?0:cmgr.getCount("day", 1).get(0).getTotal() %></h3>
 
-              <p>Unique Visitors</p>
+              <p>Today Visitors</p>
             </div>
             <div class="icon">
               <i class="ion ion-pie-graph"></i>
@@ -138,18 +137,28 @@
       <div class="row">
         <!-- Left col -->
         <section class="col-lg-7 connectedSortable">
-          <!-- Custom tabs (Charts with tabs)-->
-          <div class="nav-tabs-custom">
-            <!-- Tabs within a box -->
-            <ul class="nav nav-tabs pull-right">
-              <li class="pull-left header"><i class="fa fa-inbox"></i> Sales</li>
-            </ul>
-            <div class="tab-content no-padding">
-              <!-- Morris chart - Sales -->
-              <div class="chart tab-pane active" id="revenue-chart" style="position: relative; height: 300px;"></div>
+
+          <!-- interactive chart -->
+          <div class="box box-primary">
+            <div class="box-header with-border">
+              <i class="fa fa-bar-chart-o"></i>
+
+              <h3 class="box-title">Interactive User Chart</h3>
+
+              <div class="box-tools pull-right">
+                Real time
+                <div class="btn-group" id="realtime" data-toggle="btn-toggle">
+                  <button type="button" class="btn btn-default btn-xs active" data-toggle="on">On</button>
+                  <button type="button" class="btn btn-default btn-xs" data-toggle="off">Off</button>
+                </div>
+              </div>
             </div>
+            <div class="box-body">
+              <div id="interactive" style="height: 300px;"></div>
+            </div>
+            <!-- /.box-body-->
           </div>
-          <!-- /.nav-tabs-custom -->
+          <!-- /.box -->
 
           <!-- Chat box -->
           <div class="box box-success">
@@ -403,7 +412,7 @@
           <!-- /.box -->
 
           <!-- solid sales graph -->
-          <div class="box box-solid bg-teal-gradient">
+          <div class="box box-solid bg-teal-gradient" id="bounce">
             <div class="box-header">
               <i class="fa fa-th"></i>
 
@@ -426,7 +435,7 @@
                   <input type="text" class="knob" data-readonly="true" value="20" data-width="60" data-height="60"
                          data-fgColor="#39CCCC">
 
-                  <div class="knob-label">Mail-Orders</div>
+                  <div class="knob-label">Complete</div>
                 </div>
                 <!-- ./col -->
                 <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
@@ -549,9 +558,6 @@
 </script>
 <!-- Bootstrap 3.3.7 -->
 <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-<!-- Morris.js charts -->
-<script src="bower_components/raphael/raphael.min.js"></script>
-<script src="bower_components/morris.js/morris.min.js"></script>
 <!-- Sparkline -->
 <script src="bower_components/jquery-sparkline/dist/jquery.sparkline.min.js"></script>
 <!-- jvectormap -->
@@ -572,7 +578,18 @@
 <script src="bower_components/fastclick/lib/fastclick.js"></script>
 <!-- AdminLTE App -->
 <script src="dist/js/adminlte.min.js"></script>
-<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+<!-- Morris.js charts -->
+<script src="bower_components/raphael/raphael.min.js"></script>
+<script src="bower_components/morris.js/morris.min.js"></script> 
+<!-- FLOT CHARTS -->
+<script src="bower_components/Flot/jquery.flot.js"></script>
+<!-- FLOT RESIZE PLUGIN - allows the chart to redraw when the window is resized -->
+<script src="bower_components/Flot/jquery.flot.resize.js"></script>
+<!-- FLOT PIE PLUGIN - also used to draw donut charts -->
+<script src="bower_components/Flot/jquery.flot.pie.js"></script>
+<!-- FLOT CATEGORIES PLUGIN - Used to draw bar charts -->
+<script src="bower_components/Flot/jquery.flot.categories.js"></script>
+<!-- Page script -->
 <script type="text/javascript">
 /*
  * Author: Abdullah A Almsaeed
@@ -581,6 +598,81 @@
  *      This is a demo file used only for the main dashboard (index.jsp)
  **/
 $(function () {
+    /* Flot Interactive Chart  */
+    // data be fetched from a server
+    var data = [], totalPoints = 100
+    function getData() {
+      if (data.length > 0)
+        data = data.slice(1)
+      while (data.length < totalPoints) {
+        var prev = data.length > 0 ? data[data.length - 1] : 50,
+            y    = prev + Math.random() * 10 - 5
+        if (y < 0) {
+          y = 0
+        } else if (y > 100) {
+          y = 100
+        }
+        data.push(y)
+      }
+      // Zip the generated y values with the x values
+      var res = []
+      for (var i = 0; i < data.length; ++i) {
+        res.push([i, data[i]])
+      }
+      return res
+    }
+
+    var interactive_plot = $.plot('#interactive', [getData()], {
+      grid  : {
+        borderColor: '#f3f3f3',
+        borderWidth: 1,
+        tickColor  : '#f3f3f3'
+      },
+      series: {
+        shadowSize: 0, // Drawing is faster without shadows
+        color     : '#3c8dbc'
+      },
+      lines : {
+        fill : true, //Converts the line chart to area chart
+        color: '#3c8dbc'
+      },
+      yaxis : {
+        min : 0,
+        max : 100,
+        show: true
+      },
+      xaxis : {
+        show: true
+      }
+    })
+
+    var updateInterval = 500 //Fetch data ever x milliseconds
+    var realtime       = 'on' //If == to on then fetch data every x seconds. else stop fetching
+    function update() {
+      interactive_plot.setData([getData()])
+      // Since the axes don't change, we don't need to call plot.setupGrid()
+      interactive_plot.draw()
+      if (realtime === 'on')
+        setTimeout(update, updateInterval)
+    }
+
+    //INITIALIZE REALTIME DATA FETCHING
+    if (realtime === 'on') {
+      update()
+    }
+    //REALTIME TOGGLE
+    $('#realtime .btn').click(function () {
+      if ($(this).data('toggle') === 'on') {
+        realtime = 'on'
+      }
+      else {
+        realtime = 'off'
+      }
+      update()
+    })
+    /*
+     * END INTERACTIVE CHART
+     */
 	'use strict';
   // Make the dashboard widgets sortable Using jquery UI
   $('.connectedSortable').sortable({
@@ -600,7 +692,7 @@ $(function () {
   });
   // bootstrap WYSIHTML5 - text editor
   $('.textarea').wysihtml5();
-
+	
   $('.daterange').daterangepicker({
     ranges   : {
       'Today'       : [moment(), moment()],
@@ -619,6 +711,36 @@ $(function () {
   /* jQueryKnob */
   $('.knob').knob();
 
+  var line = new Morris.Line({
+	    element          : 'line-chart',
+	    resize           : true,
+	    data             : [
+	      { y: '2011 Q1', item1: 2666 },
+	      { y: '2011 Q2', item1: 2778 },
+	      { y: '2011 Q3', item1: 4912 },
+	      { y: '2011 Q4', item1: 3767 },
+	      { y: '2012 Q1', item1: 6810 },
+	      { y: '2012 Q2', item1: 5670 },
+	      { y: '2012 Q3', item1: 4820 },
+	      { y: '2012 Q4', item1: 15073 },
+	      { y: '2013 Q1', item1: 10687 },
+	      { y: '2013 Q2', item1: 8432 }
+	    ],
+	    xkey             : 'y',
+	    ykeys            : ['item1'],
+	    labels           : ['Item 1'],
+	    lineColors       : ['#efefef'],
+	    lineWidth        : 2,
+	    hideHover        : 'auto',
+	    gridTextColor    : '#fff',
+	    gridStrokeWidth  : 0.4,
+	    pointSize        : 4,
+	    pointStrokeColors: ['#efefef'],
+	    gridLineColor    : '#efefef',
+	    gridTextFamily   : 'Open Sans',
+	    gridTextSize     : 10
+	  });
+  
   // jvectormap data
   var visitorsData = {
 		  <%Vector<CountryBean> clist = cmgr.getCountry();
@@ -664,7 +786,7 @@ $('.jvectormap-label').css({
 
   // Sparkline charts
   <%Vector<CountBean> vlist =  cmgr.getCount("year", 6);
-  if(vlist.size()<10) cmgr.genCount();%>
+  if(vlist.size()<3) cmgr.genCount();%>
   var myvalues = [
 	  <% for(int i=0; i<vlist.size();i++){%>
 	  <%if(i==vlist.size()-1){%><%=vlist.get(i).getTotal()%>
@@ -679,7 +801,7 @@ $('.jvectormap-label').css({
     width    : '80'
   });
   <%vlist =  cmgr.getCount("month", 6);
-  if(vlist.size()<7) cmgr.genCount();%>
+  if(vlist.size()<6) cmgr.genCount();%>
   myvalues = [
 	  <% for(int i=0; i<vlist.size();i++){%>
 	  <%if(i==vlist.size()-1){%><%=vlist.get(i).getTotal()%>
@@ -694,7 +816,7 @@ $('.jvectormap-label').css({
     width    : '80'
   });
   <%vlist =  cmgr.getCount("day", 6);
-  if(vlist.size()<10) cmgr.genCount();%>
+  if(vlist.size()<6) cmgr.genCount();%>
   myvalues = [
 	  <% for(int i=0; i<vlist.size();i++){%>
 	  <%if(i==vlist.size()-1){%><%=vlist.get(i).getTotal()%>
@@ -717,59 +839,6 @@ $('.jvectormap-label').css({
     height: '250px'
   });
   
-  /* Morris.js Charts */
-  // Sales chart
-  var area = new Morris.Area({
-    element   : 'revenue-chart',
-    resize    : true,
-    data      : [
-      { y: '2011 Q1', reserved: 2666, confirmed: 2666 },
-      { y: '2011 Q2', reserved: 2778, confirmed: 2294 },
-      { y: '2011 Q3', reserved: 4912, confirmed: 1969 },
-      { y: '2011 Q4', reserved: 3767, confirmed: 3597 },
-      { y: '2012 Q1', reserved: 6810, confirmed: 1914 },
-      { y: '2012 Q2', reserved: 5670, confirmed: 4293 },
-      { y: '2012 Q3', reserved: 4820, confirmed: 3795 },
-      { y: '2012 Q4', reserved: 1503, confirmed: 5967 },
-      { y: '2013 Q1', reserved: 1067, confirmed: 4460 },
-      { y: '2013 Q2', reserved: 8432, confirmed: 5713 }
-    ],
-    xkey      : 'y',
-    ykeys     : ['reserved', 'confirmed'],
-    labels    : ['Reserved', 'Confirmed'],
-    lineColors: ['#3c8dbc', '#a0d0e0'],
-    hideHover : 'auto'
-  });
-  var line = new Morris.Line({
-    element          : 'line-chart',
-    resize           : true,
-    data             : [
-      { y: '2011 Q1', item1: 2666 },
-      { y: '2011 Q2', item1: 2778 },
-      { y: '2011 Q3', item1: 4912 },
-      { y: '2011 Q4', item1: 3767 },
-      { y: '2012 Q1', item1: 6810 },
-      { y: '2012 Q2', item1: 5670 },
-      { y: '2012 Q3', item1: 4820 },
-      { y: '2012 Q4', item1: 15073 },
-      { y: '2013 Q1', item1: 10687 },
-      { y: '2013 Q2', item1: 8432 }
-    ],
-    xkey             : 'y',
-    ykeys            : ['item1'],
-    labels           : ['Item 1'],
-    lineColors       : ['#efefef'],
-    lineWidth        : 2,
-    hideHover        : 'auto',
-    gridTextColor    : '#fff',
-    gridStrokeWidth  : 0.4,
-    pointSize        : 4,
-    pointStrokeColors: ['#efefef'],
-    gridLineColor    : '#efefef',
-    gridTextFamily   : 'Open Sans',
-    gridTextSize     : 10
-  });
-
   // Fix for charts under tabs
   $('.box ul.nav a').on('shown.bs.tab', function () {
     area.redraw();
@@ -788,7 +857,7 @@ $('.jvectormap-label').css({
   });
 });
 var chat_in = $('#chat-box');
-var webSocket = new WebSocket('ws://localhost:8090/hotel/broadcasting');
+var webSocket = new WebSocket('ws://<%=SocketAddr%>/hotel/broadcasting');
 var inputMessage = document.getElementById('inputMessage');
 webSocket.onerror = function(event) {
 	onError(event)
