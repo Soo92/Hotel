@@ -1,3 +1,6 @@
+<%@page import="java.util.GregorianCalendar"%>
+<%@page import="java.util.Calendar"%>
+<%@page import="hotel.CartBean"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="hotel.MemberBean"%>
@@ -235,6 +238,8 @@
             <div class="box-body">
               <!-- See dist/js/pages/dashboard.js to activate the todoList plugin -->
               <ul class="todo-list">
+    <%Vector<CartBean> cartlist = memgr.getCartList(email1); 
+    for(int i=0;i<cartlist.size();i++){%>
                 <li>
                   <!-- drag handle -->
                   <span class="handle">
@@ -244,85 +249,43 @@
                   <!-- checkbox -->
                   <input type="checkbox" value="">
                   <!-- todo text -->
-                  <span class="text">Design a nice theme</span>
+                  <span class="text"><%=cartlist.get(i).getRoomname() %></span>
                   <!-- Emphasis label -->
+                  <%
+	                  String reqDateStr = cartlist.get(i).getCheckin();
+	             	  Date curDate = new Date(); 
+	             	 SimpleDateFormat dateFormat = new SimpleDateFormat();
+	             	  if(cartlist.get(i).getStatus().equals("memo")){
+		                  dateFormat = new SimpleDateFormat("MM/dd/YYYY HH:mm");
+	             	  }else{
+		                  dateFormat = new SimpleDateFormat("MM/dd/YYYY");
+	             	  }
+	                  Date reqDate = dateFormat.parse(reqDateStr); 
+	                  curDate = dateFormat.parse(dateFormat.format(curDate));
+	             	 Calendar reqcale = new GregorianCalendar();
+	             	 Calendar curcale = new GregorianCalendar();
+	             	 System.out.println("min0hour");
+	             	 System.out.println(reqcale.get(Calendar.MINUTE)-curcale.get(Calendar.MINUTE));
+	             	 System.out.println(reqcale.get(Calendar.HOUR)-curcale.get(Calendar.HOUR));
+                  %>
                   <small class="label label-danger"><i class="fa fa-clock-o"></i> 2 mins</small>
+                  <small class="label label-info"><i class="fa fa-clock-o"></i> 4 hours</small>
+                  <small class="label label-warning"><i class="fa fa-clock-o"></i> 1 day</small>
+                  <small class="label label-success"><i class="fa fa-clock-o"></i> 3 days</small>
+                  <small class="label label-primary"><i class="fa fa-clock-o"></i> 1 week</small>
+                  <small class="label label-default"><i class="fa fa-clock-o"></i> 1 month</small>
                   <!-- General tools such as edit or delete-->
                   <div class="tools">
                     <i class="fa fa-edit"></i>
                     <i class="fa fa-trash-o"></i>
                   </div>
                 </li>
-                <li>
-                      <span class="handle">
-                        <i class="fa fa-ellipsis-v"></i>
-                        <i class="fa fa-ellipsis-v"></i>
-                      </span>
-                  <input type="checkbox" value="">
-                  <span class="text">Make the theme responsive</span>
-                  <small class="label label-info"><i class="fa fa-clock-o"></i> 4 hours</small>
-                  <div class="tools">
-                    <i class="fa fa-edit"></i>
-                    <i class="fa fa-trash-o"></i>
-                  </div>
-                </li>
-                <li>
-                      <span class="handle">
-                        <i class="fa fa-ellipsis-v"></i>
-                        <i class="fa fa-ellipsis-v"></i>
-                      </span>
-                  <input type="checkbox" value="">
-                  <span class="text">Let theme shine like a star</span>
-                  <small class="label label-warning"><i class="fa fa-clock-o"></i> 1 day</small>
-                  <div class="tools">
-                    <i class="fa fa-edit"></i>
-                    <i class="fa fa-trash-o"></i>
-                  </div>
-                </li>
-                <li>
-                      <span class="handle">
-                        <i class="fa fa-ellipsis-v"></i>
-                        <i class="fa fa-ellipsis-v"></i>
-                      </span>
-                  <input type="checkbox" value="">
-                  <span class="text">Let theme shine like a star</span>
-                  <small class="label label-success"><i class="fa fa-clock-o"></i> 3 days</small>
-                  <div class="tools">
-                    <i class="fa fa-edit"></i>
-                    <i class="fa fa-trash-o"></i>
-                  </div>
-                </li>
-                <li>
-                      <span class="handle">
-                        <i class="fa fa-ellipsis-v"></i>
-                        <i class="fa fa-ellipsis-v"></i>
-                      </span>
-                  <input type="checkbox" value="">
-                  <span class="text">Check your messages and notifications</span>
-                  <small class="label label-primary"><i class="fa fa-clock-o"></i> 1 week</small>
-                  <div class="tools">
-                    <i class="fa fa-edit"></i>
-                    <i class="fa fa-trash-o"></i>
-                  </div>
-                </li>
-                <li>
-                      <span class="handle">
-                        <i class="fa fa-ellipsis-v"></i>
-                        <i class="fa fa-ellipsis-v"></i>
-                      </span>
-                  <input type="checkbox" value="">
-                  <span class="text">Let theme shine like a star</span>
-                  <small class="label label-default"><i class="fa fa-clock-o"></i> 1 month</small>
-                  <div class="tools">
-                    <i class="fa fa-edit"></i>
-                    <i class="fa fa-trash-o"></i>
-                  </div>
-                </li>
+	<%} %>
               </ul>
             </div>
             <!-- /.box-body -->
             <div class="box-footer clearfix no-border">
-              <button type="button" class="btn btn-default pull-right"><i class="fa fa-plus"></i> Add item</button>
+              <button type="button" class="btn btn-default pull-right"><i class="fa fa-check-square-o"></i> Apply</button>
             </div>
           </div>
           <!-- /.box -->
@@ -786,7 +749,7 @@ $('.jvectormap-label').css({
 
   // Sparkline charts
   <%Vector<CountBean> vlist =  cmgr.getCount("year", 6);
-  if(vlist.size()<3) cmgr.genCount();%>
+  if(vlist.size()<6) cmgr.genCount();%>
   var myvalues = [
 	  <% for(int i=0; i<vlist.size();i++){%>
 	  <%if(i==vlist.size()-1){%><%=vlist.get(i).getTotal()%>

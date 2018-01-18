@@ -190,22 +190,27 @@ public class MemberMgr {
 		}
 		return flag;
 	}
-	public boolean updateCart(CartBean bean) {
+	public boolean updateCart(CartBean bean,String Status) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		String sql = null;
 		boolean flag = false;
 		try {
 			con = pool.getConnection();
-			sql = "update cart set roomname=?,checkin=date_format(?,'%m/%d/%Y'),checkout=date_format(?,'%m/%d/%Y'),people=?,pay=?"
-					+ "where num=?";
+			if(!Status.equals("memo"))
+				sql = "update cart set roomname=?,checkin=date_format(?,'%m/%d/%Y'),checkout=date_format(?,'%m/%d/%Y'),people=?,pay=?,status=?"
+						+ "where num=?";
+			else
+				sql = "update cart set roomname=?,checkin=date_format(STR_TO_DATE(?,'%m/%d/%Y %H:%i'),\"%m/%d/%Y %H:%i\"),checkout=date_format(STR_TO_DATE(?,'%m/%d/%Y %H:%i'),\"%m/%d/%Y %H:%i\"),people=?,pay=?,status=?"
+						+ "where num=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, bean.getRoomname());
 			pstmt.setString(2, bean.getCheckin());
 			pstmt.setString(3, bean.getCheckout());
 			pstmt.setString(4, bean.getPeople());
 			pstmt.setString(5, bean.getPay());
-			pstmt.setInt(6, bean.getNum());
+			pstmt.setString(6, bean.getStatus());
+			pstmt.setInt(7, bean.getNum());
 			if(pstmt.executeUpdate()==1) {
 				flag = true;
 			}
@@ -216,7 +221,7 @@ public class MemberMgr {
 		}
 		return flag;
 	}
-	public Vector<CartBean> getCartList() {
+	public Vector<CartBean> getCartList(String id) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -224,8 +229,9 @@ public class MemberMgr {
 		Vector<CartBean> vlist = new Vector<>();
 		try {
 			con = pool.getConnection();
-			sql = "select * from cart";
+			sql = "select * from cart where status<>'memo' or (status='memo' and people=?) order by checkin";
 			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				CartBean regBean = new CartBean();

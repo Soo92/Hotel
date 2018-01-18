@@ -4,7 +4,9 @@
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <jsp:useBean id="roommgr" class="hotel.MemberMgr" />
 <jsp:useBean id="rmmgr" class="hotel.RoomMgr" />
-<% rmmgr.checkRoom(); %>
+<% rmmgr.checkRoom(); 
+	String idk = session.getAttribute("admin")+"";
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -236,7 +238,7 @@
         m    = date.getMonth(),
         y    = date.getFullYear()
     $('#calendar').fullCalendar({
-      header    : {
+    	header    : {
         left  : 'prev,next today',
         center: 'title',
         right : 'month,agendaWeek,agendaDay'
@@ -248,25 +250,60 @@
         day  : 'day'
       },
       events    : [
-<%Vector<CartBean> relist = roommgr.getCartList();
+<%Vector<CartBean> relist = roommgr.getCartList(idk);
 for(int i=0;i<relist.size();i++){
 	String datein[] = relist.get(i).getCheckin().split("/");
-	String dateout[] = relist.get(i).getCheckout().split("/");%>
+	String dateout[] = relist.get(i).getCheckout().split("/");
+	%>
         {
           id		     : '<%=relist.get(i).getNum()%>',
+<%if(relist.get(i).getStatus().equals("memo")){%>
+          title          : '<%=relist.get(i).getRoomname()%>',
+<%}else{%>
           title          : '<%=relist.get(i).getRoomname()%> <%=relist.get(i).getPeople()%> Total <%=relist.get(i).getPay()%>',
-          start          : new Date(<%=datein[2]%>, <%=Integer.parseInt(datein[0])-1%>, <%=datein[1]%>),
-          end            : new Date(<%=dateout[2]%>, <%=Integer.parseInt(dateout[0])-1%>, <%=dateout[1]%>),
-          url            : '#',
-          backgroundColor: bcolor['<%=relist.get(i).getStatus()%>'] ,
+<%}%>
+          start          : new Date(<%=datein[2].split(" ")[0]%>, <%=Integer.parseInt(datein[0])-1%>, <%=datein[1]%>
+          <%if(datein[2].split(" ").length>1){%>,<%=datein[2].split(" ")[1].split(":")[0]%>,<%=datein[2].split(" ")[1].split(":")[1]%><%}%>          
+          ),
+          end            : new Date(<%=dateout[2].split(" ")[0]%>, <%=Integer.parseInt(dateout[0])-1%>, <%=dateout[1]%>
+          <%if(dateout[2].split(" ").length>1){%>,<%=dateout[2].split(" ")[1].split(":")[0]%>,<%=dateout[2].split(" ")[1].split(":")[1]%><%}%>          
+          ),
+          url            : '',
+          backgroundColor: 
+        	  <%if(relist.get(i).getStatus().equals("memo")){%>
+    	  		'<%=relist.get(i).getPay()%>'
+      	  	<%}else{%>
+        	  	bcolor['<%=relist.get(i).getStatus()%>']
+        	  <%}%>
+        	  ,
           borderColor	 : '<%=rmmgr.getRoomColor(relist.get(i).getRoomname())%>', 
-          allDay 		 : true
+<%if(!relist.get(i).getStatus().equals("memo")){%>
+          allDay 		 : true,
+<%}%>
+          stat			 : '<%=relist.get(i).getStatus()%>'
         },
 <%}%>
       ],
       editable  : true,
       eventLimit: true,
       droppable : true, // this allows things to be dropped onto the calendar !!!
+ 	  eventRender: function(event, element) {
+	      element.bind('dblclick', function() {
+	    	  console.log(event.backgroundColor);
+	        	$('.fa-save').show(300);
+	        	$('.fa-repeat').show(300);
+	    	  if(event.id.split("/")[0]!="memo"&&event.stat!="memo"){
+			    	 if(event.stat=='complete')
+		    		  event.stat = 'cart';
+			    	 else if(event.stat=='instore')
+		    		  event.stat = 'complete';
+			    	 else if(event.stat=='cart')
+		    		  event.stat = 'instore';
+		    	 event.backgroundColor = bcolor[event.stat];
+			      $('#calendar').fullCalendar('updateEvent', event);
+	    	  }
+	      });
+	  },
       drop      : function (date, allDay) { // this function is called when something is dropped
     	$('.fa-save').show(300);
     	$('.fa-repeat').show(300);
@@ -288,13 +325,15 @@ for(int i=0;i<relist.size();i++){
         													1:($.trim($(this).next().next().children('button').text()))))
         											:($.trim($(this).next().children('button').attr('id')))))
         									:$.trim($(this).text())
+        copiedEventObject.stat         	  = ($(this).next().children('button').length>0?"instore":"<%=idk%>")
         copiedEventObject.start           = date
 		var id=copiedEventObject.id.split("/")[0];
         if(id!="memo"){
         	copiedEventObject.end         = b
         }
 		copiedEventObject.borderColor     = $(this).css('border-color')
-        // render the event on the calendar
+		copiedEventObject.backgroundColor     = $(this).css('background-color')
+		// render the event on the calendar
         // the last `true` argument determines if the event "sticks" (http://arshaw.com/fullcalendar/docs/event_rendering/renderEvent/)
 		$(this).next().children('button').text("Room Name")
 		$(this).next().next().children('button').text("Adult")
@@ -310,7 +349,7 @@ for(int i=0;i<relist.size();i++){
       eventResize: function(event, delta, revertFunc) {
           event.title = event.title.replace(event.title.split(" ")[event.title.split(" ").length-1],
         		  event.title.split(" ")[1].split("/")[0]*$('.'+(event.title.split(" ")[0])).attr('id')*(event.end.diff(event.start,'days')));
-	      $('#calendar').fullCalendar('updateEvent', event);
+	    $('#calendar').fullCalendar('updateEvent', event);
     	$('.fa-save').show(300);
     	$('.fa-repeat').show(300);
       },
@@ -333,20 +372,37 @@ for(int i=0;i<relist.size();i++){
     })
     $('.fa-save').click(function(){
     	var myArray = [];
+    	function rgbToHex(r, g, b) {
+    	    return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
+    	}
+    	function componentToHex(c) {
+    	    var hex = c.toString(16);
+    	    return hex.length == 1 ? "0" + hex : hex;
+    	}
     	for(var i=0;i<$('#calendar').fullCalendar('clientEvents').length;i++){
     		var cal=$('#calendar').fullCalendar('clientEvents')[i];
     		var id=cal.id.split("/")[0];
     		var title=cal.title.split(" ");
         	myArray[i] = new Array();
-	    	console.log(myArray);
 		    myArray[i][0]=id;
 		    myArray[i][1]=title[0];
-     		myArray[i][2]=cal.start.format();
-     		if(id!="memo"){
+     		if(!(id=="memo"||cal.stat=="memo")){
+	     		myArray[i][2]=cal.start.format();
      			myArray[i][3]=cal.end.format();
+     		}else{
+	     		myArray[i][2]=cal.start.format("MM/DD/YYYY HH:mm");
+     			myArray[i][3]=cal.end!=null?cal.end.format("MM/DD/YYYY HH:mm"):cal.start.add(1,'h').format("MM/DD/YYYY HH:mm");
      		}
-     		myArray[i][4]=title[1];
-     		myArray[i][5]=title[3];
+     		myArray[i][4]=(cal.stat=="memo"?"<%=idk%>":title[1]);
+     		if(cal.stat=="memo"){
+	     		myArray[i][5]=cal.backgroundColor;
+     		}else if(title[3]==null) {
+     			var clr = cal.backgroundColor.substring(4,cal.backgroundColor.length-1);
+	     		myArray[i][5]=rgbToHex(Number(clr.split(",")[0]),Number(clr.split(",")[1]),Number(clr.split(",")[2]));
+     		}else{
+	     		myArray[i][5]=title[3];
+     		}
+     		myArray[i][6]=cal.stat;
    		}
     	$('#array_form').val(myArray);
     	document.cartP.submit();

@@ -21,10 +21,10 @@ public class RoomMgr {
 		String sql = null;
 		try {
 			con = pool.getConnection();
-			sql = "update cart set status='noshow' where checkin<date_format(now(), '%m/%d/%Y')";
+			sql = "update cart set status='noshow' where checkin<date_format(now(), '%m/%d/%Y') and status<>'complete' and status<>'memo'";
 			pstmt = con.prepareStatement(sql);
 			pstmt.executeUpdate();
-			sql = "update cart set status='cart' where checkin>=date_format(now(), '%m/%d/%Y') and status<>'instore'";
+			sql = "update cart set status='cart' where checkin>=date_format(now(), '%m/%d/%Y') and status='noshow'";
 			pstmt = con.prepareStatement(sql);
 			pstmt.executeUpdate();
 		} catch (Exception e) {
