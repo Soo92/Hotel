@@ -13,8 +13,17 @@
 <%
 	String email1 = session.getAttribute("admin")+"";
 	MemberBean mem = memgr.getMember(email1);
-	System.out.println();
 	String SocketAddr=request.getRemoteAddr().equals("0:0:0:0:0:0:0:1")?"localhost":request.getRemoteAddr();
+    SimpleDateFormat dt = new SimpleDateFormat();
+	long curtime=0;
+    long reqtime=0;
+    Date req=new Date();
+    long mgap=0;
+    long hgap=0;
+    int dgap=0;
+    int dategap=0;
+    int mogap=0;
+    Vector<CartBean> cartlist = memgr.getCartList(email1);
 %>
 
 <!DOCTYPE html>
@@ -67,7 +76,7 @@
         <small>Control panel</small>
       </h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a><i class="fa fa-dashboard"></i> Home</a></li>
         <li class="active">Dashboard</li>
       </ol>
     </section>
@@ -130,7 +139,7 @@
             <div class="icon">
               <i class="ion ion-pie-graph"></i>
             </div>
-            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <a class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->
@@ -182,7 +191,7 @@
 				<div class="mydummy" style="display:none;">
 					<img src="dist/img/<%=mem.getPic() %>" alt="user image" class="online" style="float: right;" onerror="this.src='dist/img/user_default.png'">
 					<p class="message" style="float: right;">
-						<a href="#" class="name" style="text-align: right;"> 
+						<a class="name" style="text-align: right;"> 
 							<small class="text-muted pull-right" style="margin-left: 10px;"><i class="fa fa-clock-o"></i> <%=(new SimpleDateFormat("HH:mm")).format( new Date() ) %></small>
                     	<span><%=mem.getId() %></span>
 						</a> 
@@ -195,7 +204,7 @@
               <div class="dummy" style="display:none;">
                 <img src="dist/img/<%=mem.getPic() %>"  alt="user image" class="online" style="float: left;" onerror="this.src='dist/img/user_default.png'">
                 <p class="message" style="float: left;">
-                  <a href="#" class="name">
+                  <a class="name">
                     <small class="text-muted pull-right" style="margin-left: 10px;"><i class="fa fa-clock-o"></i> <%=(new SimpleDateFormat("HH:mm")).format( new Date() ) %></small>
                     <span id="nick"><%=mem.getId() %></span>
                   </a>
@@ -226,11 +235,11 @@
 
               <div class="box-tools pull-right">
                 <ul class="pagination pagination-sm inline">
-                  <li><a href="#">&laquo;</a></li>
-                  <li><a href="#">1</a></li>
-                  <li><a href="#">2</a></li>
-                  <li><a href="#">3</a></li>
-                  <li><a href="#">&raquo;</a></li>
+                  <li><a onclick="prevPage()">&laquo;</a></li>
+            <%for(int i=0;i<(cartlist.size()+1)/6+1;i++){%>
+                  <li><a onclick="todoPage(<%=i%>)"><%=i+1 %></a></li>
+			<%} %>
+                  <li><a onclick="nextPage()">&raquo;</a></li>
                 </ul>
               </div>
             </div>
@@ -238,9 +247,22 @@
             <div class="box-body">
               <!-- See dist/js/pages/dashboard.js to activate the todoList plugin -->
               <ul class="todo-list">
-    <%Vector<CartBean> cartlist = memgr.getCartList(email1); 
-    for(int i=0;i<cartlist.size();i++){%>
-                <li>
+    <%for(int i=0;i<cartlist.size();i++){
+          String reqDateStr = cartlist.get(i).getCheckin();
+     	  Date curDate = new Date(); 
+     	  if(cartlist.get(i).getStatus().equals("memo")) dt = new SimpleDateFormat("MM/dd/yyyy HH:mm"); 
+     	  else dt = new SimpleDateFormat("MM/dd/yyyy"); 
+     	  req = dt.parse(reqDateStr);
+     	  reqtime = req.getTime();
+     	  curtime = curDate.getTime();
+     	  mgap = (reqtime-curtime)/(60000);
+     	  hgap = mgap / 60;
+     	  dgap = (int)(hgap / 24);
+     	  dategap = (int)(dgap / 7);
+     	  mogap = (int)(dgap / 30);
+     	  if(mgap>0){
+	%>
+                <li style="display:none">
                   <!-- drag handle -->
                   <span class="handle">
                         <i class="fa fa-ellipsis-v"></i>
@@ -251,36 +273,25 @@
                   <!-- todo text -->
                   <span class="text"><%=cartlist.get(i).getRoomname() %></span>
                   <!-- Emphasis label -->
-                  <%
-	                  String reqDateStr = cartlist.get(i).getCheckin();
-	             	  Date curDate = new Date(); 
-	             	 SimpleDateFormat dateFormat = new SimpleDateFormat();
-	             	  if(cartlist.get(i).getStatus().equals("memo")){
-		                  dateFormat = new SimpleDateFormat("MM/dd/YYYY HH:mm");
-	             	  }else{
-		                  dateFormat = new SimpleDateFormat("MM/dd/YYYY");
-	             	  }
-	                  Date reqDate = dateFormat.parse(reqDateStr); 
-	                  curDate = dateFormat.parse(dateFormat.format(curDate));
-	             	 Calendar reqcale = new GregorianCalendar();
-	             	 Calendar curcale = new GregorianCalendar();
-	             	 System.out.println("min0hour");
-	             	 System.out.println(reqcale.get(Calendar.MINUTE)-curcale.get(Calendar.MINUTE));
-	             	 System.out.println(reqcale.get(Calendar.HOUR)-curcale.get(Calendar.HOUR));
-                  %>
-                  <small class="label label-danger"><i class="fa fa-clock-o"></i> 2 mins</small>
-                  <small class="label label-info"><i class="fa fa-clock-o"></i> 4 hours</small>
-                  <small class="label label-warning"><i class="fa fa-clock-o"></i> 1 day</small>
-                  <small class="label label-success"><i class="fa fa-clock-o"></i> 3 days</small>
-                  <small class="label label-primary"><i class="fa fa-clock-o"></i> 1 week</small>
-                  <small class="label label-default"><i class="fa fa-clock-o"></i> 1 month</small>
+            <%if(mogap>0) {%>
+                  <small class="label label-default"><i class="fa fa-clock-o"></i> <%=mogap %> month</small>
+			<%}else if(dategap>0) {%>
+                  <small class="label label-primary"><i class="fa fa-clock-o"></i> <%=dategap %> week</small>
+			<%}else if(dgap>0) {%>
+                  <small class="label label-warning"><i class="fa fa-clock-o"></i> <%=dgap %> day</small>
+			<%}else if(hgap>0) {%>
+                  <small class="label label-info"><i class="fa fa-clock-o"></i> <%=hgap %> hours</small>
+			<%}else if(mgap>0) {%>
+                  <small class="label label-danger"><i class="fa fa-clock-o"></i> <%=mgap %> mins</small>
+			<%} %>
                   <!-- General tools such as edit or delete-->
                   <div class="tools">
-                    <i class="fa fa-edit"></i>
+                  <a href="./pages/admin_cart/cart_del_proc.jsp?index=<%=cartlist.get(i).getNum() %>" onclick="return confirm('delete?')">
                     <i class="fa fa-trash-o"></i>
+				  </a>
                   </div>
                 </li>
-	<%} %>
+	<%}} %>
               </ul>
             </div>
             <!-- /.box-body -->
@@ -435,10 +446,10 @@
                   <button type="button" class="btn btn-success btn-sm dropdown-toggle" data-toggle="dropdown">
                     <i class="fa fa-bars"></i></button>
                   <ul class="dropdown-menu pull-right" role="menu">
-                    <li><a href="#">Add new event</a></li>
-                    <li><a href="#">Clear events</a></li>
+                    <li><a>Add new event</a></li>
+                    <li><a>Clear events</a></li>
                     <li class="divider"></li>
-                    <li><a href="#">View calendar</a></li>
+                    <li><a>View calendar</a></li>
                   </ul>
                 </div>
                 <button type="button" class="btn btn-success btn-sm" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -456,10 +467,10 @@
             <!-- /.box-body -->
             <div class="box-footer text-black">
               <div class="row">
-                <div class="col-sm-6">
+                <div class="col-sm-12">
                   <!-- Progress bars -->
                   <div class="clearfix">
-                    <span class="pull-left">Task #1</span>
+                    <span class="pull-left">Reserve</span>
                     <small class="pull-right">90%</small>
                   </div>
                   <div class="progress xs">
@@ -467,29 +478,11 @@
                   </div>
 
                   <div class="clearfix">
-                    <span class="pull-left">Task #2</span>
+                    <span class="pull-left">Memo</span>
                     <small class="pull-right">70%</small>
                   </div>
                   <div class="progress xs">
                     <div class="progress-bar progress-bar-green" style="width: 70%;"></div>
-                  </div>
-                </div>
-                <!-- /.col -->
-                <div class="col-sm-6">
-                  <div class="clearfix">
-                    <span class="pull-left">Task #3</span>
-                    <small class="pull-right">60%</small>
-                  </div>
-                  <div class="progress xs">
-                    <div class="progress-bar progress-bar-green" style="width: 60%;"></div>
-                  </div>
-
-                  <div class="clearfix">
-                    <span class="pull-left">Task #4</span>
-                    <small class="pull-right">40%</small>
-                  </div>
-                  <div class="progress xs">
-                    <div class="progress-bar progress-bar-green" style="width: 40%;"></div>
                   </div>
                 </div>
                 <!-- /.col -->
@@ -554,6 +547,40 @@
 <script src="bower_components/Flot/jquery.flot.categories.js"></script>
 <!-- Page script -->
 <script type="text/javascript">
+/* Soo add */
+var todopaging=0;
+$('ul.pagination li').eq(1).addClass("active");
+for(var i=($('ul.todo-list li').length)/6+1;i<$('ul.pagination li').length-1;i++){
+	$('ul.pagination li').eq(i).remove();
+}
+for(var i=0;i<5;i++){
+	$('ul.todo-list li').eq(i).show();
+}
+function todoPage(a){
+	todopaging=a;
+	for(var i=0;i<$('ul.pagination li').length;i++){
+		if(a==i)
+			$('ul.pagination li').eq(i+1).addClass("active");
+		else
+			$('ul.pagination li').eq(i+1).removeClass("active");
+	}
+	for(var i=0;i<$('ul.todo-list li').length;i++){
+		if(a*5<=i && i<a*5+5)
+			$('ul.todo-list li').eq(i).show(300);
+		else
+			$('ul.todo-list li').eq(i).hide(300);
+	}
+}
+function prevPage(){
+	todopaging-=1;
+	if(todopaging<0) todopaging=0;
+	todoPage(todopaging);
+}
+function nextPage(){
+	todopaging+=1;
+	if(todopaging>$('ul.pagination li').length-3) todopaging=$('ul.pagination li').length-3;
+	todoPage(todopaging);
+}
 /*
  * Author: Abdullah A Almsaeed
  * Date: 4 Jan 2014

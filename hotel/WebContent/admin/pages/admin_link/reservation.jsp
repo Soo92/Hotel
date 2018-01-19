@@ -387,9 +387,11 @@ for(int i=0;i<relist.size();i++){
 		    myArray[i][0]=id;
 		    myArray[i][1]=title[0];
      		if(!(id=="memo"||cal.stat=="memo")){
+     			console.log(myArray[i]);
 	     		myArray[i][2]=cal.start.format();
      			myArray[i][3]=cal.end.format();
      		}else{
+     			console.log(myArray[i]);
 	     		myArray[i][2]=cal.start.format("MM/DD/YYYY HH:mm");
      			myArray[i][3]=cal.end!=null?cal.end.format("MM/DD/YYYY HH:mm"):cal.start.add(1,'h').format("MM/DD/YYYY HH:mm");
      		}

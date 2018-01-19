@@ -210,8 +210,6 @@
 						<li class="my-page"><a href="#"><%=id%> 님
 								<i class="fa fa-times" onclick="location.href='./login/logout.jsp'"></i></a></li>
 						<%} %>
-						<li class="search"><a href="/roomdetail/roomdetail.html"><i class="fa fa-search"></i></a></li>
-						<li class="side-menu"><a href="#"><i class="fa fa-bars"></i></a></li>
 					</ul>
 				</div>
 				<!-- End Atribute Navigation -->

@@ -1,8 +1,8 @@
 -- --------------------------------------------------------
--- Host:                         127.0.0.1
--- Server version:               5.7.20-log - MySQL Community Server (GPL)
--- Server OS:                    Win64
--- HeidiSQL Version:             9.4.0.5125
+-- 호스트:                          127.0.0.1
+-- 서버 버전:                        5.6.21-enterprise-commercial-advanced-log - MySQL Enterprise Server - Advanced Edition (Commercial)
+-- 서버 OS:                        Win32
+-- HeidiSQL 버전:                  9.4.0.5125
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -12,41 +12,40 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
 
--- Dumping database structure for hotel
+-- hotel 데이터베이스 구조 내보내기
 CREATE DATABASE IF NOT EXISTS `hotel` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `hotel`;
 
--- Dumping structure for table hotel.cart
+-- 테이블 hotel.cart 구조 내보내기
 CREATE TABLE IF NOT EXISTS `cart` (
   `num` int(11) NOT NULL AUTO_INCREMENT,
   `roomname` char(50) NOT NULL DEFAULT '0',
   `checkin` char(50) NOT NULL DEFAULT '0',
-  `checkout` char(50) DEFAULT '0',
+  `checkout` char(50) NOT NULL DEFAULT '0',
   `people` char(50) NOT NULL DEFAULT '0',
-  `pay` char(50) DEFAULT '0',
-  `status` char(50) NOT NULL,
+  `pay` char(50) NOT NULL DEFAULT '0',
+  `status` char(50) DEFAULT NULL,
   PRIMARY KEY (`num`)
-) ENGINE=InnoDB AUTO_INCREMENT=68 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=79 DEFAULT CHARSET=utf8;
 
--- Dumping data for table hotel.cart: ~8 rows (approximately)
+-- 테이블 데이터 hotel.cart:~8 rows (대략적) 내보내기
 DELETE FROM `cart`;
 /*!40000 ALTER TABLE `cart` DISABLE KEYS */;
 INSERT INTO `cart` (`num`, `roomname`, `checkin`, `checkout`, `people`, `pay`, `status`) VALUES
-	(1, 'Deluxe', '01/01/2018', '01/16/2018', '0/0/0', '0', 'complete'),
+	(1, 'Deluxe', '01/29/2018', '02/01/2018', '0/0/0', '0', 'instore'),
 	(4, 'Standard', '01/01/2018', '01/03/2018', '0/0/0', '300000', 'noshow'),
-	(13, 'Standard', '01/21/2018', '01/27/2018', '0/0/0', '900000', 'cart'),
-	(14, 'Standard', '01/29/2018', '02/02/2018', '0/0/0', '0', 'cart'),
-	(15, 'King', '01/16/2018', '01/17/2018', '0/0/0', '90000', 'noshow'),
-	(16, 'Standard', '02/07/2018', '02/10/2018', '0/0/0', '450000', 'complete'),
-	(27, 'ㄴㅇㄻㄴㄹㅇ', '02/04/2018 00:00', '02/04/2018 01:00', 'admin@lss', '#3c8dbc', 'memo'),
-	(63, 'ㅁㄴㅇㄻㄴㅇㄹ', '02/03/2018 00:00', '02/03/2018 01:00', 'admin@lss', '#3c8dbc', 'memo'),
-	(64, 'ㄴㅁㅇㄹㄴ', '01/18/2018 00:00', '01/18/2018 01:00', 'admin@lss', '#f012be', 'memo'),
-	(65, 'sadfas', '01/18/2018 05:30', '01/18/2018 11:30', 'admin@lss', '#3c8dbc', 'memo'),
-	(66, 'ㅁㄴㅇㄻ', '01/20/2018 00:00', '01/20/2018 01:00', 'admin@lss', '#3c8dbc', 'memo'),
-	(67, 'ㄴㅁㅇㄻㄴ', '02/06/2018 00:00', '02/06/2018 01:00', 'admin@lss', '#23527c', 'memo');
+	(16, 'Standard', '03/07/2018', '03/10/2018', '0/0/0', '450000', 'complete'),
+	(27, 'ㄴㅇㄻㄴㄹㅇ', '02/04/2018 00:30', '02/04/2018 01:00', 'admin@lss', '0', 'memo'),
+	(64, 'ㄴㅁㅇㄹㄴ', '02/01/2018 00:00', '02/01/2018 01:00', 'admin@lss', '0', 'memo'),
+	(65, 'sadfas', '01/19/2018 21:30', '01/20/2018 03:30', 'admin@lss', '0', 'memo'),
+	(69, 'Deluxe', '01/30/2018', '02/02/2018', '0/0/0', '0', 'instore'),
+	(72, 'ㄴㅁㅇㄻㅇㄴㄹ', '01/20/2018 00:00', '01/20/2018 01:00', 'admin@lss', '#001f3f', 'memo'),
+	(73, 'Standard', '03/07/2018', '03/10/2018', '0/0/0', '450000', 'complete'),
+	(75, 'Standard', '03/07/2018', '03/10/2018', '0/0/0', '450000', 'complete'),
+	(78, 'Standard', '03/07/2018', '03/10/2018', '0/0/0', '450000', 'complete');
 /*!40000 ALTER TABLE `cart` ENABLE KEYS */;
 
--- Dumping structure for table hotel.count
+-- 테이블 hotel.count 구조 내보내기
 CREATE TABLE IF NOT EXISTS `count` (
   `total` int(11) DEFAULT NULL,
   `reserve` int(11) DEFAULT NULL,
@@ -56,7 +55,7 @@ CREATE TABLE IF NOT EXISTS `count` (
   PRIMARY KEY (`day`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Dumping data for table hotel.count: ~137 rows (approximately)
+-- 테이블 데이터 hotel.count:~158 rows (대략적) 내보내기
 DELETE FROM `count`;
 /*!40000 ALTER TABLE `count` DISABLE KEYS */;
 INSERT INTO `count` (`total`, `reserve`, `year`, `month`, `day`) VALUES
@@ -220,14 +219,14 @@ INSERT INTO `count` (`total`, `reserve`, `year`, `month`, `day`) VALUES
 	(10, 1, '2018', '2018-01', '2018-01-19');
 /*!40000 ALTER TABLE `count` ENABLE KEYS */;
 
--- Dumping structure for table hotel.countrycount
+-- 테이블 hotel.countrycount 구조 내보내기
 CREATE TABLE IF NOT EXISTS `countrycount` (
   `country` char(50) NOT NULL,
   `count` char(50) NOT NULL,
   PRIMARY KEY (`country`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Dumping data for table hotel.countrycount: ~11 rows (approximately)
+-- 테이블 데이터 hotel.countrycount:~11 rows (대략적) 내보내기
 DELETE FROM `countrycount`;
 /*!40000 ALTER TABLE `countrycount` DISABLE KEYS */;
 INSERT INTO `countrycount` (`country`, `count`) VALUES
@@ -244,7 +243,7 @@ INSERT INTO `countrycount` (`country`, `count`) VALUES
 	('US', '249');
 /*!40000 ALTER TABLE `countrycount` ENABLE KEYS */;
 
--- Dumping structure for table hotel.hoteldetail
+-- 테이블 hotel.hoteldetail 구조 내보내기
 CREATE TABLE IF NOT EXISTS `hoteldetail` (
   `idx` int(11) NOT NULL AUTO_INCREMENT,
   `roomname` char(50) DEFAULT NULL,
@@ -260,7 +259,7 @@ CREATE TABLE IF NOT EXISTS `hoteldetail` (
   UNIQUE KEY `roomname` (`roomname`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
--- Dumping data for table hotel.hoteldetail: ~4 rows (approximately)
+-- 테이블 데이터 hotel.hoteldetail:~4 rows (대략적) 내보내기
 DELETE FROM `hoteldetail`;
 /*!40000 ALTER TABLE `hoteldetail` DISABLE KEYS */;
 INSERT INTO `hoteldetail` (`idx`, `roomname`, `mainpic`, `content`, `price`, `subpic`, `subcont1`, `subcont2`, `subcont3`, `color`) VALUES
@@ -270,7 +269,7 @@ INSERT INTO `hoteldetail` (`idx`, `roomname`, `mainpic`, `content`, `price`, `su
 	(8, 'Standard', 'st.jpg', '높은 수준을 자랑하는 기본적인 객실', '150000', '객실은 효율적이면서 개성 있는 공간으로 구현되었습니다. 수납가구 대신 선반들을', 'st01.jpg', 'st02.jpg', 'st03.jpg', '#EB0F70');
 /*!40000 ALTER TABLE `hoteldetail` ENABLE KEYS */;
 
--- Dumping structure for table hotel.review
+-- 테이블 hotel.review 구조 내보내기
 CREATE TABLE IF NOT EXISTS `review` (
   `idx` int(11) NOT NULL AUTO_INCREMENT,
   `writer` char(50) NOT NULL DEFAULT '익명',
@@ -282,7 +281,7 @@ CREATE TABLE IF NOT EXISTS `review` (
   PRIMARY KEY (`idx`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
--- Dumping data for table hotel.review: ~4 rows (approximately)
+-- 테이블 데이터 hotel.review:~4 rows (대략적) 내보내기
 DELETE FROM `review`;
 /*!40000 ALTER TABLE `review` DISABLE KEYS */;
 INSERT INTO `review` (`idx`, `writer`, `title`, `content`, `regdate`, `star`, `pic`) VALUES
@@ -292,7 +291,7 @@ INSERT INTO `review` (`idx`, `writer`, `title`, `content`, `regdate`, `star`, `p
 	(8, 'admin@lss', 'ggg', '12434425', '2017-12-27', '3', NULL);
 /*!40000 ALTER TABLE `review` ENABLE KEYS */;
 
--- Dumping structure for table hotel.tblfileload
+-- 테이블 hotel.tblfileload 구조 내보내기
 CREATE TABLE IF NOT EXISTS `tblfileload` (
   `num` int(11) NOT NULL AUTO_INCREMENT,
   `file` char(50) NOT NULL DEFAULT '0',
@@ -300,12 +299,12 @@ CREATE TABLE IF NOT EXISTS `tblfileload` (
   PRIMARY KEY (`num`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Dumping data for table hotel.tblfileload: ~0 rows (approximately)
+-- 테이블 데이터 hotel.tblfileload:~0 rows (대략적) 내보내기
 DELETE FROM `tblfileload`;
 /*!40000 ALTER TABLE `tblfileload` DISABLE KEYS */;
 /*!40000 ALTER TABLE `tblfileload` ENABLE KEYS */;
 
--- Dumping structure for table hotel.tblhotel
+-- 테이블 hotel.tblhotel 구조 내보내기
 CREATE TABLE IF NOT EXISTS `tblhotel` (
   `id` char(50) DEFAULT NULL,
   `pass` char(50) DEFAULT NULL,
@@ -317,7 +316,7 @@ CREATE TABLE IF NOT EXISTS `tblhotel` (
   UNIQUE KEY `id` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Dumping data for table hotel.tblhotel: ~6 rows (approximately)
+-- 테이블 데이터 hotel.tblhotel:~6 rows (대략적) 내보내기
 DELETE FROM `tblhotel`;
 /*!40000 ALTER TABLE `tblhotel` DISABLE KEYS */;
 INSERT INTO `tblhotel` (`id`, `pass`, `email`, `cart`, `grade`, `pic`) VALUES
@@ -329,7 +328,7 @@ INSERT INTO `tblhotel` (`id`, `pass`, `email`, `cart`, `grade`, `pic`) VALUES
 	('aaa', '1', 'sss@nacver.dcom', NULL, 'normal', NULL);
 /*!40000 ALTER TABLE `tblhotel` ENABLE KEYS */;
 
--- Dumping structure for table hotel.tblproduct
+-- 테이블 hotel.tblproduct 구조 내보내기
 CREATE TABLE IF NOT EXISTS `tblproduct` (
   `no` int(11) NOT NULL AUTO_INCREMENT,
   `name` char(50) DEFAULT NULL,
@@ -339,7 +338,7 @@ CREATE TABLE IF NOT EXISTS `tblproduct` (
   PRIMARY KEY (`no`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
--- Dumping data for table hotel.tblproduct: ~0 rows (approximately)
+-- 테이블 데이터 hotel.tblproduct:~0 rows (대략적) 내보내기
 DELETE FROM `tblproduct`;
 /*!40000 ALTER TABLE `tblproduct` DISABLE KEYS */;
 INSERT INTO `tblproduct` (`no`, `name`, `price`, `detail`, `image`) VALUES

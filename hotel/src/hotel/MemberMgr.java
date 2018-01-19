@@ -190,6 +190,26 @@ public class MemberMgr {
 		}
 		return flag;
 	}
+	public boolean deleteCart(int num) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		boolean flag = false;
+		try {
+			con = pool.getConnection();
+			sql = "delete from cart where num = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			if(pstmt.executeUpdate()==1) {
+				flag = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			pool.freeConnection(con, pstmt);
+		}
+		return flag;
+	}
 	public boolean updateCart(CartBean bean,String Status) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
