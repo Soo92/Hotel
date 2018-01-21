@@ -1,3 +1,4 @@
+<%@page import="java.text.DateFormat"%>
 <%@page import="hotel.RoomBean"%>
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@page import="java.text.SimpleDateFormat"%>
@@ -9,6 +10,15 @@
 		String email = (String)session.getAttribute("emailKey");
 		boolean off = email == null || email.equals("");
 		Vector<RoomBean> vlist = hmgr.getRoomList();
+
+		DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+	    Date currentDate = new Date();
+	    String today = dateFormat.format(currentDate);
+	    Calendar c = Calendar.getInstance();
+	    c.setTime(currentDate);
+	    c.add(Calendar.DATE, 1);
+	    Date tomo = c.getTime();
+	    String nextday = dateFormat.format(tomo);
 %>
 <!DOCTYPE HTML>
 <html>
@@ -34,7 +44,7 @@
 		document.getElementById("daytotal").textContent=document.getElementById("day").value*document.getElementById("roompay").value;
 	  }
       var target = document.getElementById("roompay");
-	  document.getElementById("roomname").value=target.options[target.selectedIndex].text;
+	  document.getElementById("roomname").value=(target.options[target.selectedIndex].text=="Select a type of Room"?"Standard":target.options[target.selectedIndex].text);
 	  document.getElementById("perday").textContent=document.getElementById("roompay").value;
 		document.getElementById("adult").textContent=document.getElementById("country1").value;
 		document.getElementById("ch05").textContent=document.getElementById("country2").value;
@@ -46,6 +56,7 @@
 	if(<%=off%>){
 		parent.a();
 	}else{
+		cal();
 		document.cart.submit();
 	}
 }
@@ -93,7 +104,7 @@
 				<div class="span2_of_1">
 					<h4>check-in:</h4>
 					<div class="book_date btm">
-							<input name="checkin" class="date" id="datepicker" type="text" value="DD/MM/YY" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'DD/MM/YY';}">
+							<input name="checkin" class="date" id="datepicker" type="text" value="<%=today %>" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '<%=today %>';}">
 					</div>	
 					<div class="sel_room" >
 						<h4>number of rooms</h4>
@@ -117,7 +128,7 @@
 				<div class="span2_of_1"s>
 					<h4>check-out:</h4>
 					<div class="book_date btm">
-							<input name="checkout" class="date" id="datepicker1" type="text" value="DD/MM/YY" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'DD/MM/YY';}">
+							<input name="checkout" class="date" id="datepicker1" type="text" value="<%=nextday %>" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '<%=nextday %>';}">
 					</div>	
 					<div class="sel_room">
 						<h4>childern 0-5:</h4>

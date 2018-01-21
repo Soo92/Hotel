@@ -1,3 +1,7 @@
+<%@page import="java.util.Date"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="hotel.CartBean"%>
+<%@page import="java.util.Vector"%>
 <jsp:useBean id="mgr" class="hotel.MemberMgr"/>
 <%
 	String email = session.getAttribute("admin")+"";
@@ -101,124 +105,69 @@
             </ul>
           </li>
           <!-- Notifications: style can be found in dropdown.less -->
-          <li class="dropdown notifications-menu">
+    <%	
+	    Vector<CartBean> cartlisth = mgr.getCartList(email);
+	    SimpleDateFormat dth = new SimpleDateFormat();
+		long curtimeh=0;
+	    long reqtimeh=0;
+	    Date reqh=new Date();
+	    long mgaph=0;
+	    long hgaph=0;
+	    int dgaph=0;
+	    int dategaph=0;
+	    int mogaph=0;
+	    int counth = 0; 
+    %>
+	          <li class="dropdown notifications-menu">
+            <ul class="dropdown-menu">
+              <li>
+                <!-- inner menu: contains the actual data -->
+                <ul class="menu">
+	<%  for(int i=0;i<cartlisth.size();i++){
+          String reqDateStr = cartlisth.get(i).getCheckin();
+     	  Date curDate = new Date(); 
+     	  if(cartlisth.get(i).getStatus().equals("memo")) dth = new SimpleDateFormat("MM/dd/yyyy HH:mm"); 
+     	  else dth = new SimpleDateFormat("MM/dd/yyyy"); 
+     	  reqh = dth.parse(reqDateStr);
+     	  reqtimeh = reqh.getTime();
+     	  curtimeh = curDate.getTime();
+     	  mgaph = (reqtimeh-curtimeh)/(60000);
+     	  hgaph = mgaph / 60;
+     	  dgaph = (int)(hgaph / 24);
+     	  dategaph = (int)(dgaph / 7);
+     	  mogaph = (int)(dgaph / 30);
+     	  if(mgaph>0){
+     		  counth++;
+	%>
+                  <li>
+                    <a href="#">
+    <%if(cartlisth.get(i).getStatus().equals("memo")) {%>
+                      <i class="fa fa-users text-aqua"></i> <%=cartlisth.get(i).getRoomname()%> / <%=cartlisth.get(i).getStatus()%> /
+    <%}else {%>
+                      <i class="fa fa-shopping-cart text-green"></i> <%=cartlisth.get(i).getRoomname()%> / <%=cartlisth.get(i).getStatus()%> /
+    <%} %>
+            <%if(mogaph>0) {%>
+                  <small class="label label-default"><i class="fa fa-clock-o"></i> <%=mogaph %> month</small>
+			<%}else if(dategaph>0) {%>
+                  <small class="label label-primary"><i class="fa fa-clock-o"></i> <%=dategaph %> week</small>
+			<%}else if(dgaph>0) {%>
+                  <small class="label label-warning"><i class="fa fa-clock-o"></i> <%=dgaph %> day</small>
+			<%}else if(hgaph>0) {%>
+                  <small class="label label-info"><i class="fa fa-clock-o"></i> <%=hgaph %> hours</small>
+			<%}else if(mgaph>0) {%>
+                  <small class="label label-danger"><i class="fa fa-clock-o"></i> <%=mgaph %> mins</small>
+			<%} %>
+                    </a>
+                  </li>
+	<%}} %>
+                </ul>
+              </li>
+              <li class="footer"><a href="/hotel/admin/pages/admin_link/reservation.jsp">View Calendar</a></li>
+            </ul>
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <i class="fa fa-bell-o"></i>
-              <span class="label label-warning">10</span>
+              <span class="label label-warning"><%=counth %></span>
             </a>
-            <ul class="dropdown-menu">
-              <li class="header">You have 10 notifications</li>
-              <li>
-                <!-- inner menu: contains the actual data -->
-                <ul class="menu">
-                  <li>
-                    <a href="#">
-                      <i class="fa fa-users text-aqua"></i> 5 new members joined today
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i class="fa fa-warning text-yellow"></i> Very long description here that may not fit into the
-                      page and may cause design problems
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i class="fa fa-users text-red"></i> 5 new members joined
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i class="fa fa-shopping-cart text-green"></i> 25 sales made
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i class="fa fa-user text-red"></i> You changed your username
-                    </a>
-                  </li>
-                </ul>
-              </li>
-              <li class="footer"><a href="#">View all</a></li>
-            </ul>
-          </li>
-          <!-- Tasks: style can be found in dropdown.less -->
-          <li class="dropdown tasks-menu">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <i class="fa fa-flag-o"></i>
-              <span class="label label-danger">9</span>
-            </a>
-            <ul class="dropdown-menu">
-              <li class="header">You have 9 tasks</li>
-              <li>
-                <!-- inner menu: contains the actual data -->
-                <ul class="menu">
-                  <li><!-- Task item -->
-                    <a href="#">
-                      <h3>
-                        Design some buttons
-                        <small class="pull-right">20%</small>
-                      </h3>
-                      <div class="progress xs">
-                        <div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar"
-                             aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                          <span class="sr-only">20% Complete</span>
-                        </div>
-                      </div>
-                    </a>
-                  </li>
-                  <!-- end task item -->
-                  <li><!-- Task item -->
-                    <a href="#">
-                      <h3>
-                        Create a nice theme
-                        <small class="pull-right">40%</small>
-                      </h3>
-                      <div class="progress xs">
-                        <div class="progress-bar progress-bar-green" style="width: 40%" role="progressbar"
-                             aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                          <span class="sr-only">40% Complete</span>
-                        </div>
-                      </div>
-                    </a>
-                  </li>
-                  <!-- end task item -->
-                  <li><!-- Task item -->
-                    <a href="#">
-                      <h3>
-                        Some task I need to do
-                        <small class="pull-right">60%</small>
-                      </h3>
-                      <div class="progress xs">
-                        <div class="progress-bar progress-bar-red" style="width: 60%" role="progressbar"
-                             aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                          <span class="sr-only">60% Complete</span>
-                        </div>
-                      </div>
-                    </a>
-                  </li>
-                  <!-- end task item -->
-                  <li><!-- Task item -->
-                    <a href="#">
-                      <h3>
-                        Make beautiful transitions
-                        <small class="pull-right">80%</small>
-                      </h3>
-                      <div class="progress xs">
-                        <div class="progress-bar progress-bar-yellow" style="width: 80%" role="progressbar"
-                             aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                          <span class="sr-only">80% Complete</span>
-                        </div>
-                      </div>
-                    </a>
-                  </li>
-                  <!-- end task item -->
-                </ul>
-              </li>
-              <li class="footer">
-                <a href="#">View all tasks</a>
-              </li>
-            </ul>
           </li>
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">

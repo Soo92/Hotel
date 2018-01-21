@@ -2,14 +2,14 @@
 <jsp:useBean id="mgr" class="hotel.MemberMgr"/>
 <%
 		request.setCharacterEncoding("euc-kr");
-		String idx = request.getParameter("index");
-		int num=Integer.parseInt(idx);
-		boolean result = mgr.deleteCart(num);
-		String msg = "Failed";
-		if(result){
-			msg = "Success";
+		String idx[] = request.getParameter("index").split(",");
+		for(int i=0;i<idx.length;i++){
+			if(!idx[i].equals("NaN")){
+				int num=Integer.parseInt(idx[i]);
+				boolean result = mgr.deleteCart(num);
+			}
 		}
 %>			
 <script>
-	location.href="/hotel/admin/index.jsp";
+	location.href="/hotel/admin/index.jsp#todo";
 </script>

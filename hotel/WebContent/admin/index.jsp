@@ -23,6 +23,9 @@
     int dgap=0;
     int dategap=0;
     int mogap=0;
+    
+    int comnum=0,noshownum=0,instorenum=0,cartnum=0;
+    
     Vector<CartBean> cartlist = memgr.getCartList(email1);
 %>
 
@@ -102,7 +105,7 @@
           <!-- small box -->
           <div class="small-box bg-green">
             <div class="inner">
-              <h3><%=cmgr.CountprevReserve(15)==0?" - ":(cmgr.CountonComing()/(cmgr.CountprevReserve(5)))*100 %><sup style="font-size: 20px">%</sup></h3>
+              <h3><%=cmgr.CountprevReserve(15)==0?" - ":(cmgr.CountonComing()/(cmgr.CountprevReserve(15)))*100 %><sup style="font-size: 20px">%</sup></h3>
 
               <p>Bounce Rate</p>
             </div>
@@ -181,8 +184,8 @@
 
               <div class="box-tools pull-right" data-toggle="tooltip" title="Status">
                 <div class="btn-group" data-toggle="btn-toggle">
-                  <button type="button" class="btn btn-default btn-sm active"><i class="fa fa-square text-green"></i> </button>
-                  <button type="button" class="btn btn-default btn-sm"><i class="fa fa-square text-red"></i></button>
+                  <button type="button" class="online btn btn-default btn-sm active"><i class="fa fa-square text-green"></i> </button>
+                  <button type="button" class="offline btn btn-default btn-sm"><i class="fa fa-square text-red"></i></button>
                 </div>
               </div>
             </div>
@@ -225,81 +228,6 @@
             </div>
           </div>
           <!-- /.box (chat box) -->
-
-          <!-- TO DO List -->
-          <div class="box box-primary">
-            <div class="box-header">
-              <i class="ion ion-clipboard"></i>
-
-              <h3 class="box-title">To Do List</h3>
-
-              <div class="box-tools pull-right">
-                <ul class="pagination pagination-sm inline">
-                  <li><a onclick="prevPage()">&laquo;</a></li>
-            <%for(int i=0;i<(cartlist.size()+1)/6+1;i++){%>
-                  <li><a onclick="todoPage(<%=i%>)"><%=i+1 %></a></li>
-			<%} %>
-                  <li><a onclick="nextPage()">&raquo;</a></li>
-                </ul>
-              </div>
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body">
-              <!-- See dist/js/pages/dashboard.js to activate the todoList plugin -->
-              <ul class="todo-list">
-    <%for(int i=0;i<cartlist.size();i++){
-          String reqDateStr = cartlist.get(i).getCheckin();
-     	  Date curDate = new Date(); 
-     	  if(cartlist.get(i).getStatus().equals("memo")) dt = new SimpleDateFormat("MM/dd/yyyy HH:mm"); 
-     	  else dt = new SimpleDateFormat("MM/dd/yyyy"); 
-     	  req = dt.parse(reqDateStr);
-     	  reqtime = req.getTime();
-     	  curtime = curDate.getTime();
-     	  mgap = (reqtime-curtime)/(60000);
-     	  hgap = mgap / 60;
-     	  dgap = (int)(hgap / 24);
-     	  dategap = (int)(dgap / 7);
-     	  mogap = (int)(dgap / 30);
-     	  if(mgap>0){
-	%>
-                <li style="display:none">
-                  <!-- drag handle -->
-                  <span class="handle">
-                        <i class="fa fa-ellipsis-v"></i>
-                        <i class="fa fa-ellipsis-v"></i>
-                      </span>
-                  <!-- checkbox -->
-                  <input type="checkbox" value="">
-                  <!-- todo text -->
-                  <span class="text"><%=cartlist.get(i).getRoomname() %></span>
-                  <!-- Emphasis label -->
-            <%if(mogap>0) {%>
-                  <small class="label label-default"><i class="fa fa-clock-o"></i> <%=mogap %> month</small>
-			<%}else if(dategap>0) {%>
-                  <small class="label label-primary"><i class="fa fa-clock-o"></i> <%=dategap %> week</small>
-			<%}else if(dgap>0) {%>
-                  <small class="label label-warning"><i class="fa fa-clock-o"></i> <%=dgap %> day</small>
-			<%}else if(hgap>0) {%>
-                  <small class="label label-info"><i class="fa fa-clock-o"></i> <%=hgap %> hours</small>
-			<%}else if(mgap>0) {%>
-                  <small class="label label-danger"><i class="fa fa-clock-o"></i> <%=mgap %> mins</small>
-			<%} %>
-                  <!-- General tools such as edit or delete-->
-                  <div class="tools">
-                  <a href="./pages/admin_cart/cart_del_proc.jsp?index=<%=cartlist.get(i).getNum() %>" onclick="return confirm('delete?')">
-                    <i class="fa fa-trash-o"></i>
-				  </a>
-                  </div>
-                </li>
-	<%}} %>
-              </ul>
-            </div>
-            <!-- /.box-body -->
-            <div class="box-footer clearfix no-border">
-              <button type="button" class="btn btn-default pull-right"><i class="fa fa-check-square-o"></i> Apply</button>
-            </div>
-          </div>
-          <!-- /.box -->
 
           <!-- quick email widget -->
           <form name="mailing" action="./pages/admin_link/SendAccount.jsp">
@@ -403,24 +331,35 @@
               <div class="chart" id="line-chart" style="height: 250px;"></div>
             </div>
             <!-- /.box-body -->
+<%
+for(int i=0;i<cartlist.size();i++){
+	  if(cartlist.get(i).getStatus().equals("complete")) comnum++;
+	  if(cartlist.get(i).getStatus().equals("noshow")) noshownum++;
+	  if(cartlist.get(i).getStatus().equals("cart")) cartnum++;
+	  if(cartlist.get(i).getStatus().equals("instore")) instorenum++;
+}
+	int compper = (comnum*100/((comnum+noshownum)==0?1:(comnum+noshownum)));
+	int cartper = (cartnum*100/((cartnum+instorenum)==0?1:(cartnum+instorenum)));
+	int instoreper = (instorenum*100/((cartnum+instorenum)==0?1:(cartnum+instorenum)));
+%>
             <div class="box-footer no-border">
               <div class="row">
                 <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
-                  <input type="text" class="knob" data-readonly="true" value="20" data-width="60" data-height="60"
+                  <input type="text" class="knob" data-readonly="true" value="<%=compper %>" data-width="60" data-height="60"
                          data-fgColor="#39CCCC">
 
                   <div class="knob-label">Complete</div>
                 </div>
                 <!-- ./col -->
                 <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
-                  <input type="text" class="knob" data-readonly="true" value="50" data-width="60" data-height="60"
+                  <input type="text" class="knob" data-readonly="true" value="<%=cartper %>" data-width="60" data-height="60"
                          data-fgColor="#39CCCC">
 
                   <div class="knob-label">Online</div>
                 </div>
                 <!-- ./col -->
                 <div class="col-xs-4 text-center">
-                  <input type="text" class="knob" data-readonly="true" value="30" data-width="60" data-height="60"
+                  <input type="text" class="knob" data-readonly="true" value="<%=instoreper %>" data-width="60" data-height="60"
                          data-fgColor="#39CCCC">
 
                   <div class="knob-label">In-Store</div>
@@ -433,61 +372,79 @@
           </div>
           <!-- /.box -->
 
-          <!-- Calendar -->
-          <div class="box box-solid bg-green-gradient">
-            <div class="box-header">
-              <i class="fa fa-calendar"></i>
 
-              <h3 class="box-title">Calendar</h3>
-              <!-- tools box -->
-              <div class="pull-right box-tools">
-                <!-- button with a dropdown -->
-                <div class="btn-group">
-                  <button type="button" class="btn btn-success btn-sm dropdown-toggle" data-toggle="dropdown">
-                    <i class="fa fa-bars"></i></button>
-                  <ul class="dropdown-menu pull-right" role="menu">
-                    <li><a>Add new event</a></li>
-                    <li><a>Clear events</a></li>
-                    <li class="divider"></li>
-                    <li><a>View calendar</a></li>
-                  </ul>
-                </div>
-                <button type="button" class="btn btn-success btn-sm" data-widget="collapse"><i class="fa fa-minus"></i>
-                </button>
-                <button type="button" class="btn btn-success btn-sm" data-widget="remove"><i class="fa fa-times"></i>
-                </button>
+          <!-- TO DO List -->
+          <div id="todo" class="box box-primary">
+            <div class="box-header">
+              <i class="ion ion-clipboard"></i>
+
+              <h3 class="box-title">To Do List</h3>
+
+              <div class="box-tools pull-right">
+                <ul class="pagination pagination-sm inline">
+                  <li><a onclick="prevPage()">&laquo;</a></li>
+            <%for(int i=0;i<(cartlist.size()+1)/6+1;i++){%>
+                  <li><a onclick="todoPage(<%=i%>)"><%=i+1 %></a></li>
+			<%} %>
+                  <li><a onclick="nextPage()">&raquo;</a></li>
+                </ul>
               </div>
-              <!-- /. tools -->
             </div>
             <!-- /.box-header -->
-            <div class="box-body no-padding">
-              <!--The calendar -->
-              <div id="calendar" style="width: 100%"></div>
+            <div class="box-body">
+              <!-- See dist/js/pages/dashboard.js to activate the todoList plugin -->
+              <ul class="todo-list">
+    <%for(int i=0;i<cartlist.size();i++){
+    	
+    	  String reqDateStr = cartlist.get(i).getCheckin();
+     	  Date curDate = new Date(); 
+     	  if(cartlist.get(i).getStatus().equals("memo")) dt = new SimpleDateFormat("MM/dd/yyyy HH:mm"); 
+     	  else dt = new SimpleDateFormat("MM/dd/yyyy"); 
+     	  req = dt.parse(reqDateStr);
+     	  reqtime = req.getTime();
+     	  curtime = curDate.getTime();
+     	  mgap = (reqtime-curtime)/(60000);
+     	  hgap = mgap / 60;
+     	  dgap = (int)(hgap / 24);
+     	  dategap = (int)(dgap / 7);
+     	  mogap = (int)(dgap / 30);
+     	  if(mgap>0){
+	%>
+                <li style="display:none">
+                  <!-- drag handle -->
+                  <span class="handle">
+                        <i class="fa fa-ellipsis-v"></i>
+                        <i class="fa fa-ellipsis-v"></i>
+                      </span>
+                  <!-- checkbox -->
+                  <input name="doChk" type="checkbox" value="<%=cartlist.get(i).getNum() %>">
+                  <!-- todo text -->
+                  <span class="text"><%=cartlist.get(i).getRoomname() %> / <%=cartlist.get(i).getStatus() %></span>
+                  <!-- Emphasis label -->
+            <%if(mogap>0) {%>
+                  <small class="label label-default"><i class="fa fa-clock-o"></i> <%=mogap %> month</small>
+			<%}else if(dategap>0) {%>
+                  <small class="label label-primary"><i class="fa fa-clock-o"></i> <%=dategap %> week</small>
+			<%}else if(dgap>0) {%>
+                  <small class="label label-warning"><i class="fa fa-clock-o"></i> <%=dgap %> day</small>
+			<%}else if(hgap>0) {%>
+                  <small class="label label-info"><i class="fa fa-clock-o"></i> <%=hgap %> hours</small>
+			<%}else if(mgap>0) {%>
+                  <small class="label label-danger"><i class="fa fa-clock-o"></i> <%=mgap %> mins</small>
+			<%} %>
+                  <!-- General tools such as edit or delete-->
+                  <div class="tools">
+                  <a href="./pages/admin_cart/cart_del_proc.jsp?index=<%=cartlist.get(i).getNum() %>" onclick="return confirm('delete?')">
+                    <i class="fa fa-trash-o"></i>
+				  </a>
+                  </div>
+                </li>
+	<%}} %>
+              </ul>
             </div>
             <!-- /.box-body -->
-            <div class="box-footer text-black">
-              <div class="row">
-                <div class="col-sm-12">
-                  <!-- Progress bars -->
-                  <div class="clearfix">
-                    <span class="pull-left">Reserve</span>
-                    <small class="pull-right">90%</small>
-                  </div>
-                  <div class="progress xs">
-                    <div class="progress-bar progress-bar-green" style="width: 90%;"></div>
-                  </div>
-
-                  <div class="clearfix">
-                    <span class="pull-left">Memo</span>
-                    <small class="pull-right">70%</small>
-                  </div>
-                  <div class="progress xs">
-                    <div class="progress-bar progress-bar-green" style="width: 70%;"></div>
-                  </div>
-                </div>
-                <!-- /.col -->
-              </div>
-              <!-- /.row -->
+            <div class="box-footer clearfix no-border">
+              <button id="todoS" type="button" class="btn btn-default pull-right"><i class="fa fa-check-square-o"></i> Apply</button>
             </div>
           </div>
           <!-- /.box -->
@@ -547,40 +504,6 @@
 <script src="bower_components/Flot/jquery.flot.categories.js"></script>
 <!-- Page script -->
 <script type="text/javascript">
-/* Soo add */
-var todopaging=0;
-$('ul.pagination li').eq(1).addClass("active");
-for(var i=($('ul.todo-list li').length)/6+1;i<$('ul.pagination li').length-1;i++){
-	$('ul.pagination li').eq(i).remove();
-}
-for(var i=0;i<5;i++){
-	$('ul.todo-list li').eq(i).show();
-}
-function todoPage(a){
-	todopaging=a;
-	for(var i=0;i<$('ul.pagination li').length;i++){
-		if(a==i)
-			$('ul.pagination li').eq(i+1).addClass("active");
-		else
-			$('ul.pagination li').eq(i+1).removeClass("active");
-	}
-	for(var i=0;i<$('ul.todo-list li').length;i++){
-		if(a*5<=i && i<a*5+5)
-			$('ul.todo-list li').eq(i).show(300);
-		else
-			$('ul.todo-list li').eq(i).hide(300);
-	}
-}
-function prevPage(){
-	todopaging-=1;
-	if(todopaging<0) todopaging=0;
-	todoPage(todopaging);
-}
-function nextPage(){
-	todopaging+=1;
-	if(todopaging>$('ul.pagination li').length-3) todopaging=$('ul.pagination li').length-3;
-	todoPage(todopaging);
-}
 /*
  * Author: Abdullah A Almsaeed
  * Date: 4 Jan 2014
@@ -719,7 +642,7 @@ $(function () {
 	    xkey             : 'y',
 	    ykeys            : ['item1'],
 	    labels           : ['Item 1'],
-	    lineColors       : ['#efefef'],
+		    lineColors       : ['#efefef'],
 	    lineWidth        : 2,
 	    hideHover        : 'auto',
 	    gridTextColor    : '#fff',
@@ -821,9 +744,6 @@ $('.jvectormap-label').css({
     width    : '80'
   });
 
-  // The Calender
-  $('#calendar').datepicker();
-
   // SLIMSCROLL FOR CHAT WIDGET
   $('#chat-box').slimScroll({
     height: '250px'
@@ -837,15 +757,64 @@ $('.jvectormap-label').css({
   });
 
   /* The todo list plugin */
+  var arr;
+  $('#todoS').click(function () {
+	  if(arr!=null && confirm("delete all?"))
+		  location.href='./pages/admin_cart/cart_del_proc.jsp?index='+arr
+  });
   $('.todo-list').todoList({
     onCheck  : function () {
       window.console.log($(this), 'The element has been checked');
-    },
+      arr = $.map($('input:checkbox:checked'), function(e,i) {
+    	    return +e.value;
+    	});
+   	},
     onUnCheck: function () {
       window.console.log($(this), 'The element has been unchecked');
+      arr = $.map($('input:checkbox:checked'), function(e,i) {
+  	    return +e.value;
+  	});
     }
   });
 });
+var checked = []
+var todopaging=0;
+$('ul.pagination li').eq(1).addClass("active");
+for(var i=parseInt(($('ul.todo-list li').length)/6+2);i<$('ul.pagination li').length-1;i++){
+	console.log($('ul.todo-list li').length);
+	console.log(i);
+	$('ul.pagination li').eq(i).remove();
+}
+for(var i=0;i<5;i++){
+	$('ul.todo-list li').eq(i).show();
+}
+function todoPage(a){
+	todopaging=a;
+	for(var i=0;i<$('ul.pagination li').length;i++){
+		if(a==i)
+			$('ul.pagination li').eq(i+1).addClass("active");
+		else
+			$('ul.pagination li').eq(i+1).removeClass("active");
+	}
+	for(var i=0;i<$('ul.todo-list li').length;i++){
+		if(a*5<=i && i<a*5+5)
+			$('ul.todo-list li').eq(i).show(300);
+		else
+			$('ul.todo-list li').eq(i).hide(300);
+	}
+}
+function prevPage(){
+	todopaging-=1;
+	if(todopaging<0) todopaging=0;
+	todoPage(todopaging);
+}
+function nextPage(){
+	todopaging+=1;
+	if(todopaging>$('ul.pagination li').length-3) todopaging=$('ul.pagination li').length-3;
+	todoPage(todopaging);
+}
+
+/* web-socket plugin */
 var chat_in = $('#chat-box');
 var webSocket = new WebSocket('ws://<%=SocketAddr%>/hotel/broadcasting');
 var inputMessage = document.getElementById('inputMessage');
@@ -898,6 +867,22 @@ function send() {
 	inputMessage.value = "";
 	inputMessage.focus();
 }
+$('.online').click(function () {
+	if(!$('.online').hasClass('active')) $('.online').addClass('active');
+	$('.offline').removeClass('active');
+	$('#inputMessage').attr('disabled', false);
+	$('#send').attr('disabled', false);
+	webSocket.send("<%=mem.getId().length()+"/"+mem.getId() %>Chatted in!");
+	$('.chat').css('background-color','rgb(255, 255, 255)');
+})
+$('.offline').click(function () {
+	if(!$('.offline').hasClass('active')) $('.offline').addClass('active');
+	$('.online').removeClass('active');
+	$('#inputMessage').attr('disabled', true);
+	$('#send').attr('disabled', true);
+	webSocket.send("<%=mem.getId().length()+"/"+mem.getId() %>Chatted out!");
+	$('.chat').css('background-color','rgba(0, 0, 0, 0.2)');
+})
 </script>
 <!-- AdminLTE for demo purposes -->
 <script src="dist/js/demo.js"></script>

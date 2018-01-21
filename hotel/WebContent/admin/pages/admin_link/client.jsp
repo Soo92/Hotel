@@ -1,6 +1,7 @@
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
 <jsp:useBean id="tablemgr" class="hotel.AllTableMgr" />
+<jsp:useBean id="memgr" class="hotel.MemberMgr" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -59,17 +60,19 @@
           <div class="box">
             <div class="box-header">
               <h3 class="box-title">Data Table With Full Features</h3>
+			  <button id="todoS" type="button" class="btn btn-default pull-right"><i class="fa fa-check-square-o"></i> Apply</button>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-        <%ArrayList<String> Column = tablemgr.GetColumn("tblhotel");
+        <%memgr.initMember();
+        ArrayList<String> Column = tablemgr.GetColumn("tblhotel");
         for(int j=0;j<Column.size();j++) {%>
                   <th><%=Column.get(j) %></th>
 		<%} %>
-                  <th>Modify</th>
+                  <th></th>
                 </tr>
                 </thead>
                  <tbody>
@@ -80,12 +83,25 @@
 	        	%>
                   <td><%=Content.get(j).get(k) %></td>
 			<%} %>
-                  <td>+</td>
+                  <td style="text-align: center;">
+                  <a class="modify"><i class="fa fa-pencil-square-o fa-2x"></i></a>
+                  <a class="apply" style="display:none"><i class="fa fa-check-square-o fa-2x"></i></a>
+                  <a href="../admin_cart/client_del_proc.jsp?id=<%=Content.get(j).get(0) %>" onclick="return confirm('delete?')"><i class="fa fa-trash-o fa-2x" style="margin-left:15px;"></i></a>
+                  </td>
                 </tr>
 		<%} %>
                 </tbody>
               </table>
             </div>
+<div class="input-group-btn hidden">
+	<button type="button" class="dummy_button btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Action
+	  <span class="fa fa-caret-down"></span></button>
+	<ul class="dropdown-menu">
+	  <li onclick="javascript:$(this).parent().siblings('button').html($(this).children().html())"><a>admin</a></li>
+	  <li onclick="javascript:$(this).parent().siblings('button').html($(this).children().html())"><a>normal</a></li>
+	</ul>
+</div>
+<input type="text" class="dummy_text form-control hidden">
             <!-- /.box-body -->
           </div>
           <!-- /.box -->
@@ -117,6 +133,42 @@
 <script src="../../dist/js/demo.js"></script>
 <!-- page script -->
 <script>
+  $('.modify').click(function() {
+	  var pass = $(this).parent().siblings().eq(1);
+	  var grade = $(this).parent().siblings().eq(4);
+	  $('.dummy_button').text(grade.html());
+	  $('.dummy_text').val(pass.html());
+      var d = $('.dummy_text').clone(true);
+      var e = $('.dummy_button').parent().clone(true);
+      pass.empty();
+      grade.empty();
+      pass.append(d.removeClass('hidden').removeClass('dummy_text').show());
+      e.children().removeClass('dummy_button')
+      grade.append(e.removeClass('hidden').show());
+      $('#todoS').hide(300);
+      $(this).hide(300);
+      $(this).siblings('.apply').show(300);
+  });
+  $('.apply').click(function() {
+	  var pass = $(this).parent().siblings().eq(1);
+	  var grade = $(this).parent().siblings().eq(4);
+	  var repa = pass.children().val();
+	  var regra = grade.children().children('button').text();
+	  var table = $('#example1').DataTable();
+	  table.cell(table.row($(this).parent()),1).data(repa);
+	  table.cell(table.row($(this).parent()),4).data(regra);
+	  pass.html(repa);
+	  grade.html(regra);
+      $('#todoS').show(300);
+      $(this).hide(300);
+      $(this).siblings('.modify').show(300);
+  });
+  $('#todoS').click(function() {
+	  $('#example1').DataTable().draw();
+	  console.log($('#example1').DataTable().columns([0,1,4]).data());
+	  if(confirm('modify?'))
+		  location.href= "../admin_login/updateMemberProc.jsp?index="+$('#example1').DataTable().columns([0,1,4]).data().toArray();
+  });
   $(function () {
     $('#example1').DataTable()
   })

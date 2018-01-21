@@ -1,7 +1,9 @@
+<%@page import="hotel.RoomBean"%>
 <%@page import="hotel.ReviewBean"%>
 <%@page import="java.util.Vector"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
 <jsp:useBean id="remgr" class="hotel.ReviewMgr"/>
+<jsp:useBean id="romgr" class="hotel.RoomMgr"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -55,43 +57,27 @@
         <small>Room</small>
       </h1>
       <div class="row">
+<%Vector<RoomBean> rmlist =  romgr.getRoomList();
+for(int i=0;i<rmlist.size();i++){%>
         <div class="col-md-4">
           <!-- Widget: user widget style 1 -->
           <div class="box box-widget widget-user">
             <!-- Add the bg color to the header using any of the bg-* classes -->
-            <div class="widget-user-header bg-black" style="background: url('/hotel/admin/dist/img/photo1.png') center center;">
-              <h3 class="widget-user-username">Elizabeth Pierce</h3>
-              <h5 class="widget-user-desc">Web Designer</h5>
+            <div class="widget-user-header bg-black" style="background: url('/hotel/images/<%=rmlist.get(i).getSubcont3() %>') center center;">
+              <h3 class="widget-user-username"><%=rmlist.get(i).getRoomname() %></h3>
+              <h5 class="widget-user-desc">Price<br><%=rmlist.get(i).getPrice() %></h5>
             </div>
             <div class="widget-user-image">
-              <img class="img-circle" src="../../dist/img/user3-128x128.jpg" alt="User Avatar">
+              <img class="img-circle" src="/hotel/images/<%=rmlist.get(i).getMainpic() %>" alt="User Avatar">
             </div>
             <div class="box-footer">
               <div class="row">
-                <div class="col-sm-4 border-right">
+                <div class="col-sm-12 border-right">
                   <div class="description-block">
-                    <h5 class="description-header">3,200</h5>
-                    <span class="description-text">SALES</span>
+                    <h5 class="description-header"><%=rmlist.get(i).getContent() %></h5>
                   </div>
                   <!-- /.description-block -->
                 </div>
-                <!-- /.col -->
-                <div class="col-sm-4 border-right">
-                  <div class="description-block">
-                    <h5 class="description-header">13,000</h5>
-                    <span class="description-text">FOLLOWERS</span>
-                  </div>
-                  <!-- /.description-block -->
-                </div>
-                <!-- /.col -->
-                <div class="col-sm-4">
-                  <div class="description-block">
-                    <h5 class="description-header">35</h5>
-                    <span class="description-text">PRODUCTS</span>
-                  </div>
-                  <!-- /.description-block -->
-                </div>
-                <!-- /.col -->
               </div>
               <!-- /.row -->
             </div>
@@ -99,94 +85,7 @@
           <!-- /.widget-user -->
         </div>
         <!-- /.col -->
-        <div class="col-md-4">
-          <!-- Widget: user widget style 1 -->
-          <div class="box box-widget widget-user">
-            <!-- Add the bg color to the header using any of the bg-* classes -->
-            <div class="widget-user-header bg-black" style="background: url('/hotel/admin/dist/img/photo1.png') center center;">
-              <h3 class="widget-user-username">Elizabeth Pierce</h3>
-              <h5 class="widget-user-desc">Web Designer</h5>
-            </div>
-            <div class="widget-user-image">
-              <img class="img-circle" src="../../dist/img/user3-128x128.jpg" alt="User Avatar">
-            </div>
-            <div class="box-footer">
-              <div class="row">
-                <div class="col-sm-4 border-right">
-                  <div class="description-block">
-                    <h5 class="description-header">3,200</h5>
-                    <span class="description-text">SALES</span>
-                  </div>
-                  <!-- /.description-block -->
-                </div>
-                <!-- /.col -->
-                <div class="col-sm-4 border-right">
-                  <div class="description-block">
-                    <h5 class="description-header">13,000</h5>
-                    <span class="description-text">FOLLOWERS</span>
-                  </div>
-                  <!-- /.description-block -->
-                </div>
-                <!-- /.col -->
-                <div class="col-sm-4">
-                  <div class="description-block">
-                    <h5 class="description-header">35</h5>
-                    <span class="description-text">PRODUCTS</span>
-                  </div>
-                  <!-- /.description-block -->
-                </div>
-                <!-- /.col -->
-              </div>
-              <!-- /.row -->
-            </div>
-          </div>
-          <!-- /.widget-user -->
-        </div>
-        <!-- /.col -->
-        <div class="col-md-4">
-          <!-- Widget: user widget style 1 -->
-          <div class="box box-widget widget-user">
-            <!-- Add the bg color to the header using any of the bg-* classes -->
-            <div class="widget-user-header bg-black" style="background: url('/hotel/admin/dist/img/photo1.png') center center;">
-              <h3 class="widget-user-username">Elizabeth Pierce</h3>
-              <h5 class="widget-user-desc">Web Designer</h5>
-            </div>
-            <div class="widget-user-image">
-              <img class="img-circle" src="../../dist/img/user3-128x128.jpg" alt="User Avatar">
-            </div>
-            <div class="box-footer">
-              <div class="row">
-                <div class="col-sm-4 border-right">
-                  <div class="description-block">
-                    <h5 class="description-header">3,200</h5>
-                    <span class="description-text">SALES</span>
-                  </div>
-                  <!-- /.description-block -->
-                </div>
-                <!-- /.col -->
-                <div class="col-sm-4 border-right">
-                  <div class="description-block">
-                    <h5 class="description-header">13,000</h5>
-                    <span class="description-text">FOLLOWERS</span>
-                  </div>
-                  <!-- /.description-block -->
-                </div>
-                <!-- /.col -->
-                <div class="col-sm-4">
-                  <div class="description-block">
-                    <h5 class="description-header">35</h5>
-                    <span class="description-text">PRODUCTS</span>
-                  </div>
-                  <!-- /.description-block -->
-                </div>
-                <!-- /.col -->
-              </div>
-              <!-- /.row -->
-            </div>
-          </div>
-          <!-- /.widget-user -->
-        </div>
-        <!-- /.col -->
+<%} %>
       </div>
       <!-- /.row -->
       <h1>
@@ -198,10 +97,15 @@
 				<span class="caret"></span> <span class="sr-only">Toggle Dropdown</span>
 			</button>
 			<ul class="dropdown-menu" role="menu">
-				<li><a href="#">All Writer</a></li>
-			<%Vector<ReviewBean> relist = remgr.getReviewList(); 
-			for(int i=0;i<relist.size();i++){%>
-				<li><a href="#"><%=relist.get(i).getWriter() %></a></li>
+				<li class="filtering"><a>All Writer</a></li>
+			<%Vector<ReviewBean> relist = remgr.getReviewList();
+			Vector<String> wrlist = new Vector<String>();
+			for(int i=0;i<relist.size();i++){
+				if(!wrlist.contains(relist.get(i).getWriter()))
+					wrlist.add(relist.get(i).getWriter());
+			}
+			for(int i=0;i<wrlist.size();i++){%>
+				<li class="filtering"><a><%=wrlist.get(i) %></a></li>
 			<%} %>
 			</ul>
 		</div>
@@ -210,62 +114,62 @@
         <div class="col-md-6">
 	<%for(int i=0;i<relist.size();i=i+2){
 		if(relist.get(i).getPic()!=null){%>
-          <!-- Content Box Comment -->
-          <div class="box box-widget">
-            <div class="box-header with-border">
-              <div class="user-block">
-                <img src="/hotel/admin/dist/img/<%=mgr.getMember(relist.get(i).getWriter()).getPic() %>" class="img-circle" alt="User Image" onerror="this.src='/hotel/admin/dist/img/user_default.png'">
-                <span class="username"><a href="#"><%=relist.get(i).getTitle() %></a></span>
-                <span class="description"><%=relist.get(i).getWriter() %></span>
-              </div>
-              <!-- /.user-block -->
-              <div class="box-tools">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                </button>
-                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-              </div>
-              <!-- /.box-tools -->
+        <!-- Content Box Comment -->
+        <div class="box box-widget review">
+          <div class="box-header with-border">
+            <div class="user-block">
+              <img src="/hotel/admin/dist/img/<%=mgr.getMember(relist.get(i).getWriter()).getPic() %>" class="img-circle" alt="User Image" onerror="this.src='/hotel/admin/dist/img/user_default.png'">
+              <span class="username"><a href="#"><%=relist.get(i).getWriter() %></a></span>
+              <span class="description"><%=relist.get(i).getTitle() %></span>
             </div>
-            <!-- /.box-header -->
-            <div class="box-body">
-              <img class="img-responsive pad" src="/hotel/images/review/<%=relist.get(i).getPic() %>" alt="Photo">
-
-              <p><%=relist.get(i).getContent() %></p>
+            <!-- /.user-block -->
+            <div class="box-tools">
+              <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+              </button>
+              <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
             </div>
-            <!-- /.box-body -->
+            <!-- /.box-tools -->
           </div>
-          <!-- /.box -->
-      <%}else{ %>
-          <!-- Photo Box Comment -->
-          <div class="box box-widget">
-            <!-- /.box-header -->
-            <div class="box-footer box-comments">
-              <div class="box-comment">
-                <!-- User image -->
-                <img src="/hotel/admin/dist/img/<%=mgr.getMember(relist.get(i).getWriter()).getPic() %>" class="img-circle img-sm" alt="User Image" onerror="this.src='/hotel/admin/dist/img/user_default.png'">
-                <div class="comment-text">
-                      <span class="username"><%=relist.get(i).getTitle() %> <span class="text-muted pull-right"><%=relist.get(i).getWriter() %></span></span><!-- /.username -->
-                  <%=relist.get(i).getContent() %>
-                </div>
-                <!-- /.comment-text -->
-              </div>
-              <!-- /.box-comment -->
-            </div>
-            <!-- /.box-footer -->
+          <!-- /.box-header -->
+          <div class="box-body">
+            <img class="img-responsive pad" src="/hotel/images/review/<%=relist.get(i).getPic() %>" alt="Photo">
+            <p><%=relist.get(i).getContent() %></p>
           </div>
-          <!-- /.box -->
+          <!-- /.box-body -->
+        </div>
+        <!-- /.box -->
+    <%}else{ %>
+        <!-- Photo Box Comment -->
+        <div class="box box-widget review">
+          <!-- /.box-header -->
+          <div class="box-footer box-comments">
+            <div class="box-comment">
+              <!-- User image -->
+              <img src="/hotel/admin/dist/img/<%=mgr.getMember(relist.get(i).getWriter()).getPic() %>" class="img-circle img-sm" alt="User Image" onerror="this.src='/hotel/admin/dist/img/user_default.png'">
+              <span class="username"><%=relist.get(i).getWriter() %></span>
+              <span class="description"><%=relist.get(i).getTitle() %></span><!-- /.username -->
+              <div class="comment-text">
+                <%=relist.get(i).getContent() %>
+              </div>
+              <!-- /.comment-text -->
+            </div>
+            <!-- /.box-comment -->
+          </div>
+          <!-- /.box-footer -->
+        </div>
+        <!-- /.box -->
     <%}} %>
         </div>
         <div class="col-md-6">
 	<%for(int i=1;i<relist.size();i=i+2){
 		if(relist.get(i).getPic()!=null){%>
           <!-- Content Box Comment -->
-          <div class="box box-widget">
+          <div class="box box-widget review">
             <div class="box-header with-border">
               <div class="user-block">
                 <img src="/hotel/admin/dist/img/<%=mgr.getMember(relist.get(i).getWriter()).getPic() %>" class="img-circle" alt="User Image" onerror="this.src='/hotel/admin/dist/img/user_default.png'">
-                <span class="username"><a href="#"><%=relist.get(i).getTitle() %></a></span>
-                <span class="description"><%=relist.get(i).getWriter() %></span>
+                <span class="username"><a href="#"><%=relist.get(i).getWriter() %></a></span>
+                <span class="description"><%=relist.get(i).getTitle() %></span>
               </div>
               <!-- /.user-block -->
               <div class="box-tools">
@@ -278,7 +182,6 @@
             <!-- /.box-header -->
             <div class="box-body">
               <img class="img-responsive pad" src="/hotel/images/review/<%=relist.get(i).getPic() %>" alt="Photo">
-
               <p><%=relist.get(i).getContent() %></p>
             </div>
             <!-- /.box-body -->
@@ -286,7 +189,7 @@
           <!-- /.box -->
       <%}else{ %>
           <!-- Photo Box Comment -->
-          <div class="box box-widget">
+          <div class="box box-widget review">
             <!-- /.box-header -->
             <div class="box-footer box-comments">
               <div class="box-comment">
@@ -330,16 +233,49 @@
 <script src="../../dist/js/demo.js"></script>
 <script>
 var speed=300;
+$("#select2").change(function () {
+	console.log($(this));
+	console.log($(this).val());
+	console.log($(this).html());
+});
 $("#select2").change("select2:select", function (e) { 
   var select_val = $(e.currentTarget).val();
+  console.log(select_val);
   if(select_val.length!=0)
-	  $('.username').each(function(){
+	  $('.review').each(function(){
+		  console.log($(this).children().find('.username a'));
 		  if(jQuery.inArray(this.id, select_val)<0) $(this).hide(speed)
 		  else $(this).show(speed);
 	  })
 	else
-	  $('.username').each(function(){
+	  $('.review').each(function(){
 		  $(this).show(speed);
+	  })
+});
+$('.filtering').click(function () {
+	 $("#select2").text($(this).text());
+	 var sel = $("#select2").text();
+	  $('.review').each(function(){
+		  if(sel=='All Writer'){
+			  $(this).show(speed);
+		  }else{
+			  targ = $(this).children().find('.username').text();
+			  if(sel==targ) $(this).show(speed);
+			  else $(this).hide(speed);
+		  }
+	  })
+ });
+$('.username').click(function () {
+	 $("#select2").text($(this).text());
+	 var sel = $("#select2").text();
+	  $('.review').each(function(){
+		  if(sel=='All Writer'){
+			  $(this).show(speed);
+		  }else{
+			  targ = $(this).children().find('.username').text();
+			  if(sel==targ) $(this).show(speed);
+			  else $(this).hide(speed);
+		  }
 	  })
 });
 </script>

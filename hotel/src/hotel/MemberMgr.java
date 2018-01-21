@@ -88,6 +88,25 @@ public class MemberMgr {
 		return flag;
 	}
 	
+	public boolean deleteClient(String id) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		boolean flag = false;
+		try {
+			con = pool.getConnection();
+			sql = "delete from tblhotel where id = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			if(pstmt.executeUpdate()==1)
+				flag = true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			pool.freeConnection(con, pstmt);
+		}
+		return flag;
+	}
 	//회원가입
 	public boolean insertMember(MemberBean bean) {
 		Connection con = null;
@@ -140,6 +159,30 @@ public class MemberMgr {
 		return regBean;
 	}
 	
+	public boolean initMember() {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		ResultSet rs = null;
+		boolean flag = false;
+		try {
+			con = pool.getConnection();
+			sql = "select * from tblhotel";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if (!rs.next()) {
+				sql = "insert tblhotel(id,pass,email) values('leeseongsu','admin','admin@lss')";
+				pstmt = con.prepareStatement(sql);
+				if(pstmt.executeUpdate()==1) flag=true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			pool.freeConnection(con);
+		}
+		return flag;
+	}
+	
 	public boolean updateMember(MemberBean bean){
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -147,12 +190,12 @@ public class MemberMgr {
 		boolean flag = false;
 		try {
 			con = pool.getConnection();
-			sql = "update tblGuestBook set id=?,"
-					+"pass=? where email=?";
+			sql = "update tblhotel set pass=?,"
+					+"grade=? where id=?";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, bean.getId());
-			pstmt.setString(2, bean.getPass());
-			pstmt.setString(3, bean.getEmail());
+			pstmt.setString(1, bean.getPass());
+			pstmt.setString(2, bean.getGrade());
+			pstmt.setString(3, bean.getId());
 			if(pstmt.executeUpdate()==1)
 				flag = true;
 		} catch (Exception e) {
