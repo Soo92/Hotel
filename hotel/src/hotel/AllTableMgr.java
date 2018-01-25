@@ -26,7 +26,7 @@ public class AllTableMgr {
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
-				table.add(rs.getString("Tables_in_hotel"));
+				table.add(rs.getString("Tables_in_imleeseongsu"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

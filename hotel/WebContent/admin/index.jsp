@@ -854,7 +854,7 @@ function onClose(event) {
 	<%}%>
 }
 function onError(event) {
-	alert(event.data);
+//	alert(event.data);
 }
 function send() {
 	$('#mydummy_span').text(inputMessage.value);
