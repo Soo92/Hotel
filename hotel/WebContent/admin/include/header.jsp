@@ -5,10 +5,13 @@
 <jsp:useBean id="mgr" class="hotel.MemberMgr"/>
 <%
 	String email = session.getAttribute("admin")+"";
-	boolean login = session.getAttribute("admin")!=(null);
+	boolean login = session.getAttribute("admin")!=null;
 	boolean lock = session.getAttribute("remem")!=null;
 	if(lock&&!login) response.sendRedirect("/hotel/admin/pages/admin_login/lockscreen.jsp");
 	else if(!login) response.sendRedirect("/hotel/admin/pages/admin_login/login.html");
+	System.out.println(email);
+	System.out.println(email);
+	System.out.println(login);
 %>
   <header class="main-header">
     <!-- Logo -->

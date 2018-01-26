@@ -504,6 +504,7 @@ for(int i=0;i<cartlist.size();i++){
 <script src="bower_components/Flot/jquery.flot.categories.js"></script>
 <!-- Page script -->
 <script type="text/javascript">
+
 /*
  * Author: Abdullah A Almsaeed
  * Date: 4 Jan 2014
@@ -872,7 +873,9 @@ $('.online').click(function () {
 	$('.offline').removeClass('active');
 	$('#inputMessage').attr('disabled', false);
 	$('#send').attr('disabled', false);
+	<%if(mem.getId()!=null){%>
 	webSocket.send("<%=mem.getId().length()+"/"+mem.getId() %>Chatted in!");
+	<%}%>
 	$('.chat').css('background-color','rgb(255, 255, 255)');
 })
 $('.offline').click(function () {
@@ -880,7 +883,9 @@ $('.offline').click(function () {
 	$('.online').removeClass('active');
 	$('#inputMessage').attr('disabled', true);
 	$('#send').attr('disabled', true);
+	<%if(mem.getId()!=null){%>
 	webSocket.send("<%=mem.getId().length()+"/"+mem.getId() %>Chatted out!");
+	<%}%>
 	$('.chat').css('background-color','rgba(0, 0, 0, 0.2)');
 })
 </script>

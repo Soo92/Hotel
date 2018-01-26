@@ -186,8 +186,8 @@
 						<a href="#" onclick="ocultar_login_sign_up()"><i
 							class="material-icons">&#xE5C4;</i></a>
 						<h2>LOGIN</h2>
-						<input type="text" placeholder="Email" name="email" value="" /> <input
-							type="password" placeholder="Password" name="pass" value="" />
+						<input type="text" placeholder="Email" name="email" value="admin@lss" /> <input
+							type="password" placeholder="Password" name="pass" value="admin" />
 						<button class="btn_login" onclick="loginCheck()">로그인확인</button>
 					</div>
 				</form>
