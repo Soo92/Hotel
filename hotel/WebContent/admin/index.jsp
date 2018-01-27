@@ -13,7 +13,7 @@
 <%
 	String email1 = session.getAttribute("admin")+"";
 	MemberBean mem = memgr.getMember(email1);
-	String SocketAddr=request.getRemoteAddr().equals("0:0:0:0:0:0:0:1")?"localhost":request.getRemoteAddr();
+	String SocketAddr=request.getRequestURL().toString().split("/hotel")[0].replace("//", " ").split(" ")[1];
     SimpleDateFormat dt = new SimpleDateFormat();
 	long curtime=0;
     long reqtime=0;
@@ -27,6 +27,10 @@
     int comnum=0,noshownum=0,instorenum=0,cartnum=0;
     
     Vector<CartBean> cartlist = memgr.getCartList(email1);
+    
+    System.out.println(request.getRemoteAddr());
+    System.out.println(request.getRequestURI());
+    System.out.println(SocketAddr);
 %>
 
 <!DOCTYPE html>

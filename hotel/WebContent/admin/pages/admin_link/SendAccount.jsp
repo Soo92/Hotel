@@ -7,5 +7,7 @@
 		String email = request.getParameter("email");
 
 		regMgr.Mailing(title, message, email);
-		response.sendRedirect("../../index.jsp");
+		String url=request.getHeader("Referer");
+		url = url.contains("compose")?"./mail.jsp":"/hotel/admin/index.jsp";
+		response.sendRedirect(url);
 %>
