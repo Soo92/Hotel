@@ -821,7 +821,7 @@ function nextPage(){
 
 /* web-socket plugin */
 var chat_in = $('#chat-box');
-var webSocket = new WebSocket('ws://<%=SocketAddr%>/hotel/broadcasting');
+var webSocket = new WebSocket('wss://<%=SocketAddr%>/hotel/broadcasting');
 var inputMessage = document.getElementById('inputMessage');
 webSocket.onerror = function(event) {
 	onError(event)
